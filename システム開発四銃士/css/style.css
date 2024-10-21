@@ -66,7 +66,7 @@ header #logo img {
 	position: absolute;z-index: 1;
 	right: 3%;		/*右から3%の場所に配置*/
 	top: -30px;		/*上から-30pxの場所に配置。基準の場所から上に移動する事になります。*/
-	width: 500px;	/*画像の幅*/
+	width: 300px;	/*画像の幅*/
 }
 
 /*コンテンツ（メインメニューとmainとsubを囲むブロック）
