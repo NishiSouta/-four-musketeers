@@ -1,0 +1,121 @@
+/* login.css */
+
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#container {
+    width: 100%;
+    max-width: 375px;
+    background-color: #d2b48c; /* 背景色 */
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 a img {
+    max-width: 100%;
+}
+
+/* ログインコンテナ */
+#login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+#login-container h2 {
+    text-align: center;
+}
+
+/* 入力フィールド */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* ログインボタン */
+.btn-login {
+    width: 100%;
+    padding: 10px;
+    background-color: #32cd32; /* ログインボタンの色 */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #2a9d2a;
+}
+
+/* 新規アカウント登録リンク */
+.register-link, .error-message {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: red;
+}
+
+/* ×ボタンのスタイル */
+#close-btn {
+    display: block;
+    width: 40px;
+    height: 40px;
+    color: black;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#close-btn::before {
+    content: "×";
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer small, footer span {
+    display: block;
+}
+
+footer span a {
+    color: #666;
+    text-decoration: none;
+}
+
+footer span a:hover {
+    text-decoration: underline;
+}
