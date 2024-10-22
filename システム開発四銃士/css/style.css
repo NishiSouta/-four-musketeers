@@ -222,10 +222,17 @@ footer .pr {display: block;font-size: 80%;}
 }
 /*ta1設定*/
 .ta1 {
-	table-layout: fixed;
-	width: 100%;
-	margin: 0 auto 20px;
-	background: #fff;	/*背景色*/
+	/*table-layout: fixed;*/
+	width: 45%;
+	/*margin: 0 auto 20px;*/
+	background: #b3acac;	/*背景色*/
+	color: #333;		/*文字色*/
+}
+.ta2 {
+	/*table-layout: fixed;*/
+	width: 45%;
+	/*margin:  20px;*/
+	background: #b3acac;	/*背景色*/
 	color: #333;		/*文字色*/
 }
 .ta1 a {color: #333;}
