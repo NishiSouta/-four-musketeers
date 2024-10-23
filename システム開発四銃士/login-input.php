@@ -5,48 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ログインページ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="login.css"> <!-- login.css をリンク -->
+    <link rel="stylesheet" href="css/login.css"> <!-- login.css をリンク -->
 </head>
 
 <body>
 
-<div id="container">
+<div id="login-container">
+<header>
+<h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
+<aside id="header-img"><div id="close-btn"></div></aside>
+</header>
+    <!-- ×ボタン -->
+    
 
-    <!-- ヘッダー -->
-    <header>
-        <h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
-    </header>
+    <h2>ログイン</h2>
 
-    <div id="login-container">
-        <!-- ×ボタン -->
-        <div id="close-btn"></div>
+    <!-- ログインフォーム -->
+    <form method="POST" action="login.php">
+        <input type="text" name="email" class="input-field" placeholder="メールアドレス" required>
+        <input type="password" name="password" class="input-field" placeholder="パスワード" required>
 
-        <h2>ログイン</h2>
+        <button type="submit" class="btn-login">ログイン</button>
 
-        <!-- ログインフォーム -->
-        <form method="POST" action="login.php">
-            <input type="text" name="email" class="input-field" placeholder="メールアドレス" required>
-            <input type="password" name="password" class="input-field" placeholder="パスワード" required>
+        <a href="register.php" class="register-link">新規アカウント登録</a>
 
-            <button type="submit" class="btn-login">ログイン</button>
-
-            <a href="register.php" class="register-link">新規アカウント登録</a>
-
-            <?php
-            // エラーメッセージの表示
-            if (isset($_GET['error'])) {
-                echo '<p class="error-message">' . htmlspecialchars($_GET['error']) . '</p>';
-            }
-            ?>
-        </form>
-    </div>
-
-    <!-- フッター -->
-    <footer>
-        <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
-        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-    </footer>
-
+        <?php
+        // エラーメッセージの表示
+        if (isset($_GET['error'])) {
+            echo '<p class="error-message">' . htmlspecialchars($_GET['error']) . '</p>';
+        }
+        ?>
+    </form>
 </div>
 
 <script>
