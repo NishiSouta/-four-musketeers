@@ -566,3 +566,8 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
 .pc {display:none;}
 
 }
+/*h2中央寄せ*/
+h2{
+	/* 水平方向の中央揃え */
+	text-align: center;
+  }
