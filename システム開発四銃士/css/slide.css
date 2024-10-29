@@ -52,11 +52,12 @@
 }
 /*土台画像*/
 .slide0 {
-	position: relative;width: 100%;height: auto;
+	position: relative;width: 100%;height: auto;height: 120px;
 }
 /*１枚目*/
 .slide1 {
 	animation-name: slide1;	/*上で設定しているキーフレーム（keyframes）の名前*/
+
 }
 /*２枚目*/
 .slide2 {

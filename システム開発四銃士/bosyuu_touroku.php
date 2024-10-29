@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>フォトギャラリーサイト向け 無料ホームページテンプレート tp_photo5</title>
+<title>募集入力画面</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
 <meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
@@ -38,13 +38,7 @@
 	
 	<!--小さな端末用（900px以下端末）メニュー-->
 	<nav id="menubar-s">
-	<ul>
-	<li><a href="index.html">ホーム</a></li>
-	<li><a href="about.html">プロフィール</a></li>
-	<li><a href="gallery.html">投稿一覧</a></li>
-	<li><a href="link.html">募集一覧</a></li>
-	<li><a href="contact.html">ログアウト</a></li>
-	</ul>
+	<a href="link.html"><img src="images/batu.png" alt="×（ばつ）"></a>
 	</nav>
 
 <div id="contents">
