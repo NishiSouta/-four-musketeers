@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>プロフィール画面（自分側）</title>
+<title>プロフィール画面（ユーザー同士側）</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
 <meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
-<link rel="stylesheet" href="css/myprofile.css">
+<link rel="stylesheet" href="css/myprofile-edit.css">
 <script src="js/openclose.js"></script>
 <script src="js/fixmenu_pagetop.js"></script>
 <!--[if lt IE 9]>
@@ -67,21 +67,14 @@
             }
 ?>
 -->
-<div id="name">
-<button type=“button” onclick="location.href='index.html'">編集</button>
-  <div id="name2">ユーザー名</div>
-</div>
-<br>
 
 <div id="user_icon">
 <img  alt="image" src="images/account_circle.png">
 </div>
-<div id="counts">
-  <span class="post">投稿:10回</span>
-  <span class="participation">参加:15回</span>
-  <br>
-  <span class="good_count">good数:30</span>
-</div>
+<br>
+<input type="text" name="name" value="ユーザー名"></p>
+<input type="text" name="profile" placeholder="自己紹介">
+<br>
 
 <hr>
 <div id="profile_info_1">
