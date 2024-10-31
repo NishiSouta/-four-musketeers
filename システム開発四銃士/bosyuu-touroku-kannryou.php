@@ -20,7 +20,7 @@ $syosinsya = isset($_POST['syosinsya']) ? 1 : 0;
 $sonota = htmlspecialchars($_POST['sonota'], ENT_QUOTES, 'UTF-8');
 
 // データベースに挿入
-$sql = "INSERT INTO bosyuu (title, date_from, date_to, ninzuu, current_ninzuu, zissibasyo, sum, syosinsya, sonota) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO post (title, date_from, date_to, ninzuu, current_ninzuu, zissibasyo, sum, syosinsya, sonota) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissibasyo, $sum, $syosinsya, $sonota]);
 ?>

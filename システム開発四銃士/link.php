@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
 <meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/link.css">
 <script src="js/openclose.js"></script>
 <script src="js/fixmenu_pagetop.js"></script>
 </head>
@@ -26,7 +26,7 @@
 			<li><a href="index.html">ホーム</a></li>
 			<li class="current"><a href="about.html">プロフィール</a></li>
 			<li><a href="gallery.html">投稿一覧</a></li>
-			<li><a href="link.php">募集一覧</a></li>
+			<li><a href="link.php">募集する</a></li>
 			<li><a href="contact.html">ログアウト</a></li>
 		</ul>
 	</nav><!--小さな端末用（900px以下端末）メニュー-->
@@ -35,7 +35,7 @@
 	<li><a href="index.html">ホーム</a></li>
 	<li><a href="about.html">プロフィール</a></li>
 	<li><a href="gallery.html">投稿一覧</a></li>
-	<li><a href="link.php">募集一覧</a></li>
+	<li><a href="link.php">募集する</a></li>
 	<li><a href="contact.html">ログアウト</a></li>
 	</ul>
 	</nav>
