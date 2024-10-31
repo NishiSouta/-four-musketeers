@@ -616,3 +616,34 @@ hr{
 #name span {
     text-align: center;
 }
+
+textarea, input[type="text"] {
+    width: 100%;
+    min-width: 200px; /* 必要に応じて調整 */
+    max-width: 600px; /* 必要に応じて調整 */
+    box-sizing: border-box; /* パディングとボーダーを含む幅計算 */
+}
+
+/* スマートフォンサイズの調整 */
+@media (max-width: 600px) {
+    textarea, input[type="text"] {
+        width: 100%; /* 画面幅に100%に調整 */
+    }
+}
+
+.level-buttons {
+	display: none;
+	margin-top: 10px;
+}
+
+.level-buttons button {
+	padding: 10px;
+	border: none;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.selected {
+	background-color: #4CAF50; /* 緑色の背景 */
+	color: white; /* 白色の文字 */
+}
