@@ -1,16 +1,18 @@
 /* 入力フィールド */
 .input-field {
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 30px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+	background-color: white;
 }
 
 /* ログインボタン */
 .btn-login {
     width: 100%;
     padding: 10px;
+	margin: 30px 0;
     background-color: #32cd32; /* ログインボタンの色 */
     border: none;
     border-radius: 5px;
@@ -75,7 +77,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 49vh;
 	color: #FFF;	/*全体の文字色*/
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	font-size: 14px;	/*文字サイズ*/
@@ -108,12 +110,14 @@ a:hover {
 #login-container {
     max-width: 1300px;
      /* 背景色 */
-    width: 375px; /* スマホの幅に合わせる */
-    padding: 100px;
+    width: 390px; /* スマホの幅に合わせる */
+	height: 380px;
+    padding: 0px;
     border-radius: 10px;
     margin: 0 auto;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     position: relative;
+	text-align:center;
 }
 
 #login-container h2 {
@@ -145,7 +149,7 @@ header #logo img {
 ---------------------------------------------------------------------------*/
 #contents {
 	clear: both;overflow: hidden;
-	padding-bottom: 40px;	/*下の余白。footerとの間のスペースになります。*/
+	padding-bottom: 20px;	/*下の余白。footerとの間のスペースになります。*/
 }
 
 /*メインメニュー
@@ -259,6 +263,7 @@ footer {
 	background: #3e3b32;	/*背景色*/
 	color: #fff;			/*文字色*/
 	text-align: center;		/*文字をセンタリング*/
+	height: 100p
 }
 footer a {text-decoration: none;}
 footer .pr {display: block;font-size: 80%;}
@@ -519,11 +524,11 @@ body.s-n #sub,body.s-n #footermenu,.m-n {display: none;}
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
 header {
-	height: 100px;	/*ヘッダーの高さ*/
+	height: 150px;	/*ヘッダーの高さ*/
 }
 /*ロゴ画像*/
 header #logo img {
-	top: 15px;		/*上から35pxの場所に配置*/
+	top: 0px;		/*上から35pxの場所に配置*/
 }
 /*ヘッダー右上の画像*/
 #header-img img {
@@ -558,7 +563,7 @@ body {
 ---------------------------------------------------------------------------*/
 /*ロゴ画像*/
 header #logo img {
-	width: 65px;	/*画像の幅*/
+	width: 75px;	/*画像の幅*/
 }
 /*ヘッダー右上の画像*/
 #header-img img {
@@ -630,4 +635,22 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
 .sh {display:block;}
 .pc {display:none;}
 
+}
+.rounded-icon {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+    background-color: white;
+}
+.user-icon img {
+    width: 150px; /* 適切な幅を指定 */
+    height: 150px; /* 適切な高さを指定 */
+    border-radius: 50%; /* 完全に丸くするために50% */
+    object-fit: cover; /* 画像を適切に収める */
+}
+h1{
+font-size: 20px; /* 必要に応じてサイズを調整 */
+text-align:center;
 }
