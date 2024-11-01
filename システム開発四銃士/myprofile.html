@@ -1,0 +1,136 @@
+<!--
+<?php session_start(); ?>
+<?php require 'db-connect.php'; ?>
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>プロフィール画面（自分側）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
+<link rel="stylesheet" href="css/myprofile.css">
+<script src="js/openclose.js"></script>
+<script src="js/fixmenu_pagetop.js"></script>
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+  <header>
+    <h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
+    <aside id="header-img"><a href="login-input.php"><img src="images/account_circle.png" alt=""></a></aside>
+    </header>
+
+<!--PC用（901px以上端末）メニュー-->
+<nav id="menubar">
+<ul>
+<li><a href="index.html">ホーム</a></li>
+<li class="current"><a href="myprofile.html">プロフィール</a></li>
+<li><a href="gallery.html">投稿一覧</a></li>
+<li><a href="link.html">募集する</a></li>
+<li><a href="contact.html">ログアウト</a></li>
+</ul>
+</nav>
+
+<!--小さな端末用（900px以下端末）メニュー-->
+<nav id="menubar-s">
+<ul>
+<li><a href="index.html">ホーム</a></li>
+<li><a href="myprofile.php">プロフィール</a></li>
+<li><a href="gallery.html">投稿一覧</a></li>
+<li><a href="link.html">募集する</a></li>
+<li><a href="contact.html">ログアウト</a></li>
+</ul>
+</nav>
+
+<div id="contents">
+
+<div id="main">
+<!--
+<?php
+        $pdo=new PDO($connect, USER, PASS);
+            $sql=$pdo->prepare('select * from user where user_id = ? ');
+            $sql->execute([$_SESSION['user']['user_id']]);
+            foreach($sql as $row){
+              echo '<br><span class="name">',$row['user_name'],'</span>';
+              echo '<img alt="image" src="', $row['profile_img'], '" class="avatar">';
+              echo '<br><span class="post">',$row['post_count'],'</span>';
+              echo '<span class="participation">',$row['participation_count'],'</span>';
+              echo '<br><span class="good_count">',$row['good_count'],'</span>';
+            }
+?>
+-->
+<div id="name">
+<button type=“button” onclick="location.href='index.html'">編集</button>
+  <div id="name2">ユーザー名</div>
+</div>
+<br>
+
+<div id="user_icon">
+<img  alt="image" src="images/account_circle.png">
+</div>
+<div id="counts">
+  <span class="post">投稿:10回</span>
+  <span class="participation">参加:15回</span>
+  <br>
+  <span class="good_count">good数:30</span>
+</div>
+
+<hr>
+<div id="profile_info_1">
+  <br><span class="title">自己紹介</span><br>
+  <br><span>野球とともに生きてきました！！</span>
+  <br><span>よろしくお願いします！</span><br><br>
+  <hr>
+</div>
+<!--/profile_info_1-->
+
+<div id="profile_info_2">
+  <br><span class="age_sub">年齢:</span>
+  <span class="age_main">20</span><br>
+  <br><span class="sex_sub">性別:</span>
+  <span class="sex_main">男</span><br>
+  <br><hr>
+</div>
+<!--/profile_info_2-->
+
+<div id="profile_info_3"></div>
+  <br><p>好きなスポーツ</p>
+  <p>野球</p>
+  <p>ランニング</p>
+  <p>サッカー</p>
+</div>
+<!--/profile_info_3-->
+
+</div>
+<!--/main-->
+
+</div>
+<!--/contents-->
+
+<footer>
+<small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
+<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+</footer>
+
+<p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
+
+<!--メニュー開閉ボタン-->
+<div id="menubar_hdr" class="close"></div>
+
+<!--メニューの開閉処理条件設定　900px以下-->
+<script>
+if (OCwindowWidth() <= 900) {
+	open_close("menubar_hdr", "menubar-s");
+}
+</script>
+
+</body>
+</html>
