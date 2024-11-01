@@ -583,13 +583,20 @@ hr{
     margin-bottom: 10px;
 }
 
-.age_sub, .sex_sub {
-    font-weight: bold;
+#age-container, #sex-container, #place-container {
+    display: flex;
+    justify-content: space-between; /* 左右に配置 */
+    padding: 10px; /* 必要に応じてパディングを追加 */
 }
 
-.age_main, .sex_main {
-    font-size: 18px;
-    margin-left: 10px;
+#age-sub, #sex-sub, #place-sub {
+    text-align: left; /* 左端に揃える */
+}
+
+#age-main, #sex-main, #place-main {
+    text-align: right; /* 右端に揃える */
+    margin-left: auto; /* 左側のスペースを自動で確保 */
+    flex-grow: 1;
 }
 
 #profile_info_3 p {
@@ -617,11 +624,24 @@ hr{
     text-align: center;
 }
 
-textarea, input[type="text"] {
-    width: 100%;
-    min-width: 200px; /* 必要に応じて調整 */
-    max-width: 600px; /* 必要に応じて調整 */
-    box-sizing: border-box; /* パディングとボーダーを含む幅計算 */
+/* テキストボックスの背景を白に */
+input[type="text"] {
+    background-color: white;
+    color: #333; /* 文字色を濃い色に */
+    border: 1px solid #ccc; /* 境界線を淡い色に */
+    padding: 10px; /* パディングを設定 */
+    width: 100%; /* 幅を100%に */
+    box-sizing: border-box; /* パディングを含めた幅計算 */
+}
+
+/* テキストエリアの背景を白に */
+textarea {
+    background-color: white;
+    color: #333; /* 文字色を濃い色に */
+    border: 1px solid #ccc; /* 境界線を淡い色に */
+    padding: 10px; /* パディングを設定 */
+    width: 100%; /* 幅を100%に */
+    box-sizing: border-box; /* パディングを含めた幅計算 */
 }
 
 /* スマートフォンサイズの調整 */
@@ -646,4 +666,36 @@ textarea, input[type="text"] {
 .selected {
 	background-color: #4CAF50; /* 緑色の背景 */
 	color: white; /* 白色の文字 */
+}
+
+.user-icon-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 中央揃え */
+    width: 100px; /* アイコンのコンテナの幅を固定 */
+    height: 100px; /* アイコンのコンテナの高さを固定 */
+    margin: 0 auto; /* コンテナ全体を中央に配置 */
+}
+
+#profileImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+    cursor: pointer; /* クリック可能に */
+}
+
+#uploadButton {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    transform: translate(20%, 20%); /* ボタンをさらに内側に配置 */
+    background: none; /* 背景を透明に */
+    color: white; /* プラスマークの色を白に */
+    border: none;
+    font-size: 30px; /* プラスマークのサイズを大きく調整 */
+    cursor: default; /* 見た目のみでクリック不可 */
+    pointer-events: none; /* ボタンをクリックできないように */
+    line-height: 1; /* ボタン内の文字を中央に配置 */
 }
