@@ -478,3 +478,62 @@ h2{
     justify-content: center;
     align-items: center;
   }
+
+
+
+
+
+
+
+/* ここからチャットGPT*/
+
+
+  /* style-bosyuu-touroku.css */
+
+  
+  h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #333;
+  }
+  
+
+
+  form input[type="text"],
+  form select {
+	width: 90%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+
+
+  form input[type="date"],
+  form select {
+	width: 85%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+   
+
+  
+  form input[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #00ff66; /* Green button color */
+	border: none;
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  form input[type="submit"]:hover {
+	background-color: #00cc52; /* Darker green on hover */
+  }
+ 
+  
