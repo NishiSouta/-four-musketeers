@@ -77,7 +77,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 49vh;
+    height: 50vh;
 	color: #FFF;	/*全体の文字色*/
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	font-size: 14px;	/*文字サイズ*/
@@ -111,7 +111,7 @@ a:hover {
     max-width: 1300px;
      /* 背景色 */
     width: 390px; /* スマホの幅に合わせる */
-	height: 380px;
+	height: 430px;
     padding: 0px;
     border-radius: 10px;
     margin: 0 auto;
