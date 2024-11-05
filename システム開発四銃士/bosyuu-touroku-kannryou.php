@@ -10,19 +10,20 @@ try {
 
 // フォームからのデータを取得
 $title = htmlspecialchars($_POST['bosyuutaitoru'], ENT_QUOTES, 'UTF-8');
-$date_from = $_POST['date_from'];
-$date_to = $_POST['date_to'];
-$ninzuu = $_POST['ninzuu'];
-$current_ninzuu = $_POST['current_ninzuu'];
-$zissibasyo = htmlspecialchars($_POST['zissibasyo'], ENT_QUOTES, 'UTF-8');
-$sum = $_POST['sum'];
-$syosinsya = isset($_POST['syosinsya']) ? 1 : 0;
-$sonota = htmlspecialchars($_POST['sonota'], ENT_QUOTES, 'UTF-8');
+$date_from = $_POST['event_datetime_from'];
+$date_to = $_POST['event_datetime_to'];
+$ninzuu = $_POST['recruit_number'];
+$current_ninzuu = $_POST['current_number'];
+$zissibasyo = htmlspecialchars($_POST['location'], ENT_QUOTES, 'UTF-8'); // 修正: locationに一致させる
+$sum = $_POST['participation_fee']; // 修正: participation_feeに一致させる
+$syosinsya = isset($_POST['syosinsya']) ? $_POST['syosinsya'] : 'no';
+$sonota = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
 
 // データベースに挿入
-$sql = "INSERT INTO post (title, date_from, date_to, ninzuu, current_ninzuu, zissibasyo, sum, syosinsya, sonota) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO post (title, event_datetime_from, event_datetime_to, recruit_number, current_number, location, participation_fee, syosinsya, description, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissibasyo, $sum, $syosinsya, $sonota]);
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +69,9 @@ $stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissiba
         </section>
       </div>
     </div>
-
-	<footer>
-<small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
-</footer>
+    <footer>
+      <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
+    </footer>
+  </div>
+</body>
+</html>

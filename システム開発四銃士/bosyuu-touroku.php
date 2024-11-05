@@ -35,11 +35,11 @@
             募集タイトル<br>
             <input type="text" name="bosyuutaitoru"><br>
             開催日時<br>
-            <input name="date_from" type="date" />から<br>
-            <input name="date_to" type="date" />まで<br>
+            <input name="event_datetime_from" type="date" />から<br>
+            <input name="event_datetime_to" type="date" />まで<br>
             条件<br>
             募集する人数
-            <select name="ninzuu">
+            <select name="recruit_number">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -52,7 +52,7 @@
               <option value="10">10</option>
             </select><br>
             すでに集まっている人数
-            <select name="current_ninzuu">
+            <select name="current_number">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -66,9 +66,9 @@
               <option value="10">10</option>
             </select><br>
             実施場所<br>
-            <input type="text" name="zissibasyo"><br>
+            <input type="text" name="location"><br> <!-- 修正: name属性をlocationに -->
             参加費<br>
-            <select name="sum">
+            <select name="participation_fee"> <!-- 修正: name属性をparticipation_feeに -->
               <option value="0">無料</option>
               <option value="500">500円以内</option>
               <option value="1000">1000円以内</option>
@@ -86,9 +86,9 @@
               <option value="25000">25000円以内</option>
               <option value="30000">30000円以内</option>
             </select><br>
-            <input type="checkbox" id="syosinsya" name="syosinsya" />初心者OK<br>
+            <input type="checkbox" id="syosinsya" name="syosinsya" value="ok" />初心者OK<br>
             その他<br>
-            <input type="text" name="sonota">
+            <input type="text" name="description">
             <div id="center">
               <p><input type="submit" value="募集する" id="button"></p>
             </div>
