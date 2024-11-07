@@ -74,7 +74,7 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規アカウント登録</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/sinki.css">
 </head>
 <body>
 <div id="login-container">
