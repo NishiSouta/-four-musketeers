@@ -251,11 +251,15 @@ footer .pr {display: block;font-size: 80%;}
 input[type="submit"].btn,
 input[type="button"].btn,
 input[type="reset"].btn {
-	padding: 5px 10px;		/*上下、左右のボタン内の余白*/
-	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
 	border-radius: 3px;		/*角丸のサイズ*/
-	background: #eee;		/*背景色*/
+	background: #35ff03;		/*背景色*/
 	color: #333;			/*文字色*/
+	padding: 10px 20px; /* パディングを設定 */ 
+	border: none; /* 境界線をなくす */ 
+	cursor: pointer; /* クリック可能に */ 
+	font-size: 16px; /* フォントサイズを設定 */ 
+	display: block; /* ボタンをブロック表示にして中央に配置 */ 
+	margin: 20px auto; /* 上下にマージンを追加し中央に配置 */ 
 }
 /*マウスオン時のボタン（btn）設定*/
 input[type="submit"].btn:hover,
@@ -698,4 +702,23 @@ textarea {
     cursor: default; /* 見た目のみでクリック不可 */
     pointer-events: none; /* ボタンをクリックできないように */
     line-height: 1; /* ボタン内の文字を中央に配置 */
+}
+
+button[type="submit"] { 
+	background-color: #4CAF50; /* 緑色の背景 */ 
+	color: black; /* 文字色を白に */ 
+	padding: 5px 20px; /* パディングを設定 */ 
+	border: none; /* 境界線をなくす */ 
+	border-radius: 5px; /* 角を少し丸める */ 
+	cursor: pointer; /* クリック可能に */ 
+	font-size: 25px; /* フォントサイズを設定 */ 
+	display: block; /* ボタンをブロック表示にして中央に配置 */ 
+	margin: 20px auto; /* 上下にマージンを追加し中央に配置 */ 
+	width: 100%; /* 幅を100%に設定 */ 
+	max-width: 400px; /* 最大幅を設定して中央に配置 */ 
+	box-sizing: border-box; /* パディングを含めた幅計算 */
+} 
+
+button[type="submit"]:hover { 
+	background-color: #45a049; /* ホバー時の色を少し濃く */ 
 }
