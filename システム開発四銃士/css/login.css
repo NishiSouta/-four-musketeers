@@ -41,7 +41,7 @@
 #close-btn {
     display: block;
     width: 40px;
-    height: 40px;
+    height: 10px;
     color: black;
     text-align: center;
     line-height: 40px;
@@ -77,7 +77,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 15vh;
 	color: #FFF;	/*全体の文字色*/
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	font-size: 14px;	/*文字サイズ*/
@@ -111,11 +111,11 @@ a:hover {
     max-width: 1300px;
      /* 背景色 */
     width: 390px; /* スマホの幅に合わせる */
-	height: 430px;
+	height: 85px;
     padding: 0px;
     border-radius: 10px;
     margin: 0 auto;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
     position: relative;
 	text-align:center;
 }
@@ -651,6 +651,12 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
     object-fit: cover; /* 画像を適切に収める */
 }
 h1{
-font-size: 20px; /* 必要に応じてサイズを調整 */
+font-size: 30px; /* 必要に応じてサイズを調整 */
 text-align:center;
+}
+.sinki-link{
+	font-size: 20px;
+}
+.btn-login{
+	font-size: 25px;
 }
