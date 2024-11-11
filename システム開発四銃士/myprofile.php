@@ -57,7 +57,7 @@ require 'db-connect.php';
       try {
         $pdo = new PDO($connect, USER, PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = $pdo->prepare('SELECT * FROM user WHERE user_id = 7');
+        $sql = $pdo->prepare('SELECT * FROM user WHERE user_id = 11');
         $sql->execute();
         foreach ($sql as $row) {
           echo '<div id="name">';
@@ -65,7 +65,7 @@ require 'db-connect.php';
           echo '<div id="name2">' . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . '</div>';
           echo '</div><br>';
           echo '<div id="user_icon">';
-          $profile_img = isset($row['profile_img']) ? htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
+          $profile_img = isset($row['profile_image']) ? htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
           echo '<img alt="image" src="' . $profile_img . '" class="avatar">';
           echo '</div>';
           echo '<div id="counts">';
@@ -75,21 +75,33 @@ require 'db-connect.php';
           echo '</div><hr>';
           echo '<div id="profile_info_1">';
           echo '<br><span class="title">自己紹介</span><br>';
-          $self_intro = isset($row['self_intro']) ? nl2br(htmlspecialchars($row['self_intro'], ENT_QUOTES, 'UTF-8')) : '自己紹介はまだ登録されていません。';
+          $self_intro = isset($row['bio']) ? nl2br(htmlspecialchars($row['bio'], ENT_QUOTES, 'UTF-8')) : '自己紹介はまだ登録されていません。';
           echo '<br><span>' . $self_intro . '</span><br><br>';
           echo '<hr></div>';
           echo '<div id="profile_info_2">';
           echo '<br><span class="age_sub">年齢:</span>';
           echo '<span class="age_main">' . htmlspecialchars($row['age'], ENT_QUOTES, 'UTF-8') . '</span><br>';
           echo '<br><span class="sex_sub">性別:</span>';
-          $sex = isset($row['sex']) ? htmlspecialchars($row['sex'], ENT_QUOTES, 'UTF-8') : '未設定';
+          $sex = isset($row['gender']) ? htmlspecialchars($row['gender'], ENT_QUOTES, 'UTF-8') : '未設定';
           echo '<span class="sex_main">' . $sex . '</span><br><br>';
           echo '<hr></div>';
           echo '<div id="profile_info_3">';
           echo '<br><p>好きなスポーツ</p>';
-          echo '<p>野球</p>';
-          echo '<p>ランニング</p>';
-          echo '<p>サッカー</p>';
+
+          // user_sportsテーブルからスポーツ情報を取得
+           $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = 11');
+            $sport_sql->execute();
+             $user_sport = $sport_sql->fetchAll(PDO::FETCH_ASSOC);
+              foreach ($user_sport as $sport) {
+                $sport_name = isset($sport['sport_name']) ? htmlspecialchars($sport['sport_name'], ENT_QUOTES, 'UTF-8') : 'スポーツ名不明';
+                 $level = isset($sport['level']) ? htmlspecialchars($sport['level'], ENT_QUOTES, 'UTF-8') : null;
+                  if ($level !== null && $level !== '未設定') {
+                     echo '<p>' . $sport_name . ' - ' . $level . '</p>'; 
+                  }else {
+                    echo '<p>' . $sport_name . '</p>';
+                  }
+                }
+
           echo '</div>';
         }
       } catch (PDOException $e) {
