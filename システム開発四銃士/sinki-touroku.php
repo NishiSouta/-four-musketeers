@@ -42,8 +42,8 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
         ]);
 
         // データベースにユーザー情報を挿入
-        $sql = "INSERT INTO user (user_name, email, password, gender, age, activity_region, sport_id,profile_image)
-                VALUES (:user_name, :email, :password, :gender, :age, :activity_region, :sport_id, :profile_image)";
+        $sql = "INSERT INTO user (user_name, email, password, gender, age, activity_region,profile_image)
+                VALUES (:user_name, :email, :password, :gender, :age, :activity_region, :profile_image)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_name', $userName);
         $stmt->bindParam(':email', $eMail);
@@ -51,12 +51,21 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
         $stmt->bindParam(':gender', $gender);
         $stmt->bindParam(':age', $age);
         $stmt->bindParam(':activity_region', $activityRegion);
-        $stmt->bindParam(':sport_id', $sportId);
         $stmt->bindParam(':profile_image', $profileImage);
 
         // クエリ実行
         $stmt->execute();
 
+        $userId = $pdo->lastInsertId();
+
+        // user_sportテーブルに選択されたスポーツを追加
+        $sql = "INSERT INTO user_sport (user_id, sport_id) VALUES (:user_id, :sport_id)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':sport_id', $sportId);
+        $stmt->execute();
+       
+        if (isset($sportId)) {     echo '$sportIdは存在します'; } else {     echo '$sportIdは存在しません'; }
         // 登録成功後、index.html に遷移
         header("Location: index.html");
         exit;
@@ -87,7 +96,7 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
 
     <h1>新規アカウント登録</h1>
     <!-- フォーム部分 -->
-    <form method="POST" action="sinki-touroku-input.php" enctype="multipart/form-data">
+    <form method="POST" action="sinki-touroku.php" enctype="multipart/form-data">
         <!-- プロフィール画像選択フォーム -->
         <div id="center">
             <div class="user-icon">
@@ -188,8 +197,7 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
             <option value="9">ボクシング</option>
             <option value="10">ゴルフ</option>
             <option value="11">アメリカンフットボール</option>
-            <option value="12">バレーボール</option>
-            
+            <option value="12">バレーボール</option>   
         </select>
         <button type="submit" class="btn-login">登録する</button>
     </form>

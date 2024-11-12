@@ -1,4 +1,65 @@
-@charset "utf-8";
+/* style.css */
+/* 入力フィールド */
+.input-field {
+    width: 90%;
+    padding: 10px;
+    margin: 30px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+	background-color: white;
+}
+
+/* ログインボタン */
+.btn-login {
+    width: 100%;
+    padding: 10px;
+	margin: 30px 0;
+    background-color: #32cd32; /* ログインボタンの色 */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #2a9d2a;
+}
+
+/* 新規アカウント登録リンク */
+.register-link, .error-message {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: red;
+}
+
+/* ×ボタンのスタイル */
+#close-btn {
+    display: block;
+    width: 40px;
+    height: 40px;
+    color: black;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#close-btn::before {
+    content: "×";
+}
+
+
+
 
 
 /*slide.cssと、lightbox.cssの読み込み
@@ -14,6 +75,10 @@
 body {
 	margin: 0px;
 	padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 	color: #FFF;	/*全体の文字色*/
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	font-size: 14px;	/*文字サイズ*/
@@ -21,6 +86,8 @@ body {
 	background: #938b76;	/*全体の背景色（古いブラウザ用）*/
 	-webkit-text-size-adjust: none;
 }
+
+
 h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,input,select,textarea {margin: 0px;padding: 0px;font-size: 100%;}
 ul {list-style-type: none;}
 img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
@@ -40,13 +107,26 @@ a:hover {
 }
 
 /*コンテナー（footer以外を囲むブロック）
+
 ---------------------------------------------------------------------------*/
-#container {
-	max-width: 1300px;	/*サイトの最大幅*/
-	margin: 0 auto;
-	padding: 0 3%;
+.container {
+    max-width: 1300px;
+     /* 背景色 */
+    width: 390px; /* スマホの幅に合わせる */
+	height: 590px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+	text-align:center;
+    background-color: #f0e4d7;
 }
 
+
+.container h2 {
+    text-align: center;
+}
 /*ヘッダー（ロゴが入った最上段のブロック）
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
@@ -73,7 +153,7 @@ header #logo img {
 ---------------------------------------------------------------------------*/
 #contents {
 	clear: both;overflow: hidden;
-	padding-bottom: 40px;	/*下の余白。footerとの間のスペースになります。*/
+	padding-bottom: 20px;	/*下の余白。footerとの間のスペースになります。*/
 }
 
 /*メインメニュー
@@ -187,6 +267,7 @@ footer {
 	background: #3e3b32;	/*背景色*/
 	color: #fff;			/*文字色*/
 	text-align: center;		/*文字をセンタリング*/
+	height: 100p
 }
 footer a {text-decoration: none;}
 footer .pr {display: block;font-size: 80%;}
@@ -222,17 +303,10 @@ footer .pr {display: block;font-size: 80%;}
 }
 /*ta1設定*/
 .ta1 {
-	/*table-layout: fixed;*/
-	width: 45%;
-	/*margin: 0 auto 20px;*/
-	background: #b3acac;	/*背景色*/
-	color: #333;		/*文字色*/
-}
-.ta2 {
-	/*table-layout: fixed;*/
-	width: 45%;
-	/*margin:  20px;*/
-	background: #b3acac;	/*背景色*/
+	table-layout: fixed;
+	width: 100%;
+	margin: 0 auto 20px;
+	background: #fff;	/*背景色*/
 	color: #333;		/*文字色*/
 }
 .ta1 a {color: #333;}
@@ -454,11 +528,11 @@ body.s-n #sub,body.s-n #footermenu,.m-n {display: none;}
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
 header {
-	height: 100px;	/*ヘッダーの高さ*/
+	height: 150px;	/*ヘッダーの高さ*/
 }
 /*ロゴ画像*/
 header #logo img {
-	top: 15px;		/*上から35pxの場所に配置*/
+	top: 0px;		/*上から35pxの場所に配置*/
 }
 /*ヘッダー右上の画像*/
 #header-img img {
@@ -493,7 +567,7 @@ body {
 ---------------------------------------------------------------------------*/
 /*ロゴ画像*/
 header #logo img {
-	width: 65px;	/*画像の幅*/
+	width: 75px;	/*画像の幅*/
 }
 /*ヘッダー右上の画像*/
 #header-img img {
@@ -566,25 +640,72 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
 .pc {display:none;}
 
 }
-/*h2中央寄せ*/
-h2{
-	/* 水平方向の中央揃え */
-	text-align: center;
-  }
+.rounded-icon {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+    background-color: white;
+}
+.user-icon img {
+    width: 150px; /* 適切な幅を指定 */
+    height: 150px; /* 適切な高さを指定 */
+    border-radius: 50%; /* 完全に丸くするために50% */
+    object-fit: cover; /* 画像を適切に収める */
+}
+h1{
+font-size: 20px; /* 必要に応じてサイズを調整 */
+text-align:center;
+}
 
-#iti {
-	width: 100px; /* 幅を100pxに設定 */
-	height: auto; /* 高さは自動調整 */
-  }
-#ni{
-	width: 100px; /* 幅を100pxに設定 */
-	height: auto; /* 高さは自動調整 */
-  }
-  #san{
-	width: 100px; /* 幅を100pxに設定 */
-	height: auto; /* 高さは自動調整 */
-  }
-  #img_img{
-	width: 100px; /* 幅を100pxに設定 */
-	height: auto; /* 高さは自動調整 */
-  }
+* {
+  margin: 0;
+}
+
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  flex: 1;
+	color: black;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.top-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #66ff66; /* TOPページボタンの背景色 */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
