@@ -571,3 +571,20 @@ h2{
 	/* 水平方向の中央揃え */
 	text-align: center;
   }
+
+#iti {
+	width: 100px; /* 幅を100pxに設定 */
+	height: auto; /* 高さは自動調整 */
+  }
+#ni{
+	width: 100px; /* 幅を100pxに設定 */
+	height: auto; /* 高さは自動調整 */
+  }
+  #san{
+	width: 100px; /* 幅を100pxに設定 */
+	height: auto; /* 高さは自動調整 */
+  }
+  #img_img{
+	width: 100px; /* 幅を100pxに設定 */
+	height: auto; /* 高さは自動調整 */
+  }

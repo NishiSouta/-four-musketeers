@@ -595,11 +595,11 @@ button {
     margin-bottom: 10px;
 }
 
-.age_sub, .sex_sub {
+.age_sub, .sex_sub , .region_sub{
     font-weight: bold;
 }
 
-.age_main, .sex_main {
+.age_main, .sex_main, .region_main {
     font-size: 18px;
     margin-left: 10px;
 }
