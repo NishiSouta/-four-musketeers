@@ -12,8 +12,7 @@
 /* ログインボタン */
 .btn-login {
     width: 100%;
-    padding: 10px;
-	margin: 30px 0;
+
     background-color: #32cd32; /* ログインボタンの色 */
     border: none;
     border-radius: 5px;
@@ -78,7 +77,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 10vh;
 	color: #FFF;	/*全体の文字色*/
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	font-size: 14px;	/*文字サイズ*/
@@ -113,14 +112,13 @@ a:hover {
     max-width: 1300px;
      /* 背景色 */
     width: 390px; /* スマホの幅に合わせる */
-	height: 590px;
+	height: 60px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 0px;
     margin: 0 auto;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
     position: relative;
 	text-align:center;
-    background-color: #f0e4d7;
 }
 
 
@@ -458,53 +456,93 @@ header #logo img {
 100% {opacity: 1;}
 }
 /*スマホ用メニューブロック*/
-#menubar-s {
-	display: block;overflow: hidden;
-	position: absolute;z-index: 10;
-	width: 100%;margin-left: -3%;
-	top: 200px;					/*上から200pxの場所に配置*/
-	border-top: 1px solid #fff;	/*上の線の幅、線種、色*/
-	animation-name: menu1;		/*上のkeyframesの名前*/
-	animation-duration: 0.5S;	/*アニメーションの実行時間。0.5秒。*/
-	animation-fill-mode: both;	/*アニメーションの完了後、最後のキーフレームを維持する*/
+#menubar {
+	overflow: hidden;
+	background: #5b5649;	/*背景色（古いブラウザ用）*/
+	background: linear-gradient(#5b5649, #3e3b32);	/*背景グラデーション*/
+	box-shadow: 1px 2px 7px rgba(0,0,0,0.2);		/*ボックスの影。右へ、下へ、広げる幅、0,0,0は黒の事で0.2は20%色がついた状態の事。*/
+	border-radius: 10px;	/*角丸のサイズ*/
+	text-align: center;		/*テキストをセンタリング*/
+	padding: 0 4%;			/*上下、左右へのメニューブロック内の余白。*/
+	margin-bottom: 30px;	/*メニューブロックの下(外側)に空けるスペース*/
 }
 /*メニュー１個あたりの設定*/
-#menubar-s li a {
-	display: block;text-decoration: none;
-	padding: 15px 30px;	/*上下、左右へのメニュー内の余白*/
+#menubar li {
+	overflow: hidden;
+	float: left;		/*左に回り込み*/
+	width: 20%;			/*メニュー幅。5個なので100÷5=20。6個にしたいなら16.6%にする。*/
+	line-height: 1.6;	/*行間*/
+}
+#menubar li a {
+	display:  block;text-decoration: none;
+	border-right: 1px solid #27251f;	/*右側の線の幅・線種・色*/
+	padding: 25px 0;	/*上下、左右へのメニュー内の余白*/
 	color: #fff;		/*文字色*/
-	font-size: 20px;	/*文字サイズ*/
-	border-bottom: 1px solid #fff;	/*下の線の幅、線種、色*/
-	background: rgba(0,0,0,0.8);	/*背景色*/
 }
-/*PC用メニューを非表示にする*/
-#menubar {display: none;}
-
-/*３本バーアイコン設定
----------------------------------------------------------------------------*/
-/*３本バーブロック*/
-#menubar_hdr {
-	display: block;
-	position: absolute;z-index: 2;
-	top: 20px;	/*上から20pxの場所に配置*/
-	right: 3%;	/*右から3%の場所に配置*/
+/*１つ目のメニューへの追加設定*/
+#menubar li:first-child a {
+	border-left: 1px solid #27251f;	/*左側の線の幅・線種・色*/
 }
-/*アイコン共通設定*/
-#menubar_hdr.close,
-#menubar_hdr.open {
-	width: 50px;	/*幅*/
-	height: 50px;	/*高さ*/
-	border-radius: 50%;
+/*マウスオン時と、現在表示中メニューの設定*/
+#menubar li a:hover, #menubar li.current a {
+	background: #fff;	/*背景色*/
+	color: #333;			/*も地色*/
 }
-/*三本バーアイコン*/
-#menubar_hdr.close {
-	background: #938b76 url(../images/icon_menu.png) no-repeat center top/50px;
-}
-/*閉じるアイコン*/
-#menubar_hdr.open {
-	background: #938b76 url(../images/icon_menu.png) no-repeat center bottom/50px;
-}
-
+/*スマホ用メニューを表示させない*/
+#menubar-s {display: none;}
+/*３本バーアイコンを表示させない*/
+#menubar_hdr {display: none;}
+@keyframes menu1 {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+	}
+	/*スマホ用メニューブロック*/
+	#menubar-s {
+		display: block;overflow: hidden;
+		position: absolute;z-index: 10;
+		width: 100%;margin-left: -3%;
+		top: 200px;					/*上から200pxの場所に配置*/
+		border-top: 1px solid #fff;	/*上の線の幅、線種、色*/
+		animation-name: menu1;		/*上のkeyframesの名前*/
+		animation-duration: 0.5S;	/*アニメーションの実行時間。0.5秒。*/
+		animation-fill-mode: both;	/*アニメーションの完了後、最後のキーフレームを維持する*/
+	}
+	/*メニュー１個あたりの設定*/
+	#menubar-s li a {
+		display: block;text-decoration: none;
+		padding: 15px 30px;	/*上下、左右へのメニュー内の余白*/
+		color: #fff;		/*文字色*/
+		font-size: 20px;	/*文字サイズ*/
+		border-bottom: 1px solid #fff;	/*下の線の幅、線種、色*/
+		background: rgba(0,0,0,0.8);	/*背景色*/
+	}
+	/*PC用メニューを非表示にする*/
+	#menubar {display: none;}
+	
+	/*３本バーアイコン設定
+	---------------------------------------------------------------------------*/
+	/*３本バーブロック*/
+	#menubar_hdr {
+		display: block;
+		position: absolute;z-index: 2;
+		top: 20px;	/*上から20pxの場所に配置*/
+		right: 3%;	/*右から3%の場所に配置*/
+	}
+	/*アイコン共通設定*/
+	#menubar_hdr.close,
+	#menubar_hdr.open {
+		width: 50px;	/*幅*/
+		height: 50px;	/*高さ*/
+		border-radius: 50%;
+	}
+	/*三本バーアイコン*/
+	#menubar_hdr.close {
+		background: #938b76 url(../images/icon_menu.png) no-repeat center top/50px;
+	}
+	/*閉じるアイコン*/
+	#menubar_hdr.open {
+		background: #938b76 url(../images/icon_menu.png) no-repeat center bottom/50px;
+	}
 /*Galleryページのサムネイル
 タブレットなどの小さな端末ではマウスオンができないので、画像の色を100%出しておく設定です。
 ---------------------------------------------------------------------------*/
@@ -528,7 +566,7 @@ body.s-n #sub,body.s-n #footermenu,.m-n {display: none;}
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
 header {
-	height: 150px;	/*ヘッダーの高さ*/
+	height: 100px;	/*ヘッダーの高さ*/
 }
 /*ロゴ画像*/
 header #logo img {
@@ -657,6 +695,8 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
 h1{
 font-size: 20px; /* 必要に応じてサイズを調整 */
 text-align:center;
+	color:black;
+	margin-bottom:20px;
 }
 
 * {
@@ -664,18 +704,34 @@ text-align:center;
 }
 
 
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu-icon {
+  font-size: 24px;
+}
+
 .user-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 40px;
 }
 
 .user {
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: #fff;
-  border-radius: 8px;
+  border-bottom: 3px solid #ccc;
 }
 
 .user-icon {
@@ -687,13 +743,13 @@ text-align:center;
 
 .user-name {
   flex: 1;
-	color: black;
+	color:black;
 }
 
 .like-button {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 29px;
   cursor: pointer;
 }
 
@@ -701,8 +757,8 @@ text-align:center;
   display: block;
   width: 100%;
   padding: 15px;
-  margin-top: 20px;
-  font-size: 18px;
+  margin-top: 80px;
+  font-size: 28px;
   color: #fff;
   background-color: #66ff66; /* TOPページボタンの背景色 */
   border: none;
