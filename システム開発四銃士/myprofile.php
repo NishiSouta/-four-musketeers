@@ -84,6 +84,8 @@ require 'db-connect.php';
           echo '<br><span class="sex_sub">性別:</span>';
           $sex = isset($row['gender']) ? htmlspecialchars($row['gender'], ENT_QUOTES, 'UTF-8') : '未設定';
           echo '<span class="sex_main">' . $sex . '</span><br><br>';
+          echo '<span class="region_sub">活動地域:</span>';
+          echo '<span class="region_main">' . htmlspecialchars($row['activity_region'], ENT_QUOTES, 'UTF-8') . '</span><br><br>';
           echo '<hr></div>';
           echo '<div id="profile_info_3">';
           echo '<br><p>好きなスポーツ</p>';
