@@ -1,7 +1,12 @@
 <?php
 // db-connect.php を読み込む
 require 'db-connect.php';
+
+// 出力バッファリングを開始
+ob_start();
+
 $pdo = new PDO($connect, USER, PASS);
+
 // フォームが送信された場合に処理を実行
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // ユーザーが送信したデータを取得
@@ -17,22 +22,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     $profileImage = null;
-if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_OK) {
-    // アップロードされたファイルの名前を取得
-    $fileName = $_FILES['user_icon']['name'];
-    // 保存先のディレクトリを指定
-    $uploadDir = 'uploads/';
-    // ファイルパスを指定
-    $filePath = $uploadDir . basename($fileName);
+    if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_OK) {
+        // アップロードされたファイルの名前を取得
+        $fileName = $_FILES['user_icon']['name'];
+        // 保存先のディレクトリを指定
+        $uploadDir = 'uploads/';
+        // ファイルパスを指定
+        $filePath = $uploadDir . basename($fileName);
 
-    // ファイルを指定した場所に移動
-    if (move_uploaded_file($_FILES['user_icon']['tmp_name'], $filePath)) {
-        // 成功した場合はファイル名をデータベースに保存
-        $profileImage = $fileName;
-    } else {
-        echo "画像のアップロードに失敗しました。";
+        // ファイルを指定した場所に移動
+        if (move_uploaded_file($_FILES['user_icon']['tmp_name'], $filePath)) {
+            // 成功した場合はファイル名をデータベースに保存
+            $profileImage = $fileName;
+        } else {
+            echo "画像のアップロードに失敗しました。";
+        }
     }
-}
 
     try {
         // データベースに接続
@@ -42,7 +47,7 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
         ]);
 
         // データベースにユーザー情報を挿入
-        $sql = "INSERT INTO user (user_name, email, password, gender, age, activity_region,profile_image)
+        $sql = "INSERT INTO user (user_name, email, password, gender, age, activity_region, profile_image)
                 VALUES (:user_name, :email, :password, :gender, :age, :activity_region, :profile_image)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_name', $userName);
@@ -64,16 +69,18 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
         $stmt->bindParam(':user_id', $userId);
         $stmt->bindParam(':sport_id', $sportId);
         $stmt->execute();
-       
-        if (isset($sportId)) {     echo '$sportIdは存在します'; } else {     echo '$sportIdは存在しません'; }
-        // 登録成功後、index.html に遷移
-        header("Location: index.html");
+
+        // 登録成功後、login.php に遷移
+        header("Location: login.php");
         exit;
     } catch (PDOException $e) {
         // エラーメッセージの表示（デバッグ用）
         echo "データベースエラー: " . $e->getMessage();
     }
 }
+
+// 出力バッファをフラッシュして終了
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -109,8 +116,6 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
         <input type="text" name="user_name" class="input-field" placeholder="ユーザー名" required>
         <input type="email" name="email" class="input-field" placeholder="メールアドレス" required>
         <input type="password" name="password" class="input-field" placeholder="パスワード" required>
-
-        
 
         <!-- 性別プルダウンメニュー -->
         <select name="gender" class="input-field" required>
@@ -215,7 +220,7 @@ if (isset($_FILES['user_icon']) && $_FILES['user_icon']['error'] === UPLOAD_ERR_
 
     // ×ボタンを押した時の処理
     document.getElementById('close-btn').addEventListener('click', function() {
-        window.location.href = 'index.html'; // 遷移先のURLを指定
+        window.location.href = 'login.php'; // 遷移先のURLを指定
     });
 </script>
 </body>

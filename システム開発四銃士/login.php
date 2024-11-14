@@ -27,14 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // パスワードが一致するかチェック
             if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['email'] = $user['email']; // セッション名も一致させる
-
-                header('Location: dashboard.php'); // ログイン成功後のリダイレクト先
+                // パスワードが一致する場合、セッションにユーザー情報を保存
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['email'] = $user['email'];
+                
+                header('Location: index.php');
                 exit();
             } else {
                 $error_message = 'メールアドレスまたはパスワードが違います';
             }
+            
         } catch (PDOException $e) {
             $error_message = 'データベースエラー: ' . htmlspecialchars($e->getMessage());
         }
