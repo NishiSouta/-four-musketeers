@@ -28,8 +28,8 @@ require 'db-connect.php'; ?>
 <aside id="mainimg">
 <img src="images/baseball_img.jpg" alt="" class="slide0">
 <img src="images/run_img.jpg" alt="" class="slide1">
-<img src="images/2.jpg" alt="" class="slide2">
-<img src="images/3.jpg" alt="" class="slide3">
+<img src="images/soccer_img.jpg" alt="" class="slide2">
+<img src="images/basketball_img.jpg" alt="" class="slide3">
 </aside>
 <div id="contents">
 
