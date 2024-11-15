@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id'])) {
 </nav>
 <?php 	
 } else {//ログアウト時のヘッダーを書く
-    echo 'ログインしてください。'; // セッションにユーザーIDがない場合のメッセージ
+    echo '<aside id="header-img"><a href="login.php"><img src="images/account_circle.png" alt=""></a></aside>';
 	echo '</aside></header>';
 }
     ?>

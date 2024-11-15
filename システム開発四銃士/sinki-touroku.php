@@ -96,7 +96,7 @@ ob_end_flush();
 <div id="login-container">
 <header>
         <h1 id="logo">
-            <a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a>
+            <img src="images/LS.png" alt="Photo Gallery">
         </h1>
         <aside id="header-img"><div id="close-btn"></div></aside>
     </header>
