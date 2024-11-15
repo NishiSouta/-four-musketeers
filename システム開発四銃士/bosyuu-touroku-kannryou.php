@@ -47,7 +47,7 @@ $stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissiba
       <ul>
         <li><a href="index.html">ホーム</a></li>
         <li class="current"><a href="about.html">プロフィール</a></li>
-        <li><a href="gallery.html">投稿一覧</a></li>
+        <li><a href="toukou-itiran.php">投稿一覧</a></li>
         <li><a href="link.php">募集する</a></li>
         <li><a href="contact.html">ログアウト</a></li>
       </ul>
@@ -56,7 +56,7 @@ $stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissiba
       <ul>
         <li><a href="index.html">ホーム</a></li>
         <li><a href="about.html">プロフィール</a></li>
-        <li><a href="gallery.html">投稿一覧</a></li>
+        <li><a href="toukou-itiran.php">投稿一覧</a></li>
         <li><a href="link.php">募集する</a></li>
         <li><a href="contact.html">ログアウト</a></li>
       </ul>
