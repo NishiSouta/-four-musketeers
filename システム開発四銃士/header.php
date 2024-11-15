@@ -25,20 +25,20 @@ if (isset($_SESSION['user_id'])) {
 <nav id="menubar">
 	<ul>
 		<li><a href="index.php">ホーム</a></li>
-		<li class="current"><a href="about.html">プロフィール</a></li>
+		<li class="current"><a href="myprofile.php">プロフィール</a></li>
 		<li><a href="gallery.html">投稿一覧</a></li>
 		<li><a href="link.php">募集する</a></li>
-		<li><a href="contact.html">ログアウト</a></li>
+		<li><a href="logout.php">ログアウト</a></li>
 	</ul>
 </nav>	
 	<!--小さな端末用（900px以下端末）メニュー-->
 <nav id="menubar-s">
 	<ul>
 		<li><a href="index.php">ホーム</a></li>
-		<li><a href="about.html">プロフィール</a></li>
+		<li><a href="myprofile.php">プロフィール</a></li>
 		<li><a href="gallery.html">投稿一覧</a></li>
 		<li><a href="link.php">募集する</a></li>
-		<li><a href="contact.html">ログアウト</a></li>
+		<li><a href="logout.php">ログアウト</a></li>
 	</ul>
 </nav>
 <?php 	
