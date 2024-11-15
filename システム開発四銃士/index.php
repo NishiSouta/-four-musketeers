@@ -1,3 +1,5 @@
+<?php session_start(); 
+require 'db-connect.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,49 +22,71 @@
 
 <div id="container">
 
-	<header>
-		<h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
-		<aside id="header-img"><a href="login.php"><img src="images/account_circle.png" alt=""></a></aside>
-		</header>
+<?php require 'header.php'; ?>
 
-<!--PC用（901px以上端末）メニュー-->
-<nav id="menubar">
-	<ul>
-	<li><a href="index.html">ホーム</a></li>
-	<li class="current"><a href="about.html">プロフィール</a></li>
-	<li><a href="gallery.html">投稿一覧</a></li>
-	<li><a href="link.php">募集する</a></li>
-	<li><a href="contact.html">ログアウト</a></li>
-	</ul>
-	</nav>
-	
-	<!--小さな端末用（900px以下端末）メニュー-->
-	<nav id="menubar-s">
-	<ul>
-	<li><a href="index.html">ホーム</a></li>
-	<li><a href="about.html">プロフィール</a></li>
-	<li><a href="gallery.html">投稿一覧</a></li>
-	<li><a href="link.php">募集する</a></li>
-	<li><a href="contact.html">ログアウト</a></li>
-	</ul>
-	</nav>
-
+<!--スライドショー-->
+<aside id="mainimg">
+<img src="images/baseball_img.jpg" alt="" class="slide0">
+<img src="images/run_img.jpg" alt="" class="slide1">
+<img src="images/soccer_img.jpg" alt="" class="slide2">
+<img src="images/basketball_img.jpg" alt="" class="slide3">
+</aside>
 <div id="contents">
 
 <div id="main">
 
 <section>
 
-<h2>お問い合わせフォーム</h2>
 
-<!-- フォームの情報はここからです -->
-<form name="form1" enctype="multipart/form-data" method="post" action="<?php echo $_SERVER["REQUEST_URI"];?>">
-<input type="hidden" name="mode" value="finish" />
-<!-- 処理終了 -->
-<p>送信が完了しました。</p>
-</form>
-<!-- フォームの情報はここまでです -->
+<h3>おすすめ参加ランキング</h3>
+<div id="iti">
+<img src="images/1_1.png" alt="" class="1_1">
+</div>
 
+<hr>
+
+<div id="ni">
+<img src="images/2_2.png" alt="" class="2_2">
+</div>
+
+<hr>
+
+<div id="san">
+<img src="images/3_3.png" alt="" class="3_3">
+</div>
+
+<hr>
+
+
+<h3>おすすめ募集ランキング</h3>
+<div id="iti">
+<img src="images/1_1.png" alt="" class="1_1">
+
+<a href="bosyuu-touroku.php?sport=野球"></div><img src="images/baseball.jpg" alt="">野球</a>
+
+<hr>
+<div id="ni">
+<img src="images/2_2.png" alt="" class="2_2">
+</div>
+<a href="bosyuu-touroku.php?sport=サッカー"><img src="images/soccer.jpg" alt="">サッカー</a>
+<hr>
+<div id="san">
+<img src="images/3_3.png" alt="" class="3_3">
+</div>
+<a href="bosyuu-touroku.php?sport=バレーボール"><img src="images/volleyball.jpg" alt="">バレーボール</a>
+<hr>
+</section>
+
+<section id="new">
+<h2>更新情報・お知らせ</h2>
+<dl>
+<dt>2024/11/12</dt>
+<dd>12月本格稼働予定！  link sports<span class="newicon">NEW</span></dd>
+<dt>2024/10/21</dt>
+<dd>コーディング開始！</dd>
+<dt>2024/09/17</dt>
+<dd>link sportsを企画！</dd>
+</dl>
 </section>
 
 </div>

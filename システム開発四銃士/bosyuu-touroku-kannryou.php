@@ -1,6 +1,6 @@
 <?php
 require 'db-connect.php';
-
+session_start();
 // データベース接続
 try {
   $pdo = new PDO($connect, USER, PASS);
@@ -20,9 +20,9 @@ $syosinsya = isset($_POST['syosinsya']) ? $_POST['syosinsya'] : 'no';
 $sonota = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
 
 // データベースに挿入
-$sql = "INSERT INTO post (user_id, title, event_datetime_from, event_datetime_to, recruit_number, current_number, location, participation_fee, syosinsya, description, created_at) VALUES (7, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+$sql = "INSERT INTO post (user_id, title, event_datetime_from, event_datetime_to, recruit_number, current_number, location, participation_fee, syosinsya, description, created_at) VALUES (7, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissibasyo, $sum, $syosinsya, $sonota]);
+$stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissibasyo, $sum, $syosinsya, $sonota, date('Y-m-d H:i:s')]);
 
 ?>
 
@@ -47,7 +47,7 @@ $stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissiba
       <ul>
         <li><a href="index.html">ホーム</a></li>
         <li class="current"><a href="about.html">プロフィール</a></li>
-        <li><a href="gallery.html">投稿一覧</a></li>
+        <li><a href="toukou-itiran.php">投稿一覧</a></li>
         <li><a href="link.php">募集する</a></li>
         <li><a href="contact.html">ログアウト</a></li>
       </ul>
@@ -56,7 +56,7 @@ $stmt->execute([$title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissiba
       <ul>
         <li><a href="index.html">ホーム</a></li>
         <li><a href="about.html">プロフィール</a></li>
-        <li><a href="gallery.html">投稿一覧</a></li>
+        <li><a href="toukou-itiran.php">投稿一覧</a></li>
         <li><a href="link.php">募集する</a></li>
         <li><a href="contact.html">ログアウト</a></li>
       </ul>

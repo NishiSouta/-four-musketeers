@@ -57,15 +57,17 @@
 /*１枚目*/
 .slide1 {
 	animation-name: slide1;	/*上で設定しているキーフレーム（keyframes）の名前*/
-
+	height:100%;
 }
 /*２枚目*/
 .slide2 {
 	animation-name: slide2;	/*上で設定しているキーフレーム（keyframes）の名前**/
+	height:100%;
 }
 /*３枚目*/
 .slide3 {
 	animation-name: slide3;	/*上で設定しているキーフレーム（keyframes）の名前**/
+	height:100%;
 }
 
 

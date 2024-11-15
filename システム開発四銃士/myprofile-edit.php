@@ -21,44 +21,20 @@
 
 <body>
 
-<div id="container">
-  <header>
-    <h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
-    <aside id="header-img"><a href="login-input.php"><img src="images/account_circle.png" alt=""></a></aside>
-    </header>
-
-<!--PC用（901px以上端末）メニュー-->
-<nav id="menubar">
-<ul>
-<li><a href="index.html">ホーム</a></li>
-<li class="current"><a href="myprofile.html">プロフィール</a></li>
-<li><a href="gallery.html">投稿一覧</a></li>
-<li><a href="link.html">募集一覧</a></li>
-<li><a href="contact.html">ログアウト</a></li>
-</ul>
-</nav>
-
-<!--小さな端末用（900px以下端末）メニュー-->
-<nav id="menubar-s">
-<ul>
-<li><a href="index.html">ホーム</a></li>
-<li><a href="myprofile.php">プロフィール</a></li>
-<li><a href="gallery.html">投稿一覧</a></li>
-<li><a href="link.html">募集一覧</a></li>
-<li><a href="contact.html">ログアウト</a></li>
-</ul>
-</nav>
+<?php require 'header.php'; ?>
 
   <div id="contents">
     <div id="main">
 
       <?php
+      $user_id = $_SESSION['user_id'];
       try {
         $pdo = new PDO($connect, USER, PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = $pdo->prepare('SELECT * FROM user WHERE user_id = 7');
+        $sql = $pdo->prepare('SELECT * FROM user WHERE user_id = ?');
+        $sql->execute([$user_id]);
         //$sql->execute([$_SESSION['user']['user_id']]);
-        $sql->execute();
+        //$sql->execute();
         $row = $sql->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
