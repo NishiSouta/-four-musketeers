@@ -43,7 +43,7 @@
             $sex = isset($row['sex']) ? htmlspecialchars($row['sex'], ENT_QUOTES, 'UTF-8') : '未設定';
             $place = isset($row['place']) ? htmlspecialchars($row['place'], ENT_QUOTES, 'UTF-8') : '';
   
-            echo '<form action="myprofile-input.php" method="post">';
+            echo '<form action="myprofile-input.php" method="post" enctype="multipart/form-data>';
             echo '<div id="user_icon" class="user-icon-container">';
             echo '<img alt="image" src="' . $profile_img . '" id="profileImage">';
             echo '<input type="file" id="imageUpload" style="display: none;">';
