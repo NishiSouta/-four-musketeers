@@ -13,7 +13,7 @@
 <body>
   <div id="container">
     <header>
-      <h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
+      <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
       <aside id="header-img"><a href="login.php"><img src="images/account_circle.png" alt=""></a></aside>
     </header>
     <nav id="batu">

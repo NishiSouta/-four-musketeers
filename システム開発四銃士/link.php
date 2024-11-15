@@ -16,29 +16,7 @@
 
 <div id="container">
 
-	<header>
-		<h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
-		<aside id="header-img"><a href="login.php"><img src="images/account_circle.png" alt=""></a></aside>
-	</header>
-
-	<nav id="menubar">
-		<ul>
-			<li><a href="index.html">ホーム</a></li>
-			<li class="current"><a href="about.html">プロフィール</a></li>
-			<li><a href="gallery.html">投稿一覧</a></li>
-			<li><a href="link.php">募集する</a></li>
-			<li><a href="contact.html">ログアウト</a></li>
-		</ul>
-	</nav><!--小さな端末用（900px以下端末）メニュー-->
-	<nav id="menubar-s">
-	<ul>
-	<li><a href="index.html">ホーム</a></li>
-	<li><a href="about.html">プロフィール</a></li>
-	<li><a href="gallery.html">投稿一覧</a></li>
-	<li><a href="link.php">募集する</a></li>
-	<li><a href="contact.html">ログアウト</a></li>
-	</ul>
-	</nav>
+<?php require 'header.php'; ?>
 
 <div id="contents">
 <div id="main">
