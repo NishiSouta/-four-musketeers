@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
     document.getElementById('close-btn').addEventListener('click', function() {
-        window.location.href = 'index.html'; // 遷移先のURLを指定
+        window.location.href = 'index.php'; // 遷移先のURLを指定
     });
 </script>
 
