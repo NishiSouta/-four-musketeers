@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id'])) {
     $sql->execute([$user_id]);
     $user = $sql->fetch(PDO::FETCH_ASSOC);
     
-    $profile_img = isset($user['profile_image']) ? htmlspecialchars($user['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
+    $profile_img = isset($user['profile_image']) ? 'uploads/' . htmlspecialchars($user['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
     echo '<img alt="image" src="' . $profile_img . '" class="avatar">';
 	?>
 		</aside>
