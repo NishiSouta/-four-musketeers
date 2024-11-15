@@ -38,7 +38,7 @@
         $row = $sql->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            $profile_img = isset($row['profile_img']) ? htmlspecialchars($row['profile_img'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
+            $profile_img = isset($row['profile_image']) ? 'uploads/'. htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
             $self_intro = isset($row['self_intro']) ? htmlspecialchars($row['self_intro'], ENT_QUOTES, 'UTF-8') : '';
             $sex = isset($row['sex']) ? htmlspecialchars($row['sex'], ENT_QUOTES, 'UTF-8') : '未設定';
             $place = isset($row['place']) ? htmlspecialchars($row['place'], ENT_QUOTES, 'UTF-8') : '';

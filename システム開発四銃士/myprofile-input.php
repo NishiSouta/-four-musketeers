@@ -7,15 +7,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo = new PDO($connect, USER, PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $user_id = $_SESSION['user']['user_id'];
+        $user_id = $_SESSION['user_id'];
         $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
+        $profile_img = htmlspecialchars($_POST['profileImage'], ENT_QUOTES, 'UTF-8');
         $self_intro = htmlspecialchars($_POST['self_intro'], ENT_QUOTES, 'UTF-8');
-        $place = htmlspecialchars($_POST['place'], ENT_QUOTES, 'UTF-8');
+        $place = htmlspecialchars($_POST['place_name'], ENT_QUOTES, 'UTF-8');
 
         // ユーザー情報を更新するクエリ
-        $sql = "UPDATE user SET user_name = ?, self_intro = ?, place = ? WHERE user_id = ?";
+        $sql = "UPDATE user SET user_name = ?, profile_image = ?, bio = ?, activity_region = ? WHERE user_id = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $self_intro, $place, $user_id]);
+        $stmt->execute([$name, $profile_img, $self_intro, $place, $user_id]);
 
         // 興味のあるスポーツを更新する処理
         $sports = ['baseball', 'jogging', 'tennis', 'valley', 'soccer', 'basket', 'tabletennis', 'badminton', 'muscle', 'boxing', 'golf', 'football'];
