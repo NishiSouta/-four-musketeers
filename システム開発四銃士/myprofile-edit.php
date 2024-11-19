@@ -21,7 +21,8 @@
 
 <body>
 
-<?php require 'header.php'; ?>
+<?php require 'header.php'; ?> 
+<?php if (isset($_SESSION['error'])) { echo '<p class="error">' . htmlspecialchars($_SESSION['error'], ENT_QUOTES, 'UTF-8') . '</p>'; unset($_SESSION['error']); } ?>
 
   <div id="contents">
     <div id="main">
@@ -33,8 +34,6 @@
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = $pdo->prepare('SELECT * FROM user WHERE user_id = ?');
         $sql->execute([$user_id]);
-        //$sql->execute([$_SESSION['user']['user_id']]);
-        //$sql->execute();
         $row = $sql->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
@@ -43,10 +42,11 @@
             $sex = isset($row['sex']) ? htmlspecialchars($row['sex'], ENT_QUOTES, 'UTF-8') : '未設定';
             $place = isset($row['place']) ? htmlspecialchars($row['place'], ENT_QUOTES, 'UTF-8') : '';
   
-            echo '<form action="myprofile-input.php" method="post" enctype="multipart/form-data>';
+            // 修正: フォームのactionをmyprofile-input.phpに修正し、画像アップロードに必要なenctypeを追加
+            echo '<form action="myprofile-input.php" method="post" enctype="multipart/form-data">';
             echo '<div id="user_icon" class="user-icon-container">';
             echo '<img alt="image" src="' . $profile_img . '" id="profileImage">';
-            echo '<input type="file" id="imageUpload" style="display: none;">';
+            echo '<input type="file" id="imageUpload" name="profile_img" style="display: none;">'; // nameを追加
             echo '<button type="button" id="uploadButton">+</button>';
             echo '</div><br>';
             echo '<input type="text" name="name" value="' . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . '"></p>';
@@ -118,27 +118,26 @@ if (OCwindowWidth() <= 900) {
 	open_close("menubar_hdr", "menubar-s");
 }
 
-
 document.querySelectorAll('.sport-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const target = document.getElementById(this.getAttribute('data-target'));
-                if (this.checked) {
-                    target.style.display = 'block';
-                } else {
-                    target.style.display = 'none';
-                }
-            });
-        });
+    checkbox.addEventListener('change', function() {
+        const target = document.getElementById(this.getAttribute('data-target'));
+        if (this.checked) {
+            target.style.display = 'block';
+        } else {
+            target.style.display = 'none';
+        }
+    });
+});
 
-        document.querySelectorAll('.level-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const buttons = this.parentElement.querySelectorAll('.level-btn');
-                buttons.forEach(btn => btn.classList.remove('selected'));
-                this.classList.add('selected');
-            });
-        });
+document.querySelectorAll('.level-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const buttons = this.parentElement.querySelectorAll('.level-btn');
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        this.classList.add('selected');
+    });
+});
 
-        document.getElementById('uploadButton').addEventListener('click', function() {
+document.getElementById('uploadButton').addEventListener('click', function() {
     document.getElementById('imageUpload').click();
 });
 
@@ -156,7 +155,6 @@ document.getElementById('imageUpload').addEventListener('change', function(event
         reader.readAsDataURL(file);
     }
 });
-
 </script>
 
 </body>
