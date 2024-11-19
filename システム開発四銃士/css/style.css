@@ -573,14 +573,36 @@ h2{
   }
 
 #iti {
-	width: 100px; /* 幅を100pxに設定 */
-	height: auto; /* 高さは自動調整 */
-  }
+	display: flex;
+	gap: 10px; /* 画像間の余白 */
+}  
+#iti a {
+    font-size: 30px; /* テキストのサイズを調整 */
+    font-weight: bold; /* 文字を太字にする（オプション） */
+    color: black; /* テキストの色を変更（必要に応じて） */
+    text-decoration: none; /* 下線を削除（必要に応じて） */
+}
 #ni{
-	width: 100px; /* 幅を100pxに設定 */
-	height: auto; /* 高さは自動調整 */
+	display: flex;
+		gap: 10px;
   }
-  #san{
-	width: 100px; /* 幅を100pxに設定 */
-	height: auto; /* 高さは自動調整 */
-  }
+#ni a {
+    font-size: 30px; /* テキストのサイズを調整 */
+    font-weight: bold; /* 文字を太字にする（オプション） */
+    color: black; /* テキストの色を変更（必要に応じて） */
+    text-decoration: none; /* 下線を削除（必要に応じて） */
+}
+#san{
+	display: flex;
+		gap: 10px;
+}
+#san a {
+    font-size: 30px; /* テキストのサイズを調整 */
+    font-weight: bold; /* 文字を太字にする（オプション） */
+    color: black; /* テキストの色を変更（必要に応じて） */
+    text-decoration: none; /* 下線を削除（必要に応じて） */
+}
+.img-item {
+	max-width: 100px; /* 必要に応じて画像のサイズを調整 */
+	height: auto;
+} 
