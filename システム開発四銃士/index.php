@@ -89,7 +89,7 @@ require 'db-connect.php'; ?>
 <div id="san">
 	<img src="images/3_3.png" alt="" class="img-item">
 	<a href="bosyuu-touroku.php?sport=バレーボール">
-		<img src="images/volleyball.jpg" alt=""class="img-item">バレーボール
+		<img src="images/volleyball.jpg" alt=""class="img-item">バレー
 	</a>
 </div>
 
