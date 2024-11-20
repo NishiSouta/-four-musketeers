@@ -24,7 +24,7 @@ require 'db-connect.php'; ?>
 <div id="main">
 <section>
 
-<h2>募集可能なスポーツ</h2>
+<h2>募集中のスポーツ</h2>
 
 <table class="ta1">
 	<tr>
