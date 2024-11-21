@@ -3,20 +3,20 @@ require 'db-connect.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>募集入力画面</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ここにサイト説明を入れます">
-  <meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
-  <link rel="stylesheet" href="css/style-bosyuu-touroku.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>募集入力画面</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style-bosyuu-touroku.css">
+<script src="js/openclose.js"></script>
+<script src="js/fixmenu_pagetop.js"></script>
 </head>
 <body>
-  <div id="container">
-    <header>
+<div id="container">
+<header>
       <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
       <aside id="header-img">
-<?php
+      <?php
 if (isset($_SESSION['user_id'])) {
 	//ログイン時のヘッダーを書く
     $user_id = $_SESSION['user_id'];
@@ -30,99 +30,87 @@ if (isset($_SESSION['user_id'])) {
     
     $profile_img = isset($user['profile_image']) ? 'uploads/' . htmlspecialchars($user['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
     echo '<img alt="image" src="' . $profile_img . '" class="avatar">';
+}
 	?>
 		</aside>
-		</header>
-    <?php 	
-} else {//ログアウト時のヘッダーを書く
-  echo '<aside id="header-img"><a href="login.php"><img src="images/account_circle.png" alt=""></a></aside>';
-	echo '</aside></header>';
-}
-    ?>
+    
     <nav id="batu">
       <a href="link.php"><img src="images/batu.png" alt="×（バツ）"></a>
     </nav>
-    <div id="contents">
-      <div id="main">
-        <section>
-          <h2>
-            <?php 
-            // URLパラメータからスポーツ名を取得して表示
-            if (isset($_GET['sport'])) {
-              echo htmlspecialchars($_GET['sport'], ENT_QUOTES, 'UTF-8');
-            } else {
-              echo 'スポーツ名が指定されていません';
-            }
-            ?>
-          </h2>
-          <form action="bosyuu-touroku-kannryou.php" method="post">
-            募集タイトル<br>
-            <input type="text" name="bosyuutaitoru"><br>
-            開催日時<br>
-            <input name="event_datetime_from" type="date" />から<br>
-            <input name="event_datetime_to" type="date" />まで<br>
-            条件<br>
-            募集する人数
-            <select name="recruit_number">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select><br>
-            すでに集まっている人数
-            <select name="current_number">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select><br>
-            実施場所<br>
-            <input type="text" name="location"><br> <!-- 修正: name属性をlocationに -->
-            参加費<br>
-            <select name="participation_fee"> <!-- 修正: name属性をparticipation_feeに -->
-              <option value="0">無料</option>
-              <option value="500">500円以内</option>
-              <option value="1000">1000円以内</option>
-              <option value="2000">2000円以内</option>
-              <option value="3000">3000円以内</option>
-              <option value="4000">4000円以内</option>
-              <option value="5000">5000円以内</option>
-              <option value="6000">6000円以内</option>
-              <option value="7000">7000円以内</option>
-              <option value="8000">8000円以内</option>
-              <option value="9000">9000円以内</option>
-              <option value="10000">10000円以内</option>
-              <option value="15000">15000円以内</option>
-              <option value="20000">20000円以内</option>
-              <option value="25000">25000円以内</option>
-              <option value="30000">30000円以内</option>
-            </select><br>
-            <input type="checkbox" id="syosinsya" name="syosinsya" value="ok" />初心者OK<br>
-            その他<br>
-            <input type="text" name="description">
-            <div id="center">
-              <p><input type="submit" value="募集する" id="button"></p>
-            </div>
-          </form>
-        </section>
-      </div>
-    </div>
-    <footer>
-      <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
-    </footer>
+</header>
+<div id="contents">
+  <div id="main">
+    <section>
+      <h2>
+        <?php 
+        if (isset($_GET['sport'])) {
+          // sport_idに応じたスポーツ名を表示
+          $sports = [
+            1 => '野球', 2 => 'ジョギング', 3 => 'テニス', 4 => 'サッカー',
+            5 => 'バスケットボール', 6 => '卓球', 7 => 'バドミントン', 8 => '筋トレ',
+            9 => 'ボクシング', 10 => 'ゴルフ', 11 => 'アメリカンフットボール', 12 => 'バレーボール'
+          ];
+          echo htmlspecialchars($sports[$_GET['sport']] ?? '不明なスポーツ', ENT_QUOTES, 'UTF-8');
+        } else {
+          echo 'スポーツ名が指定されていません';
+        }
+        ?>
+      </h2>
+      <form action="bosyuu-touroku-kannryou.php?sport=<?php echo htmlspecialchars($_GET['sport'], ENT_QUOTES, 'UTF-8'); ?>" method="post">
+        <div class="form-group">
+          <label for="bosyuutaitoru">募集タイトル</label>
+          <input type="text" id="bosyuutaitoru" name="bosyuutaitoru" required>
+        </div>
+        <div class="form-group">
+          <label for="event_datetime_from">開催日時</label>
+          <input id="event_datetime_from" name="event_datetime_from" type="datetime-local" required> から
+          <input id="event_datetime_to" name="event_datetime_to" type="datetime-local" required> まで
+        </div>
+        <div class="form-group">
+          <label for="recruit_number">募集する人数</label>
+          <select id="recruit_number" name="recruit_number">
+            <?php for ($i = 1; $i <= 10; $i++) echo "<option value=\"$i\">$i</option>"; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="current_number">すでに集まっている人数</label>
+          <select id="current_number" name="current_number">
+            <?php for ($i = 0; $i <= 10; $i++) echo "<option value=\"$i\">$i</option>"; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="location">実施場所</label>
+          <input type="text" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+          <label for="participation_fee">参加費</label>
+          <select id="participation_fee" name="participation_fee">
+            <option value="0">無料</option>
+            <?php for ($i = 500; $i <= 30000; $i += 500) echo "<option value=\"$i\">{$i}円以内</option>"; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="syosinsya">
+            <input type="checkbox" id="syosinsya" name="syosinsya" value="ok"> 初心者OK
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="description">その他</label>
+          <input type="text" id="description" name="description">
+        </div>
+        <div id="center">
+          <input type="submit" value="募集する" id="button">
+        </div>
+      </form>
+    </section>
   </div>
+</div>
+<footer>
+  <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
+</footer>
+</div>
+<p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
+<div id="menubar_hdr" class="close"></div>
+
 </body>
 </html>
