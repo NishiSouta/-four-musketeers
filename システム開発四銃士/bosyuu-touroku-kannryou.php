@@ -53,22 +53,34 @@ $stmt->execute([$user_id, $sport_id, $title, $date_from, $date_to, $ninzuu, $cur
   <meta name="description" content="ここにサイト説明を入れます">
   <meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
   <link rel="stylesheet" href="css/style-bosyuu-touroku-kannryou.css">
+  <script src="js/openclose.js"></script>
+  <script src="js/fixmenu_pagetop.js"></script>
 </head>
 <body>
-  <div id="container">
-  <?php require 'header.php'; ?>
-
-    <div id="contents">
-      <div id="main">
+<div id="container">
+<?php require 'header.php'; ?>
+  <div id="contents">
+    <div id="main">
         <section>
-          募集しました。
-          <p><input type="button" value="TOPページへ" id="button" onclick="location.href='index.php'"></p>
+            募集しました。
+            <p><input type="button" value="TOPページへ" id="button" onclick="location.href='index.php'"></p>
         </section>
-      </div>
     </div>
-    <footer>
-      <small>Copyright© <a href="index.php">Photo Gallery</a> All Rights Reserved.</small>
-    </footer>
   </div>
+  <footer>
+    <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
+    <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+  </footer>
+</div>
+  
+  <!--メニュー開閉ボタン-->
+<div id="menubar_hdr" class="close"></div>
+
+<!--メニューの開閉処理条件設定　900px以下-->
+<script>
+  if (OCwindowWidth() <= 900) {
+	  open_close("menubar_hdr", "menubar-s");
+  }
+</script>
 </body>
 </html>

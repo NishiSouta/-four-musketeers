@@ -85,17 +85,10 @@ require 'db-connect.php'; ?>
 <hr>
 
 <div id="san">
-<<<<<<< Updated upstream
-	<img src="images/3_3.png" alt="" class="img-item">
-	<a href="bosyuu-touroku.php?sport=バレーボール">
-		<img src="images/volleyball.jpg" alt=""class="img-item">バレー
-	</a>
-=======
 <img src="images/3_3.png" alt="" class="img-item">
     <a href="bosyuu-touroku.php?sport=<?php echo urlencode(12); ?>">
         <img src="images/volleyball.jpg" alt="" class="img-item">バレー
     </a>
->>>>>>> Stashed changes
 </div>
 
 <hr>

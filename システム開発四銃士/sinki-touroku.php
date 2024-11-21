@@ -206,6 +206,10 @@ ob_end_flush();
         </select>
         <button type="submit" class="btn-login">登録する</button>
     </form>
+    <footer>
+    <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
+    <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+  </footer>
 </div>
 <script>
     // プロフィール画像のプレビュー表示
@@ -223,5 +227,7 @@ ob_end_flush();
         window.location.href = 'login.php'; // 遷移先のURLを指定
     });
 </script>
+
+
 </body>
 </html>
