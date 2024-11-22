@@ -74,18 +74,32 @@
             echo '<div id="profile_info_3"></div>';
             echo '<br><p>興味のあるスポーツ</p>';
             echo '<form>';
-            $sports = ['baseball' => '野球', 'jogging' => 'ジョギング', 'tennis' => 'テニス', 'valley' => 'バレーボール', 'soccer' => 'サッカー', 'basket' => 'バスケットボール', 'tabletennis' => '卓球', 'badminton' => 'バドミントン', 'muscle' => '筋トレ', 'boxing' => 'ボクシング', 'golf' => 'ゴルフ', 'football' => 'アメリカンフットボール'];
-            $levels = ['未設定', '初心者', '中級者', '上級者'];
-            foreach ($sports as $key => $sport) {
-              echo '<label>';
-              echo '<input type="checkbox" class="sport-checkbox" data-target="' . $key . '-level"> ' . $sport;
-              echo '</label>';
-              echo '<div id="' . $key . '-level" class="level-buttons">';
-              foreach ($levels as $level) {
-                echo '<button type="button" class="level-btn">' . $level . '</button>';
-              }
-              echo '</div><hr>';
+
+            $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = ?');
+            $sport_sql->execute([$user_id]);
+            $user_sports = [];
+            while ($sport_row = $sport_sql->fetch(PDO::FETCH_ASSOC)) {
+                $user_sports[$sport_row['sport_name']] = $sport_row['level'] ?: '未設定'; // レベルがNULLまたは空なら「未設定」
             }
+
+            $sports = ['baseball' => '野球', 'jogging' => 'ジョギング', 'tennis' => 'テニス', 'valley' => 'バレーボール', 'soccer' => 'サッカー', 'basket' => 'バスケットボール', 'tabletennis' => '卓球', 'badminton' => 'バドミントン', 'muscle' => '筋トレ', 'boxing' => 'ボクシング', 'golf' => 'ゴルフ', 'football' => 'アメリカンフットボール'];
+$levels = ['未設定', '初心者', '中級者', '上級者'];
+
+
+foreach ($sports as $key => $sport) {
+  $isChecked = isset($user_sports[$sport]); // 配列にキーが存在するかをチェック
+  $selectedLevel = $isChecked ? $user_sports[$sport] : '未設定'; // 未設定の場合のデフォルト値
+
+  echo '<label>';
+  echo '<input type="checkbox" class="sport-checkbox" data-target="' . $key . '-level" name="sports[]" value="' . $key . '"' . ($isChecked ? ' checked' : '') . '> ' . $sport;
+  echo '</label>';
+  echo '<div id="' . $key . '-level" class="level-buttons"' . ($isChecked ? ' style="display: block;"' : ' style="display: none;"') . '>';
+  foreach ($levels as $level) {
+      $isSelected = ($selectedLevel === $level) ? ' selected' : '';
+      echo '<button type="button" class="level-btn' . $isSelected . '">' . $level . '</button>';
+  }
+  echo '</div><hr>';
+}
             echo '<button type="submit">この内容で決定</button>';
             echo '</form>';
             echo '</div><!--/profile_info_3-->';
