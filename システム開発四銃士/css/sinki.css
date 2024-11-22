@@ -17,7 +17,7 @@
     border: none;
     border-radius: 5px;
     color: white;
-    font-size: 16px;
+    font-size: 40px;
     cursor: pointer;
 }
 
@@ -651,6 +651,9 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
     object-fit: cover; /* 画像を適切に収める */
 }
 h1{
-font-size: 20px; /* 必要に応じてサイズを調整 */
+font-size: 40px; /* 必要に応じてサイズを調整 */
 text-align:center;
+}
+.text{
+	font-size: 34px;
 }

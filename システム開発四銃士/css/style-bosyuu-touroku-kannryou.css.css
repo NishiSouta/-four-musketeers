@@ -648,7 +648,7 @@ h2{
 	background-color: #32CD32; /* Bright green background */
 	color: #fff;
 	padding: 10px 20px;
-	font-size: 16px;
+	font-size: 45px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
@@ -658,8 +658,9 @@ h2{
   #button:hover {
 	background-color: #28a428; /* Darker green for hover effect */
   }
-
-
+h1{
+	font-size: 40px;
+}
 
 
 

@@ -195,6 +195,7 @@ footer .pr {display: block;font-size: 80%;}
 ---------------------------------------------------------------------------*/
 /*ブロック全体の設定*/
 #new dl {
+	font-size: 22px;
 	padding: 0 40px 20px;	/*上、左右、下へのボックス内の余白*/
 }
 /*日付設定*/
@@ -505,7 +506,7 @@ header #logo img {
 /*mainコンテンツ
 ---------------------------------------------------------------------------*/
 #main h2,#main h3 {
-	font-size: 14px;
+	font-size: 30px;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -605,4 +606,4 @@ h2{
 .img-item {
 	max-width: 100px; /* 必要に応じて画像のサイズを調整 */
 	height: auto;
-} 
+}

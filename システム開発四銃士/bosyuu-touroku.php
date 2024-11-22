@@ -57,10 +57,10 @@ require 'db-connect.php'; ?>
               echo 'スポーツ名が指定されていません';
           }
         ?>
-      </h2>
-          
+      </h2>  
 <form action="bosyuu-touroku-kannryou.php?sport=<?php echo htmlspecialchars($_GET['sport'], ENT_QUOTES, 'UTF-8'); ?>" method="post">
-
+       
+       
   <div class="form-group">
     <label for="bosyuutaitoru">募集タイトル</label>
       <input type="text" id="bosyuutaitoru" name="bosyuutaitoru" required>
@@ -100,7 +100,7 @@ require 'db-connect.php'; ?>
             <label for="participation_fee">参加費</label>
               <select id="participation_fee" name="participation_fee">
                 <option value="0">無料</option>
-                <?php for ($i = 500; $i <= 30000; $i += 500) echo "<option value=\"$i\">{$i}円以内</option>"; ?>
+                <?php for ($i = 1000; $i <= 30000; $i += 1000) echo "<option value=\"$i\">{$i}円以内</option>"; ?>
             </select>
         </div>
 

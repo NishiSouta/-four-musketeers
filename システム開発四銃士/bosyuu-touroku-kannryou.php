@@ -62,7 +62,7 @@ $stmt->execute([$user_id, $sport_id, $title, $date_from, $date_to, $ninzuu, $cur
   <div id="contents">
     <div id="main">
         <section>
-            募集しました。
+            <h1>募集しました。</h1>
             <p><input type="button" value="TOPページへ" id="button" onclick="location.href='index.php'"></p>
         </section>
     </div>
