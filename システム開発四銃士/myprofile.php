@@ -72,8 +72,8 @@ require 'db-connect.php';
           echo '<br><p>好きなスポーツ</p>';
 
           // user_sportsテーブルからスポーツ情報を取得
-           $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = 11');
-            $sport_sql->execute();
+           $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = ?');
+            $sport_sql->execute([$user_id]);
              $user_sport = $sport_sql->fetchAll(PDO::FETCH_ASSOC);
               foreach ($user_sport as $sport) {
                 $sport_name = isset($sport['sport_name']) ? htmlspecialchars($sport['sport_name'], ENT_QUOTES, 'UTF-8') : 'スポーツ名不明';

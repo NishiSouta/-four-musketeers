@@ -38,9 +38,8 @@
 
         if ($row) {
             $profile_img = isset($row['profile_image']) ? 'uploads/'. htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
-            $self_intro = isset($row['self_intro']) ? htmlspecialchars($row['self_intro'], ENT_QUOTES, 'UTF-8') : '';
-            $sex = isset($row['sex']) ? htmlspecialchars($row['sex'], ENT_QUOTES, 'UTF-8') : '未設定';
-            $place = isset($row['place']) ? htmlspecialchars($row['place'], ENT_QUOTES, 'UTF-8') : '';
+            $self_intro = isset($row['bio']) ? htmlspecialchars($row['bio'], ENT_QUOTES, 'UTF-8') : '';
+            $place = isset($row['activity_region']) ? htmlspecialchars($row['activity_region'], ENT_QUOTES, 'UTF-8') : '';
   
             // 修正: フォームのactionをmyprofile-input.phpに修正し、画像アップロードに必要なenctypeを追加
             echo '<form action="myprofile-input.php" method="post" enctype="multipart/form-data">';
@@ -58,7 +57,7 @@
             echo '</div><hr>';
             echo '<div id="sex-container">';
             echo '<div id="sex-sub">性別</div>';
-            echo '<div id="sex-main">' . $sex . '</div>';
+            echo '<div id="sex-main">' . $row['gender'] . '</div>';
             echo '</div><hr>';
             echo '<div id="place-container">';
             echo '<div id="place-sub">活動地域</div>';
