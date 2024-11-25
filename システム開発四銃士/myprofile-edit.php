@@ -82,22 +82,24 @@
                 $user_sports[$sport_row['sport_name']] = $sport_row['level'] ?: '未設定'; // レベルがNULLまたは空なら「未設定」
             }
 
-            $sports = ['baseball' => '野球', 'jogging' => 'ジョギング', 'tennis' => 'テニス', 'valley' => 'バレーボール', 'soccer' => 'サッカー', 'basket' => 'バスケットボール', 'tabletennis' => '卓球', 'badminton' => 'バドミントン', 'muscle' => '筋トレ', 'boxing' => 'ボクシング', 'golf' => 'ゴルフ', 'football' => 'アメリカンフットボール'];
+            $sports = ['野球', 'ジョギング', 'テニス', 'バレーボール', 'サッカー', 'バスケットボール', '卓球', 'バドミントン', '筋トレ', 'ボクシング', 'ゴルフ', 'アメリカンフットボール'];
 $levels = ['未設定', '初心者', '中級者', '上級者'];
 
 
-foreach ($sports as $key => $sport) {
+// スポーツ選択部分の修正
+foreach ($sports as $sport) {
   $isChecked = isset($user_sports[$sport]); // 配列にキーが存在するかをチェック
   $selectedLevel = $isChecked ? $user_sports[$sport] : '未設定'; // 未設定の場合のデフォルト値
 
   echo '<label>';
-  echo '<input type="checkbox" class="sport-checkbox" data-target="' . $key . '-level" name="sports[]" value="' . $key . '"' . ($isChecked ? ' checked' : '') . '> ' . $sport;
+  echo '<input type="checkbox" class="sport-checkbox" data-target="' . $sport . '-level" name="sports[]" value="' . $sport . '"' . ($isChecked ? ' checked' : '') . '> ' . $sport;
   echo '</label>';
-  echo '<div id="' . $key . '-level" class="level-buttons"' . ($isChecked ? ' style="display: block;"' : ' style="display: none;"') . '>';
+  echo '<div id="' . $sport . '-level" class="level-buttons"' . ($isChecked ? ' style="display: block;"' : ' style="display: none;"') . '>';
   foreach ($levels as $level) {
       $isSelected = ($selectedLevel === $level) ? ' selected' : '';
-      echo '<button type="button" class="level-btn' . $isSelected . '">' . $level . '</button>';
+      echo '<button type="button" class="level-btn' . $isSelected . '" data-level="' . $level . '">' . $level . '</button>';
   }
+  echo '<input type="hidden" name="levels[' . $sport . ']" value="' . $selectedLevel . '">';
   echo '</div><hr>';
 }
             echo '<button type="submit">この内容で決定</button>';
@@ -142,11 +144,17 @@ document.querySelectorAll('.sport-checkbox').forEach(checkbox => {
     });
 });
 
+
+// レベルボタンをクリックしたときに hidden input を更新
 document.querySelectorAll('.level-btn').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         const buttons = this.parentElement.querySelectorAll('.level-btn');
         buttons.forEach(btn => btn.classList.remove('selected'));
         this.classList.add('selected');
+
+        // 対応する hidden input を更新
+        const hiddenInput = this.parentElement.querySelector('input[type="hidden"]');
+        hiddenInput.value = this.getAttribute('data-level');
     });
 });
 
