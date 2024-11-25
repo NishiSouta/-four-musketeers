@@ -65,6 +65,8 @@ while ($row = $sport_sql->fetch(PDO::FETCH_ASSOC)) {
     $sports_map[$row['sport_name']] = $row['sport_id'];
 }
 
+$pdo->beginTransaction(); // トランザクションの開始
+
 // 送信されたスポーツ名をスポーツIDに変換
 $selected_sports = isset($_POST['sports']) ? $_POST['sports'] : [];
 $sport_levels = isset($_POST['levels']) ? $_POST['levels'] : [];
