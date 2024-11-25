@@ -69,7 +69,7 @@ require 'db-connect.php';
           echo '<span class="region_main">' . htmlspecialchars($row['activity_region'], ENT_QUOTES, 'UTF-8') . '</span><br><br>';
           echo '<hr></div>';
           echo '<div id="profile_info_3">';
-          echo '<br><p>好きなスポーツ</p>';
+          echo '<br><span class="title">好きなスポーツ</span><br><br>';
 
           // user_sportsテーブルからスポーツ情報を取得
            $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = ?');

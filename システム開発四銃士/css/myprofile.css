@@ -477,7 +477,7 @@ header #logo img {
 /*全体の設定
 ---------------------------------------------------------------------------*/
 body {
-	font-size: 20px;	/*文字サイズ*/
+	font-size: 28px;	/*文字サイズ*/
 	line-height: 1.5;	/*行間*/
 }
 
@@ -583,16 +583,17 @@ button {
     background-color: #FFFFFF;
     color: #000;
     border: none;
-    padding: 6px 14px;
+    padding: 8px 15px;
     cursor: pointer;
     border-radius: 5px;
 	margin-left: auto;
-	font-size: 14px;
+	font-size: 23px;
 }
 
 .title {
     font-size: 20px;
     margin-bottom: 10px;
+	font-weight: bold;
 }
 
 .age_sub, .sex_sub , .region_sub{
