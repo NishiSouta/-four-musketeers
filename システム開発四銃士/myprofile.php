@@ -57,7 +57,7 @@ require 'db-connect.php';
           echo '<div id="profile_info_1">';
           echo '<br><span class="title">自己紹介</span><br>';
           $self_intro = isset($row['bio']) ? nl2br(htmlspecialchars($row['bio'], ENT_QUOTES, 'UTF-8')) : '自己紹介はまだ登録されていません。';
-          echo '<br><span>' . $self_intro . '</span><br><br>';
+          echo '<br><p>' . $self_intro . '</p><br>';
           echo '<hr></div>';
           echo '<div id="profile_info_2">';
           echo '<br><span class="age_sub">年齢:</span>';
