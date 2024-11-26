@@ -79,9 +79,9 @@ require 'db-connect.php';
                 $sport_name = isset($sport['sport_name']) ? htmlspecialchars($sport['sport_name'], ENT_QUOTES, 'UTF-8') : 'スポーツ名不明';
                  $level = isset($sport['level']) ? htmlspecialchars($sport['level'], ENT_QUOTES, 'UTF-8') : null;
                   if ($level !== null && $level !== '未設定') {
-                     echo '<p>' . $sport_name . ' - ' . $level . '</p>'; 
+                     echo '<div class=sport_name>' . $sport_name . ' - ' . $level . '</div>'; 
                   }else {
-                    echo '<p>' . $sport_name . '</p>';
+                    echo '<div class=sport_name>' . $sport_name . '</div>';
                   }
                 }
 
