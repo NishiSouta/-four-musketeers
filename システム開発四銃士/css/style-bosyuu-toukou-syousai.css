@@ -470,8 +470,8 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
 }
 /*h2中央寄せ*/
 h2{
-	/* 水平方向の中央揃え */
-	text-align: center;
+	/* 水平方向の左揃え */
+	text-align: left;
   }
 #center{/*中央揃え*/
 	display: flex;
@@ -483,7 +483,7 @@ h2{
 
   
   h2 {
-	font-size: 18px;
+	font-size: 40px;
 	margin-bottom: 10px;
 	color: #333;
   }
@@ -540,3 +540,74 @@ h2{
     border-radius: 50%;
     box-shadow: 0 -0.375em 0 0 currentColor, 0 0.375em 0 0 currentColor;
   }
+  /* メインコンテンツ */
+#content {
+  padding: 10px;
+}
+
+.image-banner img {
+  width: 100%;
+  height: auto;
+}
+
+/* 募集の詳細セクション */
+.post-details {
+  padding: 15px;
+  background-color: #938b76;
+  border-radius: 5px;
+  margin-top: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-details h2 {
+  margin: 0;
+  font-size: 2.8rem;
+  color: #4a453a;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.post-details .category {
+  text-align: center;
+  margin: 5px 0;
+  font-size: 3rem;
+}
+
+.post-details .category img {
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.post-details hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 10px 0;
+}
+
+.detail-item {
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.detail-item strong {
+  color: #4a453a;
+}
+
+/* カテゴリ部分の横並び設定 */
+.category {
+	display: flex;
+	align-items: center; /* 縦方向の中央揃え */
+	justify-content: center; /* 横方向の中央揃え */
+	font-size: 1.5rem; /* タイトルと同じくらいのサイズに */
+	color: #4a453a;
+	margin: 10px 0;
+  }
+  
+  .category img {
+	width: 40px; /* アイコンのサイズ調整 */
+	height: 40px; /* アイコンのサイズ調整 */
+	margin-right: 10px; /* テキストとの間隔 */
+  }
+  
