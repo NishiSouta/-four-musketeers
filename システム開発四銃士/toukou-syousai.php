@@ -107,7 +107,7 @@ try {
                 : 'images/default_profile.png';
         
             // 例: 募集詳細ページへのリンクを作成
-            $link = 'post-detail.php?id=' . htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8');
+            $link = 'bosyuu-toukou-syousai.php?id=' . htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8');
         
             echo '<a href="' . $link . '" class="post-row">'; // <a>タグを追加
             echo '<div class="post-left">';
