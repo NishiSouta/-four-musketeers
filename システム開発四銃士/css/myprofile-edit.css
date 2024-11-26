@@ -665,6 +665,7 @@ textarea {
 	border: none;
 	margin: 5px;
 	cursor: pointer;
+	font-size: 20px;
 }
 
 .selected {
@@ -711,7 +712,7 @@ button[type="submit"] {
 	border: none; /* 境界線をなくす */ 
 	border-radius: 5px; /* 角を少し丸める */ 
 	cursor: pointer; /* クリック可能に */ 
-	font-size: 25px; /* フォントサイズを設定 */ 
+	font-size: 45px; /* フォントサイズを設定 */ 
 	display: block; /* ボタンをブロック表示にして中央に配置 */ 
 	margin: 20px auto; /* 上下にマージンを追加し中央に配置 */ 
 	width: 100%; /* 幅を100%に設定 */ 
