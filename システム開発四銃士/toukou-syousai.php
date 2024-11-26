@@ -39,7 +39,7 @@ if (isset($_SESSION['user_id'])) {
       </aside>
     </header>
     <nav id="batu">
-      <a href="link.php"><img src="images/batu.png" alt="×（バツ）"></a>
+      <a href="toukou-itiran.php"><img src="images/batu.png" alt="×（バツ）"></a>
     </nav>
     <div id="contents">
       <div id="main">
