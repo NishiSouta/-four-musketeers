@@ -41,16 +41,17 @@ require 'db-connect.php'; ?>
 <h3>おすすめ参加ランキング</h3>
 <div id="iti">
 <img src="images/1_1.png" alt="" class="img-item">
-    <a href="">
+<a href="toukou-syousai.php?sport=ジョギング">
         <img src="images/run.jpg" alt="" class="img-item">ジョギング
     </a>
 </div>
+
 
 <hr>
 
 <div id="ni">
 <img src="images/2_2.png" alt="" class="img-item">
-	<a href="">
+<a href="toukou-syousai.php?sport=野球">
 		<img src="images/baseball.jpg" alt=""class="img-item">野球
 	</a>
 </div>
@@ -59,7 +60,7 @@ require 'db-connect.php'; ?>
 
 <div id="san">
 <img src="images/3_3.png" alt="" class="img-item">
-	<a href="">
+<a href="toukou-syousai.php?sport=サッカー">
 		<img src="images/soccer.jpg" alt=""class="img-item">サッカー
 	</a>
 </div>
