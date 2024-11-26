@@ -48,6 +48,7 @@
             echo '<input type="file" id="imageUpload" name="profile_img" style="display: none;">'; // nameを追加
             echo '<button type="button" id="uploadButton">+</button>';
             echo '</div><br>';
+            echo 'ユーザ名';
             echo '<input type="text" name="name" value="' . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . '"></p>';
             echo '<textarea name="self_intro" placeholder="自己紹介" cols="32" rows="10">' . $self_intro . '</textarea><br><br>';
             echo '<span class="info">登録情報</span><br><br>';
@@ -81,8 +82,8 @@
             while ($sport_row = $sport_sql->fetch(PDO::FETCH_ASSOC)) {
                 $user_sports[$sport_row['sport_name']] = $sport_row['level'] ?: '未設定'; // レベルがNULLまたは空なら「未設定」
             }
-
             $sports = ['野球', 'ジョギング', 'テニス', 'バレーボール', 'サッカー', 'バスケットボール', '卓球', 'バドミントン', '筋トレ', 'ボクシング', 'ゴルフ', 'アメリカンフットボール'];
+            
 $levels = ['未設定', '初心者', '中級者', '上級者'];
 
 
