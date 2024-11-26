@@ -57,7 +57,7 @@ require 'db-connect.php';
           echo '<div id="profile_info_1">';
           echo '<br><span class="title">自己紹介</span><br>';
           $self_intro = isset($row['bio']) ? nl2br(htmlspecialchars($row['bio'], ENT_QUOTES, 'UTF-8')) : '自己紹介はまだ登録されていません。';
-          echo '<br><span>' . $self_intro . '</span><br><br>';
+          echo '<br><p>' . $self_intro . '</p><br>';
           echo '<hr></div>';
           echo '<div id="profile_info_2">';
           echo '<br><span class="age_sub">年齢:</span>';
@@ -69,19 +69,19 @@ require 'db-connect.php';
           echo '<span class="region_main">' . htmlspecialchars($row['activity_region'], ENT_QUOTES, 'UTF-8') . '</span><br><br>';
           echo '<hr></div>';
           echo '<div id="profile_info_3">';
-          echo '<br><p>好きなスポーツ</p>';
+          echo '<br><span class="title">好きなスポーツ</span><br><br>';
 
           // user_sportsテーブルからスポーツ情報を取得
-           $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = 11');
-            $sport_sql->execute();
+           $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = ?');
+            $sport_sql->execute([$user_id]);
              $user_sport = $sport_sql->fetchAll(PDO::FETCH_ASSOC);
               foreach ($user_sport as $sport) {
                 $sport_name = isset($sport['sport_name']) ? htmlspecialchars($sport['sport_name'], ENT_QUOTES, 'UTF-8') : 'スポーツ名不明';
                  $level = isset($sport['level']) ? htmlspecialchars($sport['level'], ENT_QUOTES, 'UTF-8') : null;
                   if ($level !== null && $level !== '未設定') {
-                     echo '<p>' . $sport_name . ' - ' . $level . '</p>'; 
+                     echo '<div class=sport_name>' . $sport_name . ' - ' . $level . '</div>'; 
                   }else {
-                    echo '<p>' . $sport_name . '</p>';
+                    echo '<div class=sport_name>' . $sport_name . '</div>';
                   }
                 }
 

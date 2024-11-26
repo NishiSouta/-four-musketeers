@@ -70,27 +70,25 @@ require 'db-connect.php'; ?>
 <h3>おすすめ募集ランキング</h3>
 <div id="iti">
     <img src="images/1_1.png" alt="" class="img-item">
-    <a href="bosyuu-touroku.php?sport=野球">
+    <a href="bosyuu-touroku.php?sport=<?php echo urlencode(1); ?>">
         <img src="images/baseball.jpg" alt="" class="img-item">野球
+    </a>
+</div>
+<hr>
+<div id="ni">
+    <img src="images/2_2.png" alt="" class="img-item">
+    <a href="bosyuu-touroku.php?sport=<?php echo urlencode(4); ?>">
+        <img src="images/soccer.jpg" alt="" class="img-item">サッカー
     </a>
 </div>
 
 <hr>
 
-<div id="ni">
-	<img src="images/2_2.png" alt="" class="img-item">
-	<a href="bosyuu-touroku.php?sport=サッカー">
-		<img src="images/soccer.jpg" alt=""class="img-item">サッカー
-	</a>
-</div>
-
-<hr>
-
 <div id="san">
-	<img src="images/3_3.png" alt="" class="img-item">
-	<a href="bosyuu-touroku.php?sport=バレーボール">
-		<img src="images/volleyball.jpg" alt=""class="img-item">バレー
-	</a>
+<img src="images/3_3.png" alt="" class="img-item">
+    <a href="bosyuu-touroku.php?sport=<?php echo urlencode(12); ?>">
+        <img src="images/volleyball.jpg" alt="" class="img-item">バレー
+    </a>
 </div>
 
 <hr>

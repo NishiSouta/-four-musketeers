@@ -1,64 +1,4 @@
-/* 入力フィールド */
-.input-field {
-    width: 90%;
-    padding: 10px;
-    margin: 30px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-	background-color: white;
-}
-
-/* ログインボタン */
-.btn-login {
-    width: 100%;
-    padding: 10px;
-	margin: 30px 0;
-    background-color: #32cd32; /* ログインボタンの色 */
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-.btn-login:hover {
-    background-color: #2a9d2a;
-}
-
-/* 新規アカウント登録リンク */
-.register-link, .error-message {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* エラーメッセージ */
-.error-message {
-    color: red;
-}
-
-/* ×ボタンのスタイル */
-#close-btn {
-    display: block;
-    width: 40px;
-    height: 40px;
-    color: black;
-    text-align: center;
-    line-height: 40px;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-#close-btn::before {
-    content: "×";
-}
-
-
-
+@charset "utf-8";
 
 
 /*slide.cssと、lightbox.cssの読み込み
@@ -74,10 +14,6 @@
 body {
 	margin: 0px;
 	padding: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
 	color: #FFF;	/*全体の文字色*/
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	font-size: 14px;	/*文字サイズ*/
@@ -85,7 +21,6 @@ body {
 	background: #938b76;	/*全体の背景色（古いブラウザ用）*/
 	-webkit-text-size-adjust: none;
 }
-
 h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,input,select,textarea {margin: 0px;padding: 0px;font-size: 100%;}
 ul {list-style-type: none;}
 img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
@@ -105,24 +40,13 @@ a:hover {
 }
 
 /*コンテナー（footer以外を囲むブロック）
-
 ---------------------------------------------------------------------------*/
-#login-container {
-    max-width: 1300px;
-     /* 背景色 */
-    width: 390px; /* スマホの幅に合わせる */
-	height: 390px;
-    padding: 0px;
-    border-radius: 10px;
-    margin: 0 auto;
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
-    position: relative;
-	text-align:center;
+#container {
+	max-width: 1300px;	/*サイトの最大幅*/
+	margin: 0 auto;
+	padding: 0 3%;
 }
 
-#login-container h2 {
-    text-align: center;
-}
 /*ヘッダー（ロゴが入った最上段のブロック）
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
@@ -149,7 +73,7 @@ header #logo img {
 ---------------------------------------------------------------------------*/
 #contents {
 	clear: both;overflow: hidden;
-	padding-bottom: 20px;	/*下の余白。footerとの間のスペースになります。*/
+	padding-bottom: 40px;	/*下の余白。footerとの間のスペースになります。*/
 }
 
 /*メインメニュー
@@ -263,7 +187,6 @@ footer {
 	background: #3e3b32;	/*背景色*/
 	color: #fff;			/*文字色*/
 	text-align: center;		/*文字をセンタリング*/
-	height: 100p
 }
 footer a {text-decoration: none;}
 footer .pr {display: block;font-size: 80%;}
@@ -299,10 +222,17 @@ footer .pr {display: block;font-size: 80%;}
 }
 /*ta1設定*/
 .ta1 {
-	table-layout: fixed;
-	width: 100%;
-	margin: 0 auto 20px;
-	background: #fff;	/*背景色*/
+	/*table-layout: fixed;*/
+	width: 45%;
+	/*margin: 0 auto 20px;*/
+	background: #b3acac;	/*背景色*/
+	color: #333;		/*文字色*/
+}
+.ta2 {
+	/*table-layout: fixed;*/
+	width: 45%;
+	/*margin:  20px;*/
+	background: #b3acac;	/*背景色*/
 	color: #333;		/*文字色*/
 }
 .ta1 a {color: #333;}
@@ -524,11 +454,11 @@ body.s-n #sub,body.s-n #footermenu,.m-n {display: none;}
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
 header {
-	height: 150px;	/*ヘッダーの高さ*/
+	height: 100px;	/*ヘッダーの高さ*/
 }
 /*ロゴ画像*/
 header #logo img {
-	top: 0px;		/*上から35pxの場所に配置*/
+	top: 15px;		/*上から35pxの場所に配置*/
 }
 /*ヘッダー右上の画像*/
 #header-img img {
@@ -563,7 +493,7 @@ body {
 ---------------------------------------------------------------------------*/
 /*ロゴ画像*/
 header #logo img {
-	width: 75px;	/*画像の幅*/
+	width: 65px;	/*画像の幅*/
 }
 /*ヘッダー右上の画像*/
 #header-img img {
@@ -636,24 +566,103 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
 .pc {display:none;}
 
 }
-.rounded-icon {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    cursor: pointer;
-    background-color: white;
+/*h2中央寄せ*/
+h2{
+	/* 水平方向の中央揃え */
+	text-align: center;
+  }
+  /* テーブル全体のスタイル */
+.ta1 {
+    width: 100%;
+    table-layout: fixed; /* テーブルセルの幅を固定 */
+    border-collapse: collapse;
 }
-.user-icon img {
-    width: 150px; /* 適切な幅を指定 */
-    height: 150px; /* 適切な高さを指定 */
-    border-radius: 50%; /* 完全に丸くするために50% */
-    object-fit: cover; /* 画像を適切に収める */
+ 
+/* セルのスタイル */
+.ta1 th {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    vertical-align: top; /* セルの内容を上部に揃える */
 }
+ 
+/* 画像とテキストのスタイル */
+.ta1 th a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+ 
+.ta1 th a img {
+    width: 80%; /* 画像の幅をセルの幅の80%に設定 */
+    height: auto;
+    max-width: 150px; /* 最大幅を設定 */
+}
+ 
+/* スマートフォンサイズの調整 */
+@media (max-width: 600px) {
+    .ta1 th {
+        width: 100%; /* 各セルの幅を100%に */
+        padding: 5px; /* パディングを小さく */
+    }
+ 
+    .ta1 th a img {
+        width: 100%; /* 画像の幅を親要素の100%に */
+        max-width: none; /* 最大幅を解除 */
+    }
+}
+
+
+
+
+
+
+
+
+
+/*h2中央寄せ*/
+h2{
+	/* 水平方向の中央揃え */
+	text-align: center;
+  }
+
+  #container {
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+  }
+
+  #contents {
+	text-align: center;
+	color: #000; /* Text color for visibility */
+  }
+
+  #main section {
+	margin-top: 120px;
+  }
+
+  #button {
+	display: inline-block;
+	background-color: #32CD32; /* Bright green background */
+	color: #fff;
+	padding: 10px 20px;
+	font-size: 45px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+  }
+
+  #button:hover {
+	background-color: #28a428; /* Darker green for hover effect */
+  }
 h1{
-font-size: 40px; /* 必要に応じてサイズを調整 */
-text-align:center;
+	font-size: 40px;
 }
-.text{
-	font-size: 34px;
-}
+
+
+
+
+

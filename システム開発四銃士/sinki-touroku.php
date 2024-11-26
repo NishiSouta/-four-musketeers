@@ -113,6 +113,7 @@ ob_end_flush();
                 <input type="file" id="user_icon_input" name="user_icon" accept="image/*" style="display: none;" onchange="previewUserIcon(event)">
             </div>
         </div>
+        <div class="text">
         <input type="text" name="user_name" class="input-field" placeholder="ユーザー名" required>
         <input type="email" name="email" class="input-field" placeholder="メールアドレス" required>
         <input type="password" name="password" class="input-field" placeholder="パスワード" required>
@@ -204,8 +205,13 @@ ob_end_flush();
             <option value="11">アメリカンフットボール</option>
             <option value="12">バレーボール</option>   
         </select>
-        <button type="submit" class="btn-login">登録する</button>
+        </div>
+        <button type="submit" class="btn-login">登録する</button>   
     </form>
+    <footer>
+    <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
+    <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+  </footer>
 </div>
 <script>
     // プロフィール画像のプレビュー表示
@@ -223,5 +229,7 @@ ob_end_flush();
         window.location.href = 'login.php'; // 遷移先のURLを指定
     });
 </script>
+
+
 </body>
 </html>

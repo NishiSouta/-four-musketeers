@@ -20,7 +20,7 @@ body {
 	background: #938b76;	/*全体の背景色（古いブラウザ用）*/
 	-webkit-text-size-adjust: none;
 }
-h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,input,select,textarea {margin: 0px;padding: 0px;font-size: 100%;}
+h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,input,select,textarea {padding: 0px;font-size: 100%;font-weight: bold;}
 ul {list-style-type: none;}
 img {border: none;max-width: 100%;height: auto;vertical-align: middle; width: 120px;}
 table {border-collapse:collapse;font-size: 100%;border-spacing: 0;}
@@ -477,7 +477,7 @@ header #logo img {
 /*全体の設定
 ---------------------------------------------------------------------------*/
 body {
-	font-size: 20px;	/*文字サイズ*/
+	font-size: 28px;	/*文字サイズ*/
 	line-height: 1.5;	/*行間*/
 }
 
@@ -565,12 +565,13 @@ hr{
 
 /* 各項目の背景スタイル */
 .post, .participation, .good_count {
-    font-size: 18px;
+    font-size: 30px;
     margin: 10px;
     display: inline-block; 
     padding: 10px;
     background-color: #ccc; /* 灰色の背景 */
     border-radius: 5px; /* 角を少し丸く */
+	font-weight: bold;
 }
 
 #counts {
@@ -583,25 +584,34 @@ button {
     background-color: #FFFFFF;
     color: #000;
     border: none;
-    padding: 6px 14px;
+    padding: 8px 15px;
     cursor: pointer;
     border-radius: 5px;
 	margin-left: auto;
-	font-size: 14px;
+	font-size: 23px;
+	font-weight: bold;
 }
 
 .title {
-    font-size: 20px;
+    font-size: 32px;
     margin-bottom: 10px;
+	font-weight: bold;
 }
 
 .age_sub, .sex_sub , .region_sub{
     font-weight: bold;
+	font-size: 30px;
 }
 
 .age_main, .sex_main, .region_main {
-    font-size: 18px;
+    font-size: 30px;
     margin-left: 10px;
+	font-weight: bold;
+}
+
+#name2 {
+	font-size: 32px;
+	font-weight: bold;
 }
 
 #profile_info_3 p {
@@ -632,4 +642,7 @@ button {
 
 #name span {
     text-align: center;
+}
+.sport_name{
+	font-size: 35px;
 }

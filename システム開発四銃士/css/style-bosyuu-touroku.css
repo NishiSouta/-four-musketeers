@@ -407,7 +407,7 @@ header #logo img {
 /*mainコンテンツ
 ---------------------------------------------------------------------------*/
 #main h2,#main h3 {
-	font-size: 14px;
+	font-size: 50px;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -481,15 +481,6 @@ h2{
 
 
 
-
-
-
-
-/* ここからチャットGPT*/
-
-
-  /* style-bosyuu-touroku.css */
-
   
   h2 {
 	font-size: 18px;
@@ -535,5 +526,6 @@ h2{
   form input[type="submit"]:hover {
 	background-color: #00cc52; /* Darker green on hover */
   }
- 
-  
+  .form-group{
+	font-size: 33px;
+  }

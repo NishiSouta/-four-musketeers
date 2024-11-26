@@ -1,13 +1,14 @@
-<?php session_start();
-require 'db-connect.php'; ?>
+<?php
+session_start();
+require 'db-connect.php';?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>募集入力画面</title>
+    <title>募集投稿詳細画面</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="css/style-bosyuu-touroku.css">
+      <link rel="stylesheet" href="css/style-bosyuu-toukou-syousai.css">
       <script src="js/openclose.js"></script>
       <script src="js/fixmenu_pagetop.js"></script>
 </head>
@@ -37,6 +38,12 @@ require 'db-connect.php'; ?>
   <nav id="batu">
     <a href="link.php"><img src="images/batu.png" alt="×（バツ）"></a>
   </nav>
+  <span class="dli-more-v">
+  <ul>
+		<li><a href="bosyuu-toukou-syousai.php">編集</a></li>
+		<li class="current"><a href="bosyuu-delete.php">削除</a></li>
+	</ul>
+  </span>
 </header>
 
 
@@ -58,6 +65,7 @@ require 'db-connect.php'; ?>
           }
         ?>
       </h2>  
+      
 <form action="bosyuu-touroku-kannryou.php?sport=<?php echo htmlspecialchars($_GET['sport'], ENT_QUOTES, 'UTF-8'); ?>" method="post">
        
        

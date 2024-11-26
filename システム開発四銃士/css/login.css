@@ -6,6 +6,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 	background-color: white;
+	font-size: 48px;
 }
 
 /* ログインボタン */
@@ -655,8 +656,11 @@ font-size: 30px; /* 必要に応じてサイズを調整 */
 text-align:center;
 }
 .sinki-link{
-	font-size: 20px;
+	font-size: 30px;
 }
 .btn-login{
-	font-size: 25px;
+	font-size: 40px;
+}
+h1{
+	font-size: 55px;
 }

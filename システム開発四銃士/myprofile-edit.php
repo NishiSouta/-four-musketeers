@@ -38,9 +38,8 @@
 
         if ($row) {
             $profile_img = isset($row['profile_image']) ? 'uploads/'. htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
-            $self_intro = isset($row['self_intro']) ? htmlspecialchars($row['self_intro'], ENT_QUOTES, 'UTF-8') : '';
-            $sex = isset($row['sex']) ? htmlspecialchars($row['sex'], ENT_QUOTES, 'UTF-8') : '未設定';
-            $place = isset($row['place']) ? htmlspecialchars($row['place'], ENT_QUOTES, 'UTF-8') : '';
+            $self_intro = isset($row['bio']) ? htmlspecialchars($row['bio'], ENT_QUOTES, 'UTF-8') : '';
+            $place = isset($row['activity_region']) ? htmlspecialchars($row['activity_region'], ENT_QUOTES, 'UTF-8') : '';
   
             // 修正: フォームのactionをmyprofile-input.phpに修正し、画像アップロードに必要なenctypeを追加
             echo '<form action="myprofile-input.php" method="post" enctype="multipart/form-data">';
@@ -58,7 +57,7 @@
             echo '</div><hr>';
             echo '<div id="sex-container">';
             echo '<div id="sex-sub">性別</div>';
-            echo '<div id="sex-main">' . $sex . '</div>';
+            echo '<div id="sex-main">' . $row['gender'] . '</div>';
             echo '</div><hr>';
             echo '<div id="place-container">';
             echo '<div id="place-sub">活動地域</div>';
@@ -75,18 +74,34 @@
             echo '<div id="profile_info_3"></div>';
             echo '<br><p>興味のあるスポーツ</p>';
             echo '<form>';
-            $sports = ['baseball' => '野球', 'jogging' => 'ジョギング', 'tennis' => 'テニス', 'valley' => 'バレーボール', 'soccer' => 'サッカー', 'basket' => 'バスケットボール', 'tabletennis' => '卓球', 'badminton' => 'バドミントン', 'muscle' => '筋トレ', 'boxing' => 'ボクシング', 'golf' => 'ゴルフ', 'football' => 'アメリカンフットボール'];
-            $levels = ['未設定', '初心者', '中級者', '上級者'];
-            foreach ($sports as $key => $sport) {
-              echo '<label>';
-              echo '<input type="checkbox" class="sport-checkbox" data-target="' . $key . '-level"> ' . $sport;
-              echo '</label>';
-              echo '<div id="' . $key . '-level" class="level-buttons">';
-              foreach ($levels as $level) {
-                echo '<button type="button" class="level-btn">' . $level . '</button>';
-              }
-              echo '</div><hr>';
+
+            $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = ?');
+            $sport_sql->execute([$user_id]);
+            $user_sports = [];
+            while ($sport_row = $sport_sql->fetch(PDO::FETCH_ASSOC)) {
+                $user_sports[$sport_row['sport_name']] = $sport_row['level'] ?: '未設定'; // レベルがNULLまたは空なら「未設定」
             }
+
+            $sports = ['野球', 'ジョギング', 'テニス', 'バレーボール', 'サッカー', 'バスケットボール', '卓球', 'バドミントン', '筋トレ', 'ボクシング', 'ゴルフ', 'アメリカンフットボール'];
+$levels = ['未設定', '初心者', '中級者', '上級者'];
+
+
+// スポーツ選択部分の修正
+foreach ($sports as $sport) {
+  $isChecked = isset($user_sports[$sport]); // 配列にキーが存在するかをチェック
+  $selectedLevel = $isChecked ? $user_sports[$sport] : '未設定'; // 未設定の場合のデフォルト値
+
+  echo '<label>';
+  echo '<input type="checkbox" class="sport-checkbox" data-target="' . $sport . '-level" name="sports[]" value="' . $sport . '"' . ($isChecked ? ' checked' : '') . '> ' . $sport;
+  echo '</label>';
+  echo '<div id="' . $sport . '-level" class="level-buttons"' . ($isChecked ? ' style="display: block;"' : ' style="display: none;"') . '>';
+  foreach ($levels as $level) {
+      $isSelected = ($selectedLevel === $level) ? ' selected' : '';
+      echo '<button type="button" class="level-btn' . $isSelected . '" data-level="' . $level . '">' . $level . '</button>';
+  }
+  echo '<input type="hidden" name="levels[' . $sport . ']" value="' . $selectedLevel . '">';
+  echo '</div><hr>';
+}
             echo '<button type="submit">この内容で決定</button>';
             echo '</form>';
             echo '</div><!--/profile_info_3-->';
@@ -129,11 +144,17 @@ document.querySelectorAll('.sport-checkbox').forEach(checkbox => {
     });
 });
 
+
+// レベルボタンをクリックしたときに hidden input を更新
 document.querySelectorAll('.level-btn').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         const buttons = this.parentElement.querySelectorAll('.level-btn');
         buttons.forEach(btn => btn.classList.remove('selected'));
         this.classList.add('selected');
+
+        // 対応する hidden input を更新
+        const hiddenInput = this.parentElement.querySelector('input[type="hidden"]');
+        hiddenInput.value = this.getAttribute('data-level');
     });
 });
 

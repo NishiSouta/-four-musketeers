@@ -407,7 +407,7 @@ header #logo img {
 /*mainコンテンツ
 ---------------------------------------------------------------------------*/
 #main h2,#main h3 {
-	font-size: 14px;
+	font-size: 50px;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -472,4 +472,71 @@ img.fr,img.fl {float: none;margin: 0;width: 100%;}
 h2{
 	/* 水平方向の中央揃え */
 	text-align: center;
+  }
+#center{/*中央揃え*/
+	display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  
+  h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #333;
+  }
+  
+
+
+  form input[type="text"],
+  form select {
+	width: 90%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+
+
+  form input[type="date"],
+  form select {
+	width: 85%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+   
+
+  
+  form input[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #00ff66; /* Green button color */
+	border: none;
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  form input[type="submit"]:hover {
+	background-color: #00cc52; /* Darker green on hover */
+  }
+  .form-group{
+	font-size: 33px;
+  }
+  .dli-more-v {
+    display: inline-block;
+    vertical-align: middle;
+    color: #333;
+    line-height: 1;
+    width: 0.25em;
+    height: 0.25em;
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: 0 -0.375em 0 0 currentColor, 0 0.375em 0 0 currentColor;
   }
