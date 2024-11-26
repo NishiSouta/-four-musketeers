@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
 
             // 更新成功時のリダイレクト
-            header('Location: bosyuu-toukou-henkou.php'); // 成功時の遷移先
+            header('Location: bosyuu-toukou-syousai.php'); // 成功時の遷移先
             exit;
 
         } catch (PDOException $e) {

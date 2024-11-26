@@ -52,20 +52,10 @@ if (!isset($_GET['post_id'])) {
 <header>
     <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
     <aside id="header-img">
-        <?php
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-            $sql = $pdo->prepare('SELECT * FROM user WHERE user_id = ?');
-            $sql->execute([$user_id]);
-            $user = $sql->fetch(PDO::FETCH_ASSOC);
-    
-            $profile_img = isset($user['profile_image']) ? 'uploads/' . htmlspecialchars($user['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
-            echo '<img alt="image" src="' . $profile_img . '" class="avatar">';
-        }
-        ?>
+        
     </aside>
     <nav id="batu">
-        <a href="link.php"><img src="images/batu.png" alt="×（バツ）"></a>
+        <a href="bosyuu-toukou-syousai.php"><img src="images/batu.png" alt="×（バツ）"></a>
     </nav>
 </header>
 
