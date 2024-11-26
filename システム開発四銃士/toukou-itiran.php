@@ -28,34 +28,34 @@ require 'db-connect.php'; ?>
 
 <table class="ta1">
 	<tr>
-	  <th><a href="bosyuu-touroku.php?sport=野球"><img src="images/baseball.jpg" alt=""><br>野球</a></th>
+	  <th><a href="toukou-syousai.php?sport=野球"><img src="images/baseball.jpg" alt=""><br>野球</a></th>
 	
-	  <th><a href="bosyuu-touroku.php?sport=ジョギング"><img src="images/run.jpg" alt=""><br>ジョギング</a></th>
+	  <th><a href="toukou-syousai.php?sport=ジョギング"><img src="images/run.jpg" alt=""><br>ジョギング</a></th>
 	</tr>
 	<tr>
-	  <th><a href="bosyuu-touroku.php?sport=テニス"><img src="images/tennis.jpg" alt=""><br>テニス</a></th>
+	  <th><a href="toukou-syousai.php?sport=テニス"><img src="images/tennis.jpg" alt=""><br>テニス</a></th>
 	
-	  <th><a href="bosyuu-touroku.php?sport=バレーボール"><img src="images/volleyball.jpg" alt=""><br>バレーボール</a></th>
+	  <th><a href="toukou-syousai.php?sport=バレーボール"><img src="images/volleyball.jpg" alt=""><br>バレーボール</a></th>
 	</tr>
 	<tr>
-	  <th><a href="bosyuu-touroku.php?sport=サッカー"><img src="images/soccer.jpg" alt=""><br>サッカー</a></th>
+	  <th><a href="toukou-syousai.php?sport=サッカー"><img src="images/soccer.jpg" alt=""><br>サッカー</a></th>
 	
-	  <th><a href="bosyuu-touroku.php?sport=バスケットボール"><img src="images/basketball.jpg" alt=""><br>バスケットボール</a></th>
+	  <th><a href="toukou-syousai.php?sport=バスケットボール"><img src="images/basketball.jpg" alt=""><br>バスケットボール</a></th>
 	</tr>
 	<tr>
-	  <th><a href="bosyuu-touroku.php?sport=卓球"><img src="images/table_tennis.jpg" alt=""><br>卓球</a></th>
+	  <th><a href="toukou-syousai.php?sport=卓球"><img src="images/table_tennis.jpg" alt=""><br>卓球</a></th>
 	
-	  <th><a href="bosyuu-touroku.php?sport=バドミントン"><img src="images/badminton.jpg" alt=""><br>バドミントン</a></th>
+	  <th><a href="toukou-syousai.php?sport=バドミントン"><img src="images/badminton.jpg" alt=""><br>バドミントン</a></th>
 	</tr>
 	<tr>
-	  <th><a href="bosyuu-touroku.php?sport=筋トレ"><img src="images/gym.jpg" alt=""><br>筋トレ</a></th>
+	  <th><a href="toukou-syousai.php?sport=筋トレ"><img src="images/gym.jpg" alt=""><br>筋トレ</a></th>
 	
-	  <th><a href="bosyuu-touroku.php?sport=ボクシング"><img src="images/boxing.jpg" alt=""><br>ボクシング</a></th>
+	  <th><a href="toukou-syousai.php?sport=ボクシング"><img src="images/boxing.jpg" alt=""><br>ボクシング</a></th>
 	</tr>
 	<tr>
-	  <th><a href="bosyuu-touroku.php?sport=ゴルフ"><img src="images/golf.jpg" alt=""><br>ゴルフ</a></th>
+	  <th><a href="toukou-syousai.php?sport=ゴルフ"><img src="images/golf.jpg" alt=""><br>ゴルフ</a></th>
 	
-	  <th><a href="bosyuu-touroku.php?sport=アメリカンフットボール"><img src="images/american_football.jpg" alt=""><br>アメリカンフットボール</a></th>
+	  <th><a href="toukou-syousai.php?sport=アメリカンフットボール"><img src="images/american_football.jpg" alt=""><br>アメリカンフットボール</a></th>
 	</tr>
   </table>
 
