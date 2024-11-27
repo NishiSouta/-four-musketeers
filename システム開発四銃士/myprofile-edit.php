@@ -48,8 +48,8 @@
             echo '<input type="file" id="imageUpload" name="profile_img" style="display: none;">'; // nameを追加
             echo '<button type="button" id="uploadButton">+</button>';
             echo '</div><br>';
-            echo 'ユーザ名';
-            echo '<input type="text" name="name" value="' . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . '"></p>';
+            echo '<div class=user_name>ユーザ名</div>';
+            echo '<div class=name><input type="text" name="name" value="' . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . '"></p></div><br>';
             echo '<textarea name="self_intro" placeholder="自己紹介" cols="32" rows="10">' . $self_intro . '</textarea><br><br>';
             echo '<span class="info">登録情報</span><br><br>';
             echo '<div id="age-container">';

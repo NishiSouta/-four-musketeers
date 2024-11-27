@@ -53,8 +53,8 @@ require 'db-connect.php';
 <div id="container">
   <header>
     <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Link Sports"></a></h1>
-    <nav id="close-icon">
-      <a href="index.php"><img src="images/batu.png" alt="閉じる"></a>
+    <nav id="batu">
+      <a href="toukou-syousai.php"><img src="images/batu.png" alt="閉じる"></a>
     </nav>
   </header>
 

@@ -610,4 +610,9 @@ h2{
 	height: 40px; /* アイコンのサイズ調整 */
 	margin-right: 10px; /* テキストとの間隔 */
   }
-  
+  #batu {
+	display: block;
+	position: absolute;z-index: 2;
+	top: 35px;	/*上から20pxの場所に配置*/
+	right: 3%;	/*右から3%の場所に配置*/
+}

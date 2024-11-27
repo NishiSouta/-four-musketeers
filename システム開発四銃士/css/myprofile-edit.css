@@ -595,12 +595,14 @@ hr{
 
 #age-sub, #sex-sub, #place-sub {
     text-align: left; /* 左端に揃える */
+	font-size: 40px;
 }
 
 #age-main, #sex-main, #place-main {
     text-align: right; /* 右端に揃える */
     margin-left: auto; /* 左側のスペースを自動で確保 */
     flex-grow: 1;
+	font-size: 40px;
 }
 
 #profile_info_3 p {
@@ -722,4 +724,13 @@ button[type="submit"] {
 
 button[type="submit"]:hover { 
 	background-color: #45a049; /* ホバー時の色を少し濃く */ 
+}
+.info{
+	font-size: 50px;
+}
+.user_name{
+	font-size: 50px;
+}
+.name{
+	font-size: 50px;
 }
