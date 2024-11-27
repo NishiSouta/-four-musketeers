@@ -45,10 +45,21 @@ try {
 <div id="container">
   <header>
     <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Link Sports"></a></h1>
+
+    </header>
+
     <nav id="batu">
-      <a href="toukou-syousai.php"><img src="images/batu.png" alt="閉じる"></a>
-    </nav>
-  </header>
+    <?php
+$backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
+?>
+
+<!-- 戻るボタン -->
+<a href="<?php echo $backURL; ?>">
+    <img src="images/batu.png" alt="×（バツ）">
+  </a>
+</nav>
+
+
 
   <div id="content">
     <div class="image-banner">
