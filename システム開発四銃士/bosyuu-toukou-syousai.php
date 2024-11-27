@@ -4,31 +4,23 @@ require 'db-connect.php';
 
 
 // 必要なパラメータが渡されているか確認
-//前画面完成時に使用（ID取得）
-/**
  if (!isset($_GET['post_id'])) {
     echo "投稿IDが指定されていません。";
     exit;
 }
-    **/
 
-//前画面完成時に使用（ID取得）
-//$post_id = $_GET['post_id'];
+$post_id = $_GET['post_id'];
 
 
-//try {
+try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // 指定された投稿IDのデータを取得
-    $sql = $pdo->prepare('SELECT * FROM post WHERE post_id = 46');
-    $sql->execute();
-    //前画面完成時に使用（ID取得）
-    //$sql->execute([$post_id]);
+    $sql = $pdo->prepare('SELECT * FROM post WHERE post_id = ?');
+    $sql->execute([$post_id]);
     $post = $sql->fetch(PDO::FETCH_ASSOC);
 
-    /**
-     /
     if (!$post) {
         echo "指定された投稿が見つかりません。";
         exit;
@@ -37,7 +29,7 @@ require 'db-connect.php';
     echo "データベースエラー: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
     exit;
 }
-    **/
+
 ?>
 
 <!DOCTYPE html>
