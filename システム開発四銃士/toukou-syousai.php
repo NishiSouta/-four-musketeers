@@ -25,6 +25,10 @@ if (isset($_SESSION['user_id'])) {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $sql = 'DELETE FROM post WHERE event_datetime_to < NOW() - INTERVAL 24 HOUR';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
     $sql = $pdo->prepare('SELECT * FROM user WHERE user_id = ?');
     $sql->execute([$user_id]);
     $user = $sql->fetch(PDO::FETCH_ASSOC);
