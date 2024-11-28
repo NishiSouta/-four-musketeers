@@ -114,6 +114,7 @@ try {
             $link = 'bosyuu-toukou-syousai.php?post_id=' . htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8') .
             '&sport_name=' . urlencode($sportName) .
             '&sport_img=' . urlencode($post['sport_img']);
+            '&sport_icon=' . urlencode($post['sport_icon']);
             echo '<a href="' . $link . '" class="post-row">';
 
             echo '<div class="post-left">';
