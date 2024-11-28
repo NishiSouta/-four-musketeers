@@ -30,6 +30,11 @@ try {
     exit;
 }
 
+
+// URLパラメータからスポーツ名とスポーツ画像を取得
+$sportName = isset($_GET['sport_name']) ? htmlspecialchars($_GET['sport_name'], ENT_QUOTES, 'UTF-8') : 'スポーツ名不明';
+$sportImg = isset($_GET['sport_img']) ? htmlspecialchars($_GET['sport_img'], ENT_QUOTES, 'UTF-8') : 'default_sport.jpg';
+
 ?>
 
 <!DOCTYPE html>
@@ -68,9 +73,9 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
     
     <section class="post-details">
       <h2><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
-      <p class="category">
-        <img src="images/baseball.jpg" alt="カテゴリアイコン">
-        野球</p>
+      <div class="image-banner">
+      <img src="images/<?php echo $sportImg; ?>" alt="<?php echo $sportName; ?>バナー">
+      </div>
       <hr>
       <div class="detail-item">
         <strong>開催日時</strong><br>

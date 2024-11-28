@@ -111,9 +111,11 @@ try {
                 : 'images/default_profile.png';
         
             // 例: 募集詳細ページへのリンクを作成
-            $link = 'bosyuu-toukou-syousai.php?post_id=' . htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8');
-        
-            echo '<a href="' . $link . '" class="post-row">'; // <a>タグを追加
+            $link = 'bosyuu-toukou-syousai.php?post_id=' . htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8') .
+            '&sport_name=' . urlencode($sportName) .
+            '&sport_img=' . urlencode($post['sport_img']);
+            echo '<a href="' . $link . '" class="post-row">';
+
             echo '<div class="post-left">';
             echo '<img src="' . $profileImage . '" alt="プロフィール画像" class="profile-image">';
             echo '<img src="images/' . htmlspecialchars($post['sport_icon'], ENT_QUOTES, 'UTF-8') . '" alt="スポーツアイコン" class="sport-icon">';
