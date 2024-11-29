@@ -116,6 +116,71 @@ require 'db-connect.php'; ?>
 </div>
 <!--/container-->
 
+
+
+
+
+
+
+<div class="chat-box">
+    <?php
+    // PDO接続
+    try {
+        $pdo = new PDO($connect, USER, PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("データベース接続エラー: " . $e->getMessage());
+    }
+
+    // メッセージを取得
+    $sql = "SELECT message.message_text, user.user_name 
+            FROM message 
+            INNER JOIN user 
+            ON message.user_id = user.user_id 
+            ORDER BY message.message_id";
+
+    try {
+        $stmt = $pdo->query($sql);
+        $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($messages) > 0) {
+            foreach ($messages as $row) {
+                echo "<p><strong>" . htmlspecialchars($row['user_name']) . ":</strong> " . htmlspecialchars($row['message_text']) . "</p>";
+            }
+        } else {
+            echo "<p>メッセージがありません</p>";
+        }
+    } catch (PDOException $e) {
+        die("クエリ実行エラー: " . $e->getMessage());
+    }
+    ?>
+</div>
+
+    <form action="send_message.php" method="post" class="chat-form">
+        <label for="message">メッセージを入力してください:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">送信</button>
+    </form>
+</div>
+    <script>
+        // チャットボックスが常に下にスクロールされるようにする関数
+        window.onload = () => {
+            let chatBox = document.querySelector(".chat-box");
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
 <footer>
 <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
 <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>

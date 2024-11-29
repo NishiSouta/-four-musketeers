@@ -41,6 +41,14 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([$user_id, $sport_id, $title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissibasyo, $sum, $syosinsya, $sonota]);
 
 
+$post_id = $pdo->lastInsertId();
+
+// `chat`テーブルへのデータ挿入
+$sql = "INSERT INTO chat (chat_id, post_id, created_at) 
+        VALUES (NULL, ?, NOW())";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$post_id]);
+
 ?>
 
 <!DOCTYPE html>
