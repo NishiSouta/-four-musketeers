@@ -4,7 +4,7 @@ require 'db-connect.php';
 
 $message = $_POST["message"];
 $users_id = $_SESSION["user_id"];
-
+//$chat_id =$_POST["chat_id"];
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
