@@ -616,3 +616,42 @@ h2{
 	top: 35px;	/*上から20pxの場所に配置*/
 	right: 3%;	/*右から3%の場所に配置*/
 }
+
+.dli-more-v {
+	display: inline-block;
+	vertical-align: middle;
+	color: #333;
+	line-height: 1;
+	width: 0.25em;
+	height: 0.25em;
+	background: currentColor;
+	border-radius: 50%;
+	box-shadow: 0 -0.375em 0 0 currentColor, 0 0.375em 0 0 currentColor;
+  }
+  
+  #menu-items {
+	position: absolute;
+	top: 30px;
+	right: 0;
+	background-color: white;
+	border: 1px solid #ccc;
+	display: none; /* デフォルトは非表示 */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	z-index: 100;
+  }
+  
+  #menu-items a {
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	color: black;
+  }
+  
+  #menu-items a:hover {
+	background-color: #f0f0f0;
+  }
+  
+  /* ケバブメニューを表示する */
+  .kebab-menu:hover #menu-items {
+	display: block;
+  }

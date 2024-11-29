@@ -54,17 +54,26 @@ $sportIcon = isset($_GET['sport_icon']) ? htmlspecialchars($_GET['sport_icon'], 
 
     </header>
 
-    <nav id="batu">
     <?php
 $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
 ?>
 
-<!-- 戻るボタン -->
-<a href="<?php echo $backURL; ?>">
+<nav id="batu">
+  <!-- 戻るボタン -->
+  <a href="<?php echo $backURL; ?>" class="nav-button">
     <img src="images/batu.png" alt="×（バツ）">
   </a>
 </nav>
 
+  <!-- ケバブメニュー -->
+  <div class="kebab-icon">
+  <span class="dli-more-v"></span>
+    <div id="menu-items" class="hidden">
+      <a href="option1.php">オプション1</a>
+      <a href="option2.php">オプション2</a>
+      <a href="option3.php">オプション3</a>
+    </div>
+  </div>
 
 
   <div id="content">
@@ -114,5 +123,11 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
     <small>&copy; Link Sports All Rights Reserved.</small>
   </footer>
 </div>
+<script>
+document.getElementById('kebab-icon').addEventListener('click', function() {
+  const menu = document.getElementById('menu-items');
+  menu.classList.toggle('hidden');
+});
+</script>
 </body>
 </html>
