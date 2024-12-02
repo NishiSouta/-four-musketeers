@@ -156,11 +156,22 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
     ?>
 </div>
 
-    <form action="send_message.php" method="post" class="chat-form">
-        <label for="message">メッセージを入力してください:</label>
-        <input type="text" id="message" name="message" required>
-        <button type="submit">送信</button>
-    </form>
+
+
+<form action="send_message.php" method="post" class="chat-form">
+    <label for="message">メッセージを入力してください:</label>
+    <input type="text" id="message" name="message" required>
+    <!-- chat_idを隠しフィールドで送信 -->
+    <?php
+$sql = $pdo->prepare('SELECT chat_id FROM chat WHERE post_id = ?');
+$sql->execute([$post_id]);
+$chat = $sql->fetch(PDO::FETCH_ASSOC);
+$chat_id = $chat['chat_id'] ?? null;
+?>
+    <input type="hidden" name="chat_id" value="<?php echo htmlspecialchars($chat_id, ENT_QUOTES, 'UTF-8'); ?>">
+    <button type="submit">送信</button>
+</form>
+
 </div>
     <script>
         // チャットボックスが常に下にスクロールされるようにする関数
