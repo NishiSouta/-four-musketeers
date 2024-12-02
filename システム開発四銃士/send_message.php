@@ -18,7 +18,9 @@ try {
         ':message_text' => htmlspecialchars($message, ENT_QUOTES, 'UTF-8'),
     ]);
 
-    header("Location: index.php");  // メッセージ送信後のリダイレクト先を適切に変更
+    $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
+
+    header("Location: " . $backURL);  // メッセージ送信後のリダイレクト先を適切に変更
     exit;
 
 } catch (PDOException $e) {
