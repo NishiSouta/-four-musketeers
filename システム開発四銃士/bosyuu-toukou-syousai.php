@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'db-connect.php';
-
+$user_id = $_SESSION['user_id'];
 
 // 必要なパラメータが渡されているか確認
  if (!isset($_GET['post_id'])) {
@@ -116,6 +116,65 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
         <?php echo htmlspecialchars($post['description'], ENT_QUOTES, 'UTF-8'); ?>
       </div>
       <hr>
+
+
+
+
+
+
+      <div class="chat-box">
+    <?php
+    // PDO接続
+    try {
+        $pdo = new PDO($connect, USER, PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("データベース接続エラー: " . $e->getMessage());
+    }
+
+    // メッセージを取得
+    $sql = "SELECT message.message_text, user.user_name 
+            FROM message 
+            INNER JOIN user 
+            ON message.user_id = user.user_id 
+            ORDER BY message.message_id";
+
+    try {
+        $stmt = $pdo->query($sql);
+        $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($messages) > 0) {
+            foreach ($messages as $row) {
+                echo "<p><strong>" . htmlspecialchars($row['user_name']) . ":</strong> " . htmlspecialchars($row['message_text']) . "</p>";
+            }
+        } else {
+            echo "<p>メッセージがありません</p>";
+        }
+    } catch (PDOException $e) {
+        die("クエリ実行エラー: " . $e->getMessage());
+    }
+    ?>
+</div>
+
+    <form action="send_message.php" method="post" class="chat-form">
+        <label for="message">メッセージを入力してください:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">送信</button>
+    </form>
+</div>
+    <script>
+        // チャットボックスが常に下にスクロールされるようにする関数
+        window.onload = () => {
+            let chatBox = document.querySelector(".chat-box");
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+    </script>
+
+
+
+
+
+
     </section>
   </div>
 
