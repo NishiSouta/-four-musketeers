@@ -132,27 +132,34 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
         die("データベース接続エラー: " . $e->getMessage());
     }
 
-    // メッセージを取得
-    $sql = "SELECT message.message_text, user.user_name 
-            FROM message 
-            INNER JOIN user 
-            ON message.user_id = user.user_id 
-            ORDER BY message.message_id";
+    $sql = $pdo->prepare('SELECT chat_id FROM chat WHERE post_id = ?');
+    $sql->execute([$post_id]);
+    $chat = $sql->fetch(PDO::FETCH_ASSOC);
+    $chat_id = $chat['chat_id'] ?? null;
+    
+if ($chat_id) {
+  // メッセージを取得（chat_idでフィルタリング）
+  $sql = "SELECT message.message_text, user.user_name 
+          FROM message 
+          INNER JOIN user 
+          ON message.user_id = user.user_id 
+          WHERE message.chat_id = ? 
+          ORDER BY message.message_id";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$chat_id]);
+  $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    try {
-        $stmt = $pdo->query($sql);
-        $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if (count($messages) > 0) {
-            foreach ($messages as $row) {
-                echo "<p><strong>" . htmlspecialchars($row['user_name']) . ":</strong> " . htmlspecialchars($row['message_text']) . "</p>";
-            }
-        } else {
-            echo "<p>メッセージがありません</p>";
-        }
-    } catch (PDOException $e) {
-        die("クエリ実行エラー: " . $e->getMessage());
-    }
+  if (count($messages) > 0) {
+      foreach ($messages as $row) {
+          echo "<p><strong>" . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . ":</strong> " 
+               . htmlspecialchars($row['message_text'], ENT_QUOTES, 'UTF-8') . "</p>";
+      }
+  } else {
+      echo "<p>メッセージがありません</p>";
+  }
+} else {
+  echo "<p>チャットがまだありません</p>";
+}
     ?>
 </div>
 
@@ -162,12 +169,6 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
     <label for="message">メッセージを入力してください:</label>
     <input type="text" id="message" name="message" required>
     <!-- chat_idを隠しフィールドで送信 -->
-    <?php
-$sql = $pdo->prepare('SELECT chat_id FROM chat WHERE post_id = ?');
-$sql->execute([$post_id]);
-$chat = $sql->fetch(PDO::FETCH_ASSOC);
-$chat_id = $chat['chat_id'] ?? null;
-?>
     <input type="hidden" name="chat_id" value="<?php echo htmlspecialchars($chat_id, ENT_QUOTES, 'UTF-8'); ?>">
     <button type="submit">送信</button>
 </form>
