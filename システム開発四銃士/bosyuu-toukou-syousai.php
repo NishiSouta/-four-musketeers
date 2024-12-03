@@ -163,8 +163,6 @@ if ($chat_id) {
     ?>
 </div>
 
-
-
 <form action="send_message.php" method="post" class="chat-form">
     <label for="message">メッセージを入力してください:</label>
     <input type="text" id="message" name="message" required>
@@ -172,6 +170,22 @@ if ($chat_id) {
     <input type="hidden" name="chat_id" value="<?php echo htmlspecialchars($chat_id, ENT_QUOTES, 'UTF-8'); ?>">
     <button type="submit">送信</button>
 </form>
+
+<?php
+// 参加状態の確認
+$participation_sql = $pdo->prepare('SELECT COUNT(*) FROM participation WHERE post_id = ? AND user_id = ?');
+$participation_sql->execute([$post_id, $user_id]);
+$is_participated = $participation_sql->fetchColumn() > 0;
+?>
+
+<!-- 参加・キャンセルの切り替え -->
+<form action="<?php echo $is_participated ? 'cancel-participation.php' : 'participate.php'; ?>" method="post" class="participate-form">
+    <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post_id, ENT_QUOTES, 'UTF-8'); ?>">
+    <button type="submit" class="participate-button">
+        <?php echo $is_participated ? 'キャンセルする' : '参加する'; ?>
+    </button>
+</form>
+
 
 </div>
     <script>
