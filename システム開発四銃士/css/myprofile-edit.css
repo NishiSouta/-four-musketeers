@@ -737,6 +737,18 @@ button[type="submit"]:hover {
 .self-introduction{
 	font-size: 50px;
 }
-.self-introduction-main{
-	font-size: 50px;
+
+.self-introduction-main textarea {
+    width: 100%; /* 必要に応じて幅を調整 */
+    height: 300px; /* 必要に応じて高さを調整 */
+    font-size: 50px; /* 文字サイズを固定 */
+    padding: 10px; /* テキストエリア内の余白 */
+    box-sizing: border-box; /* パディング込みでのサイズ調整を有効にする */
+    resize: none; /* ユーザーによるサイズ変更を無効化（必要なら） */
+}
+#main p {
+	font-size: 1.9em; 
+  }
+label {
+    font-size: 30px; /* 必要なサイズに変更 */
 }

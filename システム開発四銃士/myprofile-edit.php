@@ -51,7 +51,8 @@
             echo '<div class=user_name>ユーザ名</div>';
             echo '<div class=name><input type="text" name="name" value="' . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . '"></p></div><br>';
             echo '<div class=self-introduction>自己紹介</div>';
-            echo '<div class=self-introduction-main><textarea name="self_intro" placeholder="自己紹介" cols="32" rows="10">' . $self_intro . '</textarea><br><br></div>';
+            echo '<div class=self-introduction-main>
+            <textarea name="self_intro" placeholder="自己紹介" cols="32" rows="10">' . $self_intro . '</textarea><br><br></div>';
             echo '<span class="info">登録情報</span><br><br>';
             echo '<div id="age-container">';
             echo '<div id="age-sub">年齢</div>';
