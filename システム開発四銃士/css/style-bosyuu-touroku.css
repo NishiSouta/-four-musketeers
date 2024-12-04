@@ -529,3 +529,12 @@ h2{
   .form-group{
 	font-size: 33px;
   }
+  .large-button {
+	font-size: 20px;  /* 文字サイズを大きく */
+	padding: 10px 20px;  /* 内側の余白を広く */
+	border: none; /* ボーダーを削除 */
+	border-radius: 5px; /* 角を丸める */
+	cursor: pointer; /* マウスカーソルをポインタに */
+	transition: background-color 0.3s; /* ホバー時のアニメーション */
+  }
+  
