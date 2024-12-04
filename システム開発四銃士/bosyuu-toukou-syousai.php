@@ -123,6 +123,9 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
 
 
       <div class="chat-box">
+        <div class="detail-item">
+      <strong>メッセージ</strong>
+</div>
     <?php
     // PDO接続
     try {
@@ -164,11 +167,11 @@ if ($chat_id) {
 </div>
 
 <form action="send_message.php" method="post" class="chat-form">
-    <label for="message">メッセージを入力してください:</label>
-    <input type="text" id="message" name="message" required>
-    <!-- chat_idを隠しフィールドで送信 -->
+    <div class="chat-input-container">
+        <input type="text" id="message" name="message" required placeholder="メッセージを入力">
+        <button type="submit">送信</button>
+    </div>
     <input type="hidden" name="chat_id" value="<?php echo htmlspecialchars($chat_id, ENT_QUOTES, 'UTF-8'); ?>">
-    <button type="submit">送信</button>
 </form>
 
 <?php
