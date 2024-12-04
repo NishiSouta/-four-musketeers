@@ -89,6 +89,37 @@ require 'db-connect.php'; ?>
               </select>
         </div>
 
+        <div class="form-group">
+          <label for="postal_code">郵便番号</label>
+          <input type="text" id="postal_code" name="postal_code" maxlength="7" pattern="\d{7}" placeholder="例: 1234567" required>
+          <button type="button" id="fetch-address" class="large-button">住所を自動入力</button>
+        </div>
+<!-- JavaScript -->
+<script>
+document.getElementById('fetch-address').addEventListener('click', function() {
+  const postalCode = document.getElementById('postal_code').value;
+  
+  if (!/^\d{7}$/.test(postalCode)) {
+    alert('正しい郵便番号を入力してください（7桁の数字）。');
+    return;
+  }
+
+  fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postalCode}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.results) {
+        const address = data.results[0].address1 + data.results[0].address2 + data.results[0].address3;
+        document.getElementById('location').value = address;
+      } else {
+        alert('住所が見つかりませんでした。郵便番号を確認してください。');
+      }
+    })
+    .catch(error => {
+      console.error('エラー:', error);
+      alert('住所の取得中にエラーが発生しました。');
+    });
+});
+</script>
 
         <div class="form-group">
             <label for="location">実施場所</label>
