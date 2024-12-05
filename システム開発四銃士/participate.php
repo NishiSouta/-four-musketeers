@@ -2,47 +2,53 @@
 session_start();
 require 'db-connect.php';
 
-// POSTデータの受け取り
-$post_id = $_POST['post_id'] ?? null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = $_SESSION['user_id'];
+    $post_id = $_POST['post_id'] ?? null;
 
-if (!$post_id) {
-    echo "投稿IDが指定されていません。";
-    exit;
-}
-
-try {
-    $pdo = new PDO($connect, USER, PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // 募集人数と現在の参加人数を取得
-    $sql = 'SELECT recruit_number, current_number FROM post WHERE post_id = ?';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$post_id]);
-    $post = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$post) {
-        echo "指定された投稿が見つかりません。";
+    if (!$post_id) {
+        echo "投稿IDが指定されていません。";
         exit;
     }
 
-    $recruit_number = (int)$post['recruit_number'];
-    $current_number = (int)$post['current_number'];
+    try {
+        $pdo = new PDO($connect, USER, PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // 募集人数がまだ残っているか確認
-    if ($recruit_number > 0) {
-        // recruit_numberを1減らし、current_numberを1増やす
-        $sql = 'UPDATE post SET recruit_number = recruit_number - 1, current_number = current_number + 1 WHERE post_id = ?';
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$post_id]);
+        // 既に参加していないか確認
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM participation WHERE post_id = ? AND user_id = ?');
+        $stmt->execute([$post_id, $user_id]);
+        $isParticipated = $stmt->fetchColumn();
+
+        if ($isParticipated) {
+            echo "すでに参加しています。";
+        } else {
+            // 最大参加可能人数を取得
+            $stmt = $pdo->prepare('SELECT current_number, recruit_number, (current_number + recruit_number) AS max_capacity FROM post WHERE post_id = ?');
+            $stmt->execute([$post_id]);
+            $post = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            // 現在の参加人数が最大参加可能人数を超えていないか確認
+            if ($post['current_number'] >= $post['max_capacity']) {
+                echo "最大参加人数に達しています。参加できません。";
+            } else {
+                // 参加データを挿入
+                $stmt = $pdo->prepare('INSERT INTO participation (post_id, user_id) VALUES (?, ?)');
+                $stmt->execute([$post_id, $user_id]);
+        
+                // 募集人数が0人でも参加を許可し、現在の参加人数を増やす
+                $update_sql = $pdo->prepare('UPDATE post SET current_number = current_number + 1 WHERE post_id = ?');
+                $update_sql->execute([$post_id]);
+            }
+        }
+
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+
+    } catch (PDOException $e) {
+        die("データベースエラー: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8'));
     }
-
-    $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
-
-    header("Location: " . $backURL);  // メッセージ送信後のリダイレクト先を適切に変更
-    exit;
-
-} catch (PDOException $e) {
-    echo "データベースエラー: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+} else {
+    echo "無効なリクエストです。";
     exit;
 }
-?>
