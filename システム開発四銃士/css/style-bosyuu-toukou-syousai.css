@@ -511,7 +511,7 @@ h2{
    
 
   
-  form input[type="submit"] {
+  #button {
 	width: 100%;
 	padding: 10px;
 	background-color: #00ff66; /* Green button color */
@@ -523,7 +523,7 @@ h2{
 	cursor: pointer;
   }
   
-  form input[type="submit"]:hover {
+  #button {
 	background-color: #00cc52; /* Darker green on hover */
   }
   .form-group{
@@ -655,3 +655,38 @@ h2{
   .kebab-menu:hover #menu-items {
 	display: block;
   }
+
+  .chat-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.chat-input-container input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+}
+
+.chat-input-container button {
+    padding: 7px 16px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.chat-input-container button:hover {
+    background-color: #0056b3;
+}
