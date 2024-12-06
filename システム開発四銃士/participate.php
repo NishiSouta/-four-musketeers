@@ -24,12 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "すでに参加しています。";
         } else {
             // 最大参加可能人数を取得
-            $stmt = $pdo->prepare('SELECT current_number, recruit_number, (current_number + recruit_number) AS max_capacity FROM post WHERE post_id = ?');
+            $stmt = $pdo->prepare('SELECT current_number, recruit_number, max_capacity FROM post WHERE post_id = ?');
             $stmt->execute([$post_id]);
             $post = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
+
             // 現在の参加人数が最大参加可能人数を超えていないか確認
-            if ($post['current_number'] >= $post['max_capacity']) {
+            if ($post['current_number'] + $post['recuruit_number'] >= $post['max_capacity']) {
                 echo "最大参加人数に達しています。参加できません。";
             } else {
                 // 参加データを挿入
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute([$post_id, $user_id]);
         
                 // 募集人数が0人でも参加を許可し、現在の参加人数を増やす
-                $update_sql = $pdo->prepare('UPDATE post SET current_number = current_number + 1 WHERE post_id = ?');
+                $update_sql = $pdo->prepare('UPDATE post SET current_number = current_number + 1, recruit_number = recruit_number - 1 WHERE post_id = ?');
                 $update_sql->execute([$post_id]);
             }
         }

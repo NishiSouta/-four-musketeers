@@ -33,12 +33,13 @@ $zissibasyo = htmlspecialchars($_POST['location'], ENT_QUOTES, 'UTF-8');
 $sum = $_POST['participation_fee'];
 $syosinsya = isset($_POST['syosinsya']) ? $_POST['syosinsya'] : 'no';
 $sonota = htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8');
+$max_capacity = $ninzuu + $current_ninzuu;
 
 // SQL クエリ実行
-$sql = "INSERT INTO post (user_id, sport_id, title, event_datetime_from, event_datetime_to, recruit_number, current_number, location, participation_fee, syosinsya, description) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO post (user_id, sport_id, title, event_datetime_from, event_datetime_to, recruit_number, current_number, location, participation_fee, syosinsya, description, max_capacity) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$user_id, $sport_id, $title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissibasyo, $sum, $syosinsya, $sonota]);
+$stmt->execute([$user_id, $sport_id, $title, $date_from, $date_to, $ninzuu, $current_ninzuu, $zissibasyo, $sum, $syosinsya, $sonota, $max_capacity]);
 
 
 $post_id = $pdo->lastInsertId();
