@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute([$post_id, $user_id]);
 
                 // 募集人数が0人でも参加を許可し、現在の参加人数を増やす
-                $update_sql = $pdo->prepare('UPDATE post SET recruit_number = recruit_number - 1 WHERE post_id = ?');
+                $update_sql = $pdo->prepare('UPDATE post SET current_number =  current_number + 1 WHERE post_id = ?');
                 $update_sql->execute([$post_id]);
             } else {
                 // 参加データを挿入
