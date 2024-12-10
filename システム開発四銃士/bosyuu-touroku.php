@@ -91,7 +91,7 @@ require 'db-connect.php'; ?>
 
         <div class="form-group">
           <label for="postal_code">郵便番号</label>
-          <input type="text" id="postal_code" name="postal_code" maxlength="7" pattern="\d{7}" placeholder="例: 1234567" required>
+          <input type="text" id="postal_code" name="postal_code" maxlength="7" pattern="\d{7}" placeholder="例: 1234567">
           <button type="button" id="fetch-address" class="large-button">住所を自動入力</button>
         </div>
 <!-- JavaScript -->

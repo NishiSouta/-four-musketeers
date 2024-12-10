@@ -49,6 +49,11 @@ $sql = "INSERT INTO chat (chat_id, post_id, created_at)
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$post_id]);
 
+//userテーブル更新
+$sql = "UPDATE user SET post_count = post_count + 1 WHERE user_id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$user_id]);
+
 ?>
 
 <!DOCTYPE html>
