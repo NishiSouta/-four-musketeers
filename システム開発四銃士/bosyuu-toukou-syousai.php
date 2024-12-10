@@ -184,6 +184,7 @@ $is_participated = $participation_sql->fetchColumn() > 0;
 <!-- 参加・キャンセルの切り替え -->
 <form action="<?php echo $is_participated ? 'cancel-participation.php' : 'participate.php'; ?>" method="post" class="participate-form">
     <input type="hidden" id=button   name="post_id" value="<?php echo htmlspecialchars($post_id, ENT_QUOTES, 'UTF-8'); ?>">
+    <input type="hidden" id=button   name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>">
    <button type="submit" id="button">
         <?php echo $is_participated ? 'キャンセルする' : '参加する'; ?>
     </button>
