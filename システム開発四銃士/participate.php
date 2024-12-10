@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
             // 現在の参加人数が最大参加可能人数を超えていないか確認
-            if ($post['current_number'] + $post['recruit_number'] > $post['max_capacity']) {
+            if ($post['recruit_number'] == 0 or $post['current_number'] + $post['recruit_number'] > $post['max_capacity']) {
                 // 参加データを挿入
                 $stmt = $pdo->prepare('INSERT INTO participation (post_id, user_id) VALUES (?, ?)');
                 $stmt->execute([$post_id, $user_id]);

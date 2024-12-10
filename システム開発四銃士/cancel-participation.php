@@ -18,7 +18,7 @@ $stmt->execute([$post_id]);
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // 現在の参加人数が最大人数未満になった場合のみ、募集人数を増やす
-if ($post['current_number'] - 1 < $post['max_capacity']) {
+if ($post['current_number'] -1 <= $post['max_capacity']) {
     $update_sql = $pdo->prepare('UPDATE post SET current_number = current_number - 1, recruit_number = recruit_number + 1 WHERE post_id = ?');
 } else {
     $update_sql = $pdo->prepare('UPDATE post SET current_number = current_number - 1 WHERE post_id = ?');
