@@ -28,7 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$post_id]);
             $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
+            //userテーブル更新 参加回数
+            $sql = "UPDATE user SET participation_count = participation_count + 1 WHERE user_id = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$user_id]);
+            
             // 現在の参加人数が最大参加可能人数を超えていないか確認
             if ($post['recruit_number'] == 0 or $post['current_number'] + $post['recruit_number'] > $post['max_capacity']) {
                 // 参加データを挿入
