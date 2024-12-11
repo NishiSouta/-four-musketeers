@@ -140,9 +140,8 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
     $chat = $sql->fetch(PDO::FETCH_ASSOC);
     $chat_id = $chat['chat_id'] ?? null;
     
-if ($chat_id) {
   // メッセージを取得（chat_idでフィルタリング）
-  $sql = "SELECT message.message_text, user.user_name 
+  $sql = "SELECT message.message_text, user.user_name, user.profile_image, user.user_id
           FROM message 
           INNER JOIN user 
           ON message.user_id = user.user_id 
@@ -153,16 +152,27 @@ if ($chat_id) {
   $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   if (count($messages) > 0) {
-      foreach ($messages as $row) {
-          echo "<p><strong>" . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . ":</strong> " 
-               . htmlspecialchars($row['message_text'], ENT_QUOTES, 'UTF-8') . "</p>";
-      }
-  } else {
-      echo "<p>メッセージがありません</p>";
-  }
+    foreach ($messages as $row) {
+        $userId = htmlspecialchars($row['user_id'], ENT_QUOTES, 'UTF-8');
+        $userImage = htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8');
+        $userName = htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8');
+        $messageText = htmlspecialchars($row['message_text'], ENT_QUOTES, 'UTF-8');
+
+        echo "<div class='message-item'>";
+        echo "  <a href='myprofile-user.php?user_id=$userId'>";
+        echo "      <img src='uploads/$userImage' alt='$userName' class='user-image'>";
+        echo "  </a>";
+        echo "  <div class='message-content'>";
+        echo "      <p class='user-name'>$userName</p>";
+        echo "      <p class='message-text'>$messageText</p>";
+        echo "  </div>";
+        echo "</div>";
+    }
 } else {
-  echo "<p>チャットがまだありません</p>";
+    echo "<p>メッセージがありません</p>";
 }
+
+
     ?>
 </div>
 
@@ -173,6 +183,7 @@ if ($chat_id) {
     </div>
     <input type="hidden" name="chat_id" value="<?php echo htmlspecialchars($chat_id, ENT_QUOTES, 'UTF-8'); ?>">
 </form>
+<br>
 
 <?php
 // 参加状態の確認

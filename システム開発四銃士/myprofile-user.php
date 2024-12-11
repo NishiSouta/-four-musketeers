@@ -50,7 +50,7 @@ require 'db-connect.php';
           echo '<div id="user_icon">';
 
 
-          $profile_img = isset($row['profile_image']) ? 'uploads/' . htmlspecialchars($user['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
+          $profile_img = isset($row['profile_image']) ? 'uploads/' . htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
           echo '<img alt="image" src="' . $profile_img . '" class="avatar">';
 
 
