@@ -65,14 +65,14 @@ require 'db-connect.php'; ?>
     <label for="bosyuutaitoru">募集タイトル</label>
       <input type="text" id="bosyuutaitoru" name="bosyuutaitoru" required>
 </div>
-
+<br>
 
         <div class="form-group">
           <label for="event_datetime_from">開催日時</label><br>
             <input id="event_datetime_from" name="event_datetime_from" type="datetime-local" required> から<br>
             <input id="event_datetime_to" name="event_datetime_to" type="datetime-local" required> まで
         </div>
-
+        <br>
 
           <div class="form-group">
             <label for="recruit_number">募集する人数</label>
@@ -87,7 +87,7 @@ require 'db-connect.php'; ?>
               <select id="current_number" name="current_number">
                 <?php for ($i = 0; $i <= 20; $i++) echo "<option value=\"$i\">$i</option>"; ?>
               </select>
-        </div>
+        </div><hr>
 
         <div class="form-group">
           <label for="postal_code">郵便番号</label>
@@ -125,7 +125,7 @@ document.getElementById('fetch-address').addEventListener('click', function() {
             <label for="location">実施場所</label>
               <input type="text" id="location" name="location" required>
         </div>
-
+        <hr>
 
         <div class="form-group">
             <label for="participation_fee">参加費</label>
