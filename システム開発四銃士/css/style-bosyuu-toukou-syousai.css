@@ -316,22 +316,41 @@ header #logo img {
 
 /*３本バーアイコン設定
 ---------------------------------------------------------------------------*/
+
 /*３本バーブロック*/
 #batu {
 	display: block;
 	position: absolute;z-index: 2;
 	top: 35px;	/*上から20pxの場所に配置*/
-	right: 3%;	/*右から3%の場所に配置*/
+	left: 65%;	/*右から3%の場所に配置*/
 }
 
-/*三本バーアイコン
+/*３本バーアイコン設定（ハンバーガーメニュー）
+---------------------------------------------------------------------------*/
+/*３本バーブロック*/
+#menubar_hdr {
+	float: right;
+	display: block;
+	position: absolute;z-index: 2;
+	top: 20px;	/*上から20pxの場所に配置*/
+	right: 3%;	/*右から3%の場所に配置*/
+}
+/*アイコン共通設定*/
+#menubar_hdr.close,
+#menubar_hdr.open {
+	width: 50px;	/*幅*/
+	height: 50px;	/*高さ*/
+	border-radius: 50%;
+}
+/*三本バーアイコン*/
 #menubar_hdr.close {
 	background: #938b76 url(../images/icon_menu.png) no-repeat center top/50px;
 }
-閉じるアイコン
+/*閉じるアイコン*/
 #menubar_hdr.open {
 	background: #938b76 url(../images/icon_menu.png) no-repeat center bottom/50px;
-}*/
+}
+
 
 /*Galleryページのサムネイル
 タブレットなどの小さな端末ではマウスオンができないので、画像の色を100%出しておく設定です。
@@ -729,4 +748,15 @@ h2{
     margin: 0;
 	color: black;
 }
-
+/* スマートフォンサイズの調整 */
+@media (max-width: 600px) {
+    .ta1 th {
+        width: 100%; /* 各セルの幅を100%に */
+        padding: 5px; /* パディングを小さく */
+    }
+ 
+    .ta1 th a img {
+        width: 100%; /* 画像の幅を親要素の100%に */
+        max-width: none; /* 最大幅を解除 */
+    }
+}

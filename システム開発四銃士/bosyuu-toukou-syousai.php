@@ -46,6 +46,7 @@ $sportIcon = isset($_GET['sport_icon']) ? htmlspecialchars($_GET['sport_icon'], 
   <title>募集投稿詳細画面</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/style-bosyuu-toukou-syousai.css"> <!-- デザインに合うCSSを指定 -->
+  <script src="js/openclose.js"></script>
 </head>
 <body>
 <div id="container">
@@ -57,75 +58,63 @@ $sportIcon = isset($_GET['sport_icon']) ? htmlspecialchars($_GET['sport_icon'], 
     <?php
 $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
 ?>
-
-<nav id="batu">
-  <!-- 戻るボタン -->
-  <a href="<?php echo $backURL; ?>" class="nav-button">
-    <img src="images/batu.png" alt="×（バツ）">
-  </a>
-</nav>
-
-  <!-- ケバブメニュー -->
-  <div class="kebab-icon">
-  <span class="dli-more-v"></span>
-    <div id="menu-items" class="hidden">
-      <a href="option1.php">オプション1</a>
-      <a href="option2.php">オプション2</a>
-      <a href="option3.php">オプション3</a>
-    </div>
+<div id="floatLR">
+  <nav id="batu">
+    <!-- 戻るボタン -->
+    <a href="toukou-itiran.php" class="nav-button">
+      <img src="images/batu.png" alt="×（バツ）">
+    </a>
+  </nav>
+  <nav id="menubar-s" class="open">
+    <ul>
+      <li><a href="bosyuu-toukou-henkou.php">編集</a></li>
+      <li><a href="toukou-delete.php">削除</a></li>
+    </ul>
+  </nav>
   </div>
 
-
-  <div id="content">
-    
+  <div id="content">  
     <section class="post-details">
     <div class="image-banner">
       <img src="images/<?php echo $sportImg; ?>" alt="<?php echo $sportName; ?>バナー">
-      </div>
-      <h2><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
-      <p class="category">
-        <img src="images/<?php echo $sportIcon; ?>" alt="<?php echo $sportName; ?>アイコン">
-        <?php echo $sportName; ?></p>
-      
-      <hr>
-      <div class="detail-item">
+    </div>
+    <h2><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
+    <p class="category">
+    <img src="images/<?php echo $sportIcon; ?>" alt="<?php echo $sportName; ?>アイコン">
+    <?php echo $sportName; ?></p>
+    <hr>
+    <div class="detail-item">
         <strong>開催日時</strong><br>
         <?php 
           echo htmlspecialchars(date('Y年n月j日（D） H:i', strtotime($post['event_datetime_from'])), ENT_QUOTES, 'UTF-8') . "～" . 
                htmlspecialchars(date('H:i', strtotime($post['event_datetime_to'])), ENT_QUOTES, 'UTF-8');
         ?>
-      </div>
-      <div class="detail-item">
+    </div>
+    <div class="detail-item">
         <strong>場所</strong><br>
         <?php echo htmlspecialchars($post['location'], ENT_QUOTES, 'UTF-8'); ?>
-      </div>
-      <div class="detail-item">
+    </div>
+    <div class="detail-item">
         <strong>参加費</strong><br>
         <?php echo ($post['participation_fee'] == 0) ? "無料" : htmlspecialchars($post['participation_fee'], ENT_QUOTES, 'UTF-8') . "円以内"; ?>
-      </div>
-      <div class="detail-item">
+    </div>
+    <div class="detail-item">
         <strong>募集人数</strong><br> 
         <?php echo htmlspecialchars($post['recruit_number'], ENT_QUOTES, 'UTF-8'); ?>人
-      </div>
-      <div class="detail-item">
+    </div>
+    <div class="detail-item">
         <strong>すでに集まっている人数</strong><br>
         <?php echo htmlspecialchars($post['current_number'], ENT_QUOTES, 'UTF-8'); ?>人
-      </div>
-      <div class="detail-item">
+    </div>
+    <div class="detail-item">
         <strong>その他</strong><br>
         <?php echo htmlspecialchars($post['description'], ENT_QUOTES, 'UTF-8'); ?>
+    </div>
+    <hr>
+    <div class="chat-box">
+      <div class="detail-item">
+        <strong>メッセージ</strong>
       </div>
-      <hr>
-
-
-
-
-
-
-      <div class="chat-box">
-        <div class="detail-item">
-      <strong>メッセージ</strong>
-</div>
     <?php
     // PDO接続
     try {
@@ -192,42 +181,45 @@ $participation_sql->execute([$post_id, $user_id]);
 $is_participated = $participation_sql->fetchColumn() > 0;
 ?>
 
-<!-- 参加・キャンセルの切り替え -->
-<form action="<?php echo $is_participated ? 'cancel-participation.php' : 'participate.php'; ?>" method="post" class="participate-form">
-    <input type="hidden" id=button   name="post_id" value="<?php echo htmlspecialchars($post_id, ENT_QUOTES, 'UTF-8'); ?>">
-    <input type="hidden" id=button   name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>">
-   <button type="submit" id="button">
-        <?php echo $is_participated ? 'キャンセルする' : '参加する'; ?>
-    </button>
-</form>
-
-
+  <!-- 参加・キャンセルの切り替え -->
+  <form action="<?php echo $is_participated ? 'cancel-participation.php' : 'participate.php'; ?>" method="post" class="participate-form">
+      <input type="hidden" id=button   name="post_id" value="<?php echo htmlspecialchars($post_id, ENT_QUOTES, 'UTF-8'); ?>">
+      <input type="hidden" id=button   name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>">
+    <button type="submit" id="button">
+          <?php echo $is_participated ? 'キャンセルする' : '参加する'; ?>
+      </button>
+  </form>
 </div>
-    <script>
-        // チャットボックスが常に下にスクロールされるようにする関数
-        window.onload = () => {
-            let chatBox = document.querySelector(".chat-box");
-            chatBox.scrollTop = chatBox.scrollHeight;
-        };
-    </script>
-
-
-
-
-
-
-    </section>
-  </div>
+<script>
+    // チャットボックスが常に下にスクロールされるようにする関数
+    window.onload = () => {
+        let chatBox = document.querySelector(".chat-box");
+        chatBox.scrollTop = chatBox.scrollHeight;
+    };
+</script>
+</section>
+</div>
 
   <footer>
     <small>&copy; Link Sports All Rights Reserved.</small>
   </footer>
-</div>
+  <!--
 <script>
 document.getElementById('kebab-icon').addEventListener('click', function() {
   const menu = document.getElementById('menu-items');
   menu.classList.toggle('hidden');
 });
+</script>
+  -->
+
+<!--メニュー開閉ボタン-->
+<div id="menubar_hdr" class="close"></div>
+
+<!--メニューの開閉処理条件設定　900px以下-->
+<script>
+if (OCwindowWidth() <= 900) {
+	open_close("menubar_hdr", "menubar-s");
+}
 </script>
 </body>
 </html>
