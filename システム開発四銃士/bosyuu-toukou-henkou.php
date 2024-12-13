@@ -3,28 +3,23 @@ session_start();
 require 'db-connect.php';
 
 // 必要なパラメータが渡されているか確認
-/**
 if (!isset($_GET['post_id'])) {
     echo "投稿IDが指定されていません。";
     exit;
 }
-  **/
 
-//前画面完成時に使用（ID取得）
-//$post_id = $_GET['post_id'];
+$post_id = $_GET['post_id'];
 
-//try {
+try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // 指定された投稿IDのデータを取得
-    $sql = $pdo->prepare('SELECT * FROM post WHERE post_id = 46');//ポストID3に指定
-    $sql->execute();
-    //前画面完成時に使用（ID取得）
-    //$sql->execute([$post_id]);
+    $sql = $pdo->prepare('SELECT * FROM post WHERE post_id = ?');
+    $sql->execute([$post_id]);
     $post = $sql->fetch(PDO::FETCH_ASSOC);
 
-    /**if (!$post) {
+    if (!$post) {
         echo "指定された投稿が見つかりません。";
         exit;
     }
@@ -32,8 +27,6 @@ if (!isset($_GET['post_id'])) {
     echo "データベースエラー: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
     exit;
 }
-    **/
-
 ?>
 
 <!DOCTYPE html>
@@ -50,12 +43,9 @@ if (!isset($_GET['post_id'])) {
 <body>
 <div id="container">
 <header>
-    <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
-    <aside id="header-img">
-        
-    </aside>
+    <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Link Sports"></a></h1>
     <nav id="batu">
-        <a href="bosyuu-toukou-syousai.php"><img src="images/batu.png" alt="×（バツ）"></a>
+        <a href="toukou-itiran.php"><img src="images/batu.png" alt="×（バツ）"></a>
     </nav>
 </header>
 
@@ -73,8 +63,8 @@ if (!isset($_GET['post_id'])) {
 
         <div class="form-group">
           <label for="event_datetime_from">開催日時</label><br>
-          <input id="event_datetime_from" name="event_datetime_from" type="datetime-local" value="<?php echo htmlspecialchars($post['event_datetime_from'], ENT_QUOTES, 'UTF-8'); ?>" required> から<br>
-          <input id="event_datetime_to" name="event_datetime_to" type="datetime-local" value="<?php echo htmlspecialchars($post['event_datetime_to'], ENT_QUOTES, 'UTF-8'); ?>" required> まで
+          <input id="event_datetime_from" name="event_datetime_from" type="datetime-local" value="<?php echo date('Y-m-d\TH:i', strtotime($post['event_datetime_from'])); ?>" required> から<br>
+          <input id="event_datetime_to" name="event_datetime_to" type="datetime-local" value="<?php echo date('Y-m-d\TH:i', strtotime($post['event_datetime_to'])); ?>" required> まで
         </div>
 
         <div class="form-group">
@@ -121,7 +111,7 @@ if (!isset($_GET['post_id'])) {
 
         <div class="form-group">
           <label for="description">その他</label>
-          <input type="text" id="description" name="description" value="<?php echo htmlspecialchars($post['description'], ENT_QUOTES, 'UTF-8'); ?>">
+          <textarea id="description" name="description"><?php echo htmlspecialchars($post['description'], ENT_QUOTES, 'UTF-8'); ?></textarea>
         </div>
 
         <div id="center">
@@ -133,8 +123,7 @@ if (!isset($_GET['post_id'])) {
 </div>
 
 <footer>
-    <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
-    <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+    <small>&copy; Link Sports All Rights Reserved.</small>
 </footer>
 </div>
 
