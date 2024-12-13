@@ -58,20 +58,36 @@ $sportIcon = isset($_GET['sport_icon']) ? htmlspecialchars($_GET['sport_icon'], 
     <?php
 $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
 ?>
+
 <div id="floatLR">
   <nav id="batu">
-    <!-- 戻るボタン -->
+    <!-- Back Button -->
     <a href="toukou-itiran.php" class="nav-button">
       <img src="images/batu.png" alt="×（バツ）">
     </a>
   </nav>
+
+<?php
+$sql = "SELECT user_id FROM post WHERE post_id = :post_id";
+$stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $author_id = $stmt->fetchColumn();
+
+if ( $user_id=== $author_id) {
+?>
+
   <nav id="menubar-s" class="open">
     <ul>
       <li><a href="bosyuu-toukou-henkou.php?post_id=<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">編集する</a>
       <li><a href="toukou-delete.php">削除</a></li>
     </ul>
   </nav>
-  </div>
+
+<?php
+} // End of condition
+?>
+</div>
 
   <div id="content">  
     <section class="post-details">
