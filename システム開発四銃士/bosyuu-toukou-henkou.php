@@ -45,7 +45,7 @@ try {
 <header>
     <h1 id="logo"><a href="index.php"><img src="images/LS.png" alt="Link Sports"></a></h1>
     <nav id="batu">
-        <a href="bosyuu-toukou-syousai.php"><img src="images/batu.png" alt="×（バツ）"></a>
+        <a href="toukou-itiran.php"><img src="images/batu.png" alt="×（バツ）"></a>
     </nav>
 </header>
 
