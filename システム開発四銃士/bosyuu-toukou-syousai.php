@@ -67,7 +67,7 @@ $backURL = $_SERVER['HTTP_REFERER']; // 前のページのURLを取得
   </nav>
   <nav id="menubar-s" class="open">
     <ul>
-      <li><a href="bosyuu-toukou-henkou.php">編集</a></li>
+      <li><a href="bosyuu-toukou-henkou.php?post_id=<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">編集する</a>
       <li><a href="toukou-delete.php">削除</a></li>
     </ul>
   </nav>
