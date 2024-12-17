@@ -567,7 +567,7 @@ hr{
 }
 
 /* 各項目の背景スタイル */
-.post, .participation, .good_count {
+.post, .participation, .good_count,.hyouka {
     font-size: 30px;
     margin: 10px;
     display: inline-block; 

@@ -53,6 +53,7 @@ require 'db-connect.php';
           echo '<span class="post">投稿:' . htmlspecialchars($row['post_count'], ENT_QUOTES, 'UTF-8') . '回</span>';
           echo '<span class="participation">参加:' . htmlspecialchars($row['participation_count'], ENT_QUOTES, 'UTF-8') . '回</span><br>';
           echo '<span class="good_count">good数:' . htmlspecialchars($row['good_count'], ENT_QUOTES, 'UTF-8') . '</span>';
+          echo '<span class="hyouka"><a><a href="hyouka.php">評価する</a></span>';
           echo '</div><hr>';
           echo '<div id="profile_info_1">';
           echo '<br><span class="title">自己紹介</span><br>';
