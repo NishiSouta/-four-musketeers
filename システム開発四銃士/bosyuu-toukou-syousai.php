@@ -163,25 +163,35 @@ $stmt->execute([$chat_id]);
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($messages) > 0) {
-    foreach ($messages as $row) {
-        $userId = htmlspecialchars($row['user_id'], ENT_QUOTES, 'UTF-8');
-        $userImage = htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8');
-        $userName = htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8');
-        $messageText = htmlspecialchars($row['message_text'], ENT_QUOTES, 'UTF-8');
-        $createdAt = htmlspecialchars(date('n月j日 H:i', strtotime($row['sent_at'])), ENT_QUOTES, 'UTF-8');
+  foreach ($messages as $row) {
+      $userId = htmlspecialchars($row['user_id'], ENT_QUOTES, 'UTF-8');
+      $userImage = htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8');
+      $userName = htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8');
+      $messageText = htmlspecialchars($row['message_text'], ENT_QUOTES, 'UTF-8');
+      $createdAt = htmlspecialchars(date('n月j日 H:i', strtotime($row['sent_at'])), ENT_QUOTES, 'UTF-8');
 
-        echo "<div class='message-item'>";
-        echo "  <a href='myprofile-user.php?user_id=$userId'>";
-        echo "      <img src='uploads/$userImage' alt='$userName' class='user-image'>";
-        echo "  </a>";
-        echo "  <div class='message-content'>";
-        echo "      <p class='user-name'>$userName <span class='message-timestamp'>$createdAt</span></p>";
-        echo "      <p class='message-text'>$messageText</p>";
-        echo "  </div>";
-        echo "</div>";
-    }
+      // 投稿者かどうかの確認
+      $isAuthor = ($userId == $author_id);
+
+      echo "<div class='message-item'>";
+      echo "  <a href='myprofile-user.php?user_id=$userId'>";
+      echo "      <img src='uploads/$userImage' alt='$userName' class='user-image'>";
+      echo "  </a>";
+      echo "  <div class='message-content'>";
+      echo "      <p class='user-name'>";
+      echo $userName;
+      // 投稿者であれば「募集者」ラベルを追加
+      if ($isAuthor) {
+          echo " <span class='author-label'>募集者</span>";
+      }
+      echo "      <span class='message-timestamp'>$createdAt</span>";
+      echo "      </p>";
+      echo "      <p class='message-text'>$messageText</p>";
+      echo "  </div>";
+      echo "</div>";
+  }
 } else {
-    echo "<p>メッセージがありません</p>";
+  echo "<p>メッセージがありません</p>";
 }
 
 
