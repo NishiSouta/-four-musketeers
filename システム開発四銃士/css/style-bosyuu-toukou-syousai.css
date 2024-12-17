@@ -760,3 +760,9 @@ h2{
         max-width: none; /* 最大幅を解除 */
     }
 }
+
+.message-timestamp {
+    font-size: 0.9em;
+    color: #888;
+    margin-left: 10px;
+}

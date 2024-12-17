@@ -80,7 +80,7 @@ if ( $user_id=== $author_id) {
   <nav id="menubar-s" class="open">
     <ul>
       <li><a href="bosyuu-toukou-henkou.php?post_id=<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">編集する</a>
-      <li><a href="toukou-delete.php">削除</a></li>
+      <li><a href="toukou-delete.php?post_id=<?php echo htmlspecialchars($post['post_id'], ENT_QUOTES, 'UTF-8'); ?>">削除</a></li>
     </ul>
   </nav>
 
@@ -102,9 +102,15 @@ if ( $user_id=== $author_id) {
     <div class="detail-item">
         <strong>開催日時</strong><br>
         <?php 
-          echo htmlspecialchars(date('Y年n月j日（D） H:i', strtotime($post['event_datetime_from'])), ENT_QUOTES, 'UTF-8') . "～" . 
-               htmlspecialchars(date('H:i', strtotime($post['event_datetime_to'])), ENT_QUOTES, 'UTF-8');
-        ?>
+        $eventDatetimeFrom = new DateTime($post['event_datetime_from']);
+        $eventDatetimeTo = new DateTime($post['event_datetime_to']);
+        $weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+
+        echo htmlspecialchars($eventDatetimeFrom->format('Y年n月j日'), ENT_QUOTES, 'UTF-8') . 
+             "（" . $weekdays[$eventDatetimeFrom->format('w')] . "） " . 
+             htmlspecialchars($eventDatetimeFrom->format('H:i'), ENT_QUOTES, 'UTF-8') . "～" . 
+             htmlspecialchars($eventDatetimeTo->format('H:i'), ENT_QUOTES, 'UTF-8');
+    ?>
     </div>
     <div class="detail-item">
         <strong>場所</strong><br>
@@ -146,29 +152,30 @@ if ( $user_id=== $author_id) {
     $chat_id = $chat['chat_id'] ?? null;
     
   // メッセージを取得（chat_idでフィルタリング）
-  $sql = "SELECT message.message_text, user.user_name, user.profile_image, user.user_id
-          FROM message 
-          INNER JOIN user 
-          ON message.user_id = user.user_id 
-          WHERE message.chat_id = ? 
-          ORDER BY message.message_id";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute([$chat_id]);
-  $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $sql = "SELECT message.message_text, user.user_name, user.profile_image, user.user_id, message.sent_at
+        FROM message 
+        INNER JOIN user 
+        ON message.user_id = user.user_id 
+        WHERE message.chat_id = ? 
+        ORDER BY message.message_id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$chat_id]);
+$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  if (count($messages) > 0) {
+if (count($messages) > 0) {
     foreach ($messages as $row) {
         $userId = htmlspecialchars($row['user_id'], ENT_QUOTES, 'UTF-8');
         $userImage = htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8');
         $userName = htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8');
         $messageText = htmlspecialchars($row['message_text'], ENT_QUOTES, 'UTF-8');
+        $createdAt = htmlspecialchars(date('n月j日 H:i', strtotime($row['sent_at'])), ENT_QUOTES, 'UTF-8');
 
         echo "<div class='message-item'>";
         echo "  <a href='myprofile-user.php?user_id=$userId'>";
         echo "      <img src='uploads/$userImage' alt='$userName' class='user-image'>";
         echo "  </a>";
         echo "  <div class='message-content'>";
-        echo "      <p class='user-name'>$userName</p>";
+        echo "      <p class='user-name'>$userName <span class='message-timestamp'>$createdAt</span></p>";
         echo "      <p class='message-text'>$messageText</p>";
         echo "  </div>";
         echo "</div>";
@@ -176,6 +183,7 @@ if ( $user_id=== $author_id) {
 } else {
     echo "<p>メッセージがありません</p>";
 }
+
 
 
     ?>
