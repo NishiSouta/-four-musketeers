@@ -213,16 +213,22 @@ if (count($messages) > 0) {
 $participation_sql = $pdo->prepare('SELECT COUNT(*) FROM participation WHERE post_id = ? AND user_id = ?');
 $participation_sql->execute([$post_id, $user_id]);
 $is_participated = $participation_sql->fetchColumn() > 0;
+
+// 募集者であるかの確認
+$is_author = ($user_id == $author_id);
 ?>
 
+<?php if (!$is_author): // 募集者でない場合のみ表示 ?>
   <!-- 参加・キャンセルの切り替え -->
   <form action="<?php echo $is_participated ? 'cancel-participation.php' : 'participate.php'; ?>" method="post" class="participate-form">
-      <input type="hidden" id=button   name="post_id" value="<?php echo htmlspecialchars($post_id, ENT_QUOTES, 'UTF-8'); ?>">
-      <input type="hidden" id=button   name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>">
-    <button type="submit" id="button">
+      <input type="hidden" id="button" name="post_id" value="<?php echo htmlspecialchars($post_id, ENT_QUOTES, 'UTF-8'); ?>">
+      <input type="hidden" id="button" name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>">
+      <button type="submit" id="button">
           <?php echo $is_participated ? 'キャンセルする' : '参加する'; ?>
       </button>
   </form>
+<?php endif; ?>
+
 </div>
 <script>
     // チャットボックスが常に下にスクロールされるようにする関数
