@@ -20,6 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $description = $_POST['description'];
         $syosinsya = isset($_POST['syosinsya']) ? 'ok' : 'no'; // 初心者OKフラグ
 
+        // max_capacity を計算（recruit_number + current_number）
+        $max_capacity = $recruit_number + $current_number;
+
         try {
             // データベース接続
             $pdo = new PDO($connect, USER, PASS);
@@ -32,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         event_datetime_to = :event_datetime_to,
                         recruit_number = :recruit_number,
                         current_number = :current_number,
+                        max_capacity = :max_capacity,
                         location = :location,
                         participation_fee = :participation_fee,
                         syosinsya = :syosinsya,
@@ -44,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindValue(':event_datetime_to', $event_datetime_to, PDO::PARAM_STR);
             $stmt->bindValue(':recruit_number', $recruit_number, PDO::PARAM_INT);
             $stmt->bindValue(':current_number', $current_number, PDO::PARAM_INT);
+            $stmt->bindValue(':max_capacity', $max_capacity, PDO::PARAM_INT);
             $stmt->bindValue(':location', $location, PDO::PARAM_STR);
             $stmt->bindValue(':participation_fee', $participation_fee, PDO::PARAM_INT);
             $stmt->bindValue(':syosinsya', $syosinsya, PDO::PARAM_STR);

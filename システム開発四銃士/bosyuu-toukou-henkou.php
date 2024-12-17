@@ -80,7 +80,7 @@ try {
         <div class="form-group">
           <label for="current_number">すでに集まっている人数</label>
           <select id="current_number" name="current_number">
-            <?php for ($i = 0; $i <= 10; $i++) {
+            <?php for ($i = 1; $i <= 10; $i++) {
                 $selected = ($i == $post['current_number']) ? 'selected' : '';
                 echo "<option value=\"$i\" $selected>$i</option>";
             } ?>
