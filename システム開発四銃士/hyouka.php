@@ -1,73 +1,49 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ユーザーリスト画面</title>
-  <link rel="stylesheet" href="css/hyouka.css">
-  <script src="js/openclose.js"></script>
-</head>
-<body>
-  <?php
-    // ユーザーデータ（仮のデータとしてPHP配列で定義）
-    $users = [
-      ["name" => "ユーザー1", "icon" => "user1.png"],
-      ["name" => "ユーザー2", "icon" => "user2.png"],
-      ["name" => "ユーザー3", "icon" => "user3.png"],
-    ];
-  ?>
+<?php 
+session_start();
+require 'db-connect.php'; 
 
-  <div class="container">
-    <!-- アイコンとタイトル部分 -->
-    <header>
-    <h1 id="logo"><a href="index.html"><img src="images/LS.png" alt="Photo Gallery"></a></h1>
-    </header>
-    <nav id="menubar">
-	<ul>
-	<li><a href="index.html">ホーム</a></li>
-	<li class="current"><a href="about.html">プロフィール</a></li>
-	<li><a href="gallery.html">投稿一覧</a></li>
-	<li><a href="link.php">募集する</a></li>
-	<li><a href="contact.html">ログアウト</a></li>
-	</ul>
-	</nav>
-	
-	<!--小さな端末用（900px以下端末）メニュー-->
-	<nav id="menubar-s">
-	<ul>
-	<li><a href="index.html">ホーム</a></li>
-	<li><a href="about.html">プロフィール</a></li>
-	<li><a href="gallery.html">投稿一覧</a></li>
-	<li><a href="link.php">募集する</a></li>
-	<li><a href="contact.html">ログアウト</a></li>
-	</ul>
-	</nav>
-
-    <!-- メッセージ -->
-    <h1>このユーザーが良いと思ったらgoodボタンをお願いします</h1>
-
-    <!-- ユーザーリスト -->
-    <div class="user-list">
-      <?php foreach ($users as $user): ?>
-        <div class="user">
-          <img src="<?php echo $user['icon']; ?>" alt="<?php echo $user['name']; ?>" class="user-icon">
-          <span class="user-name"><?php echo $user['name']; ?></span>
-          <button class="like-button">👍</button>
-        </div>
-      <?php endforeach; ?>
-    </div>
-
-    <!-- TOPページへボタン -->
-    <button class="top-button">TOPページへ</button>
-    <!--メニュー開閉ボタン-->
-<div id="menubar_hdr" class="close"></div>
-
-<!--メニューの開閉処理条件設定　900px以下-->
-<script>
-if (OCwindowWidth() <= 900) {
-	open_close("menubar_hdr", "menubar-s");
+// post_idをGETパラメータから取得
+if (!isset($_GET['post_id'])) {
+    echo '投稿IDが指定されていません。';
+    exit;
 }
-</script>
-  </div>
-</body>
-</html>
+$post_id = $_GET['post_id'];
+
+try {
+    $pdo = new PDO($connect, USER, PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // 参加者情報を取得するクエリ（participation、user、postテーブルを結合）
+    $sql = $pdo->prepare('
+        SELECT u.user_id, u.user_name, u.profile_image, u.bio
+        FROM participation p
+        JOIN user u ON p.user_id = u.user_id
+        JOIN post pt ON p.post_id = pt.post_id
+        WHERE p.post_id = ?
+    ');
+    $sql->execute([$post_id]);
+    
+    // 参加者がいる場合
+    $participants = $sql->fetchAll(PDO::FETCH_ASSOC);
+    
+    if ($participants) {
+        echo '<h2>参加メンバー</h2>';
+        echo '<ul>';
+        foreach ($participants as $participant) {
+            // 参加者の名前とプロフィール画像を表示
+            $profile_img = isset($participant['profile_image']) ? 'uploads/' . htmlspecialchars($participant['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
+            echo '<li>';
+            echo '<img alt="プロフィール画像" src="' . $profile_img . '" class="avatar">';
+            echo '<strong>' . htmlspecialchars($participant['user_name'], ENT_QUOTES, 'UTF-8') . '</strong><br>';
+            // 評価ボタンを表示
+            echo '<a href="evaluate.php?user_id=' . htmlspecialchars($participant['user_id'], ENT_QUOTES, 'UTF-8') . '&post_id=' . htmlspecialchars($post_id, ENT_QUOTES, 'UTF-8') . '">評価する</a>';
+            echo '</li>';
+        }
+        echo '</ul>';
+    } else {
+        echo 'この投稿に参加しているメンバーはありません。';
+    }
+} catch (PDOException $e) {
+    echo 'データベース接続に失敗しました: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+}
+?>
