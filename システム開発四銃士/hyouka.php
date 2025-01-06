@@ -1,6 +1,7 @@
 <?php  
 session_start();
-require 'db-connect.php'; ?>
+require 'db-connect.php'; 
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -34,22 +35,12 @@ try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // クエリ：post_idに紐づくユーザーを取得
+    // クエリ：participationテーブルから投稿に参加しているユーザーのuser_idを取得し、それに関連するユーザー情報をuserテーブルから取得
     $sql = $pdo->prepare('
-        SELECT DISTINCT 
-            u.user_id, 
-            u.user_name, 
-            u.profile_image, 
-            u.bio
-        FROM 
-            message m
-        JOIN 
-            user u ON m.user_id = u.user_id
-        JOIN 
-            chat c ON m.chat_id = c.chat_id
-        WHERE 
-            c.post_id = ?'
-    );
+        SELECT u.user_id, u.user_name, u.profile_image, u.bio
+        FROM participation p
+        JOIN user u ON p.user_id = u.user_id
+        WHERE p.post_id = ?');
     $sql->execute([$post_id]);
     
     // 結果を取得
