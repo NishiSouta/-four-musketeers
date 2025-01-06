@@ -186,6 +186,7 @@ footer {
 	background: #3e3b32;	/*背景色*/
 	color: #fff;			/*文字色*/
 	text-align: center;		/*文字をセンタリング*/
+	margin-top: 15px; 
 }
 footer a {text-decoration: none;}
 footer .pr {display: block;font-size: 80%;}
@@ -477,7 +478,7 @@ header #logo img {
 /*全体の設定
 ---------------------------------------------------------------------------*/
 body {
-	font-size: 20px;	/*文字サイズ*/
+	font-size: 25px;	/*文字サイズ*/
 	line-height: 1.5;	/*行間*/
 }
 
@@ -668,3 +669,35 @@ hr{
     cursor: pointer;
     text-align: center;
   }
+.participant-item img.avatar{
+	border-radius: 50%;
+	border: 2px solid #ccc;
+	right: 5%;		/*右から10%の場所に配置*/
+	top: 19px;		/*上から10pxの場所に配置*/
+	width: 80px;
+	height: 80px;	/*画像の幅*/
+  }
+.participant-item .user-info {
+  align-items: center; /* アイコンと名前を垂直方向に揃える */
+    margin-left: 40px; /* アイコンと名前の間隔 */
+    width: 200px; /* 名前の表示部分の幅 */
+    overflow: hidden; /* 名前が長い場合に切り取る */
+}
+/* 名前のフォントスタイル */
+.participant-item .user-info strong {
+    font-size: 30px; /* 名前の文字サイズ */
+    white-space: nowrap; /* 名前が改行しないようにする */
+    text-overflow: ellipsis; /* 名前が長い場合に省略する */
+}
+.participant-item .user-info button {
+    margin-left: 50px;  /* アイコンや名前とボタンとの間隔 */
+    padding: 0;         /* ボタンの内側の余白を無くす */
+    border: none;       /* ボタンの境界線を消す（必要に応じて） */
+    background: none;   /* ボタンの背景を無くす（必要に応じて） */
+}
+
+/* 画像の位置調整（画像がボタン内で適切に配置されるようにする） */
+.participant-item .user-info button img.thumbs-up-img {
+    width: 50px;  /* ボタンの画像サイズ */
+    height: 50px; /* ボタンの画像サイズ */
+}
