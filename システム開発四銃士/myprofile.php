@@ -69,7 +69,7 @@ require 'db-connect.php';
 
           // 参加していれば評価するリンクを表示
           if ($participation) {
-              echo '<span class="hyouka"><a href="hyouka.php?post_id=' . ($post_id ? $post_id : $participation['post_id']) . '">評価する</a></span>';
+            echo '<span class="hyouka"><button onclick="location.href=\'hyouka.php?post_id=' . ($post_id ? $post_id : $participation['post_id']) . '\'">評価する</button></span>';
           } else {
               echo '<span class="hyouka">評価する: 参加した投稿がありません</span>';
           }
@@ -121,6 +121,14 @@ require 'db-connect.php';
   </footer>
 
   <p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
+
+<!--メニュー開閉ボタン-->
+<div id="menubar_hdr" class="close"></div>
+
+<script>
+if (OCwindowWidth() <= 900) {
+    open_close("menubar_hdr", "menubar-s");
+}
 
 </body>
 </html>
