@@ -1,8 +1,8 @@
-<?php 
+<?php
 session_start();
-require 'db-connect.php'; 
+require 'db-connect.php';
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,13 +20,13 @@ require 'db-connect.php';
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-
+ 
 <body>
-
+ 
 <div id="container">
-  
+ 
 <?php require 'header.php'; ?>
-
+ 
   <div id="contents">
     <div id="main">
       <?php
@@ -43,18 +43,18 @@ require 'db-connect.php';
           echo '<div id="name2">' . htmlspecialchars($row['user_name'], ENT_QUOTES, 'UTF-8') . '</div>';
           echo '</div><br>';
           echo '<div id="user_icon">';
-
-          // プロフィール画像表示
-          $profile_img = isset($row['profile_image']) ? 'uploads/' . htmlspecialchars($row['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
+ 
+ 
+          $profile_img = isset($row['profile_image']) ? 'uploads/' . htmlspecialchars($user['profile_image'], ENT_QUOTES, 'UTF-8') : 'images/default_profile.png';
           echo '<img alt="image" src="' . $profile_img . '" class="avatar">';
-
+ 
+ 
           echo '</div>';
           echo '<div id="counts">';
           echo '<span class="post">投稿:' . htmlspecialchars($row['post_count'], ENT_QUOTES, 'UTF-8') . '回</span>';
           echo '<span class="participation">参加:' . htmlspecialchars($row['participation_count'], ENT_QUOTES, 'UTF-8') . '回</span><br>';
           echo '<span class="good_count">good数:' . htmlspecialchars($row['good_count'], ENT_QUOTES, 'UTF-8') . '</span>';
-          
-          // 投稿IDが指定されていなくても、参加しているかどうか確認する
+
           if ($post_id !== null) {
             // 特定の投稿IDについて参加を確認
             $sql = $pdo->prepare('SELECT * FROM participation WHERE user_id = ? AND post_id = ?');
@@ -73,7 +73,6 @@ require 'db-connect.php';
           } else {
               echo '<span class="hyouka">評価する: 参加した投稿がありません</span>';
           }
-          
           echo '</div><hr>';
           echo '<div id="profile_info_1">';
           echo '<br><span class="title">自己紹介</span><br>';
@@ -91,21 +90,21 @@ require 'db-connect.php';
           echo '<hr></div>';
           echo '<div id="profile_info_3">';
           echo '<br><span class="title">好きなスポーツ</span><br><br>';
-
+ 
           // user_sportsテーブルからスポーツ情報を取得
-          $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = ?');
-          $sport_sql->execute([$user_id]);
-          $user_sport = $sport_sql->fetchAll(PDO::FETCH_ASSOC);
-          foreach ($user_sport as $sport) {
-            $sport_name = isset($sport['sport_name']) ? htmlspecialchars($sport['sport_name'], ENT_QUOTES, 'UTF-8') : 'スポーツ名不明';
-            $level = isset($sport['level']) ? htmlspecialchars($sport['level'], ENT_QUOTES, 'UTF-8') : null;
-            if ($level !== null && $level !== '未設定') {
-              echo '<div class=sport_name>' . $sport_name . ' - ' . $level . '</div>'; 
-            } else {
-              echo '<div class=sport_name>' . $sport_name . '</div>';
-            }
-          }
-
+           $sport_sql = $pdo->prepare('SELECT s.sport_name, us.level FROM user_sport us JOIN sport s ON us.sport_id = s.sport_id WHERE us.user_id = ?');
+            $sport_sql->execute([$user_id]);
+             $user_sport = $sport_sql->fetchAll(PDO::FETCH_ASSOC);
+              foreach ($user_sport as $sport) {
+                $sport_name = isset($sport['sport_name']) ? htmlspecialchars($sport['sport_name'], ENT_QUOTES, 'UTF-8') : 'スポーツ名不明';
+                 $level = isset($sport['level']) ? htmlspecialchars($sport['level'], ENT_QUOTES, 'UTF-8') : null;
+                  if ($level !== null && $level !== '未設定') {
+                     echo '<div class=sport_name>' . $sport_name . ' - ' . $level . '</div>';
+                  }else {
+                    echo '<div class=sport_name>' . $sport_name . '</div>';
+                  }
+                }
+ 
           echo '</div>';
         }
       } catch (PDOException $e) {
@@ -114,21 +113,25 @@ require 'db-connect.php';
       ?>
     </div><!--/main-->
   </div><!--/contents-->
-
+ 
   <footer>
     <small>Copyright&copy; <a href="index.html">Photo Gallery</a> All Rights Reserved.</small>
     <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
   </footer>
-
+ 
   <p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
-
-<!--メニュー開閉ボタン-->
-<div id="menubar_hdr" class="close"></div>
-
-<script>
-if (OCwindowWidth() <= 900) {
+ 
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+ 
+  <!--メニューの開閉処理条件設定　900px以下-->
+  <script>
+  if (OCwindowWidth() <= 900) {
     open_close("menubar_hdr", "menubar-s");
-}
-
+  }
+  </script>
+ 
 </body>
 </html>
+ 
+ 
